@@ -1,22 +1,25 @@
 
-#### Want to know more about SDK?
+## Want to know more about SDK?
 
-Symbl's Python SDK offers easy implementation of multiple APIs.
+SDK offers easy implementation of multiple APIs provided by Symbl.
 
-1. [Async APIs] [#async_api-class]
+1. [Async APIs][async_api-class]
 
-2. [Conversation APIs][#conversation_api-class]
+2. [Conversation APIs][conversation_api-class]
 
-For Audio/Video files, you can either directly submit the file from your system or you can pass a URL (where the files are directly hosted) to async_api functions as mentioned [here][#async_api-class].
 
-### What is a Job?
+## Key Terms
+### What is a ConversationId?
+
+When you process any conversation through Symbl whether it's from Async API, Javascript SDK, Telephony or Streaming API, you'll always receive a unique Conversation ID (conversationId), which consists of numerical digits.
+
+### What is a JobId?
 
 As soon as you upload one of your file, or send one of your text for processing to Symbl, You get a jobId (and a conversationId) in response. This jobId is a unique identifier for the job processing the payload you sent. 
 
 A job can have a particular status at a time wiz. IN_PROGRESS, SCHEDULED, COMPLETED or FAILED. You can only use a conversationId for the conversation_api class functions once, the job payload is completed.
 
-
-### async_api class
+## async_api class
 
 Symbl's Async APIs provide the functionality for processing recordings (audio/video) from files or public/signed URLs or textual content from a conversation. The data processed for these conversations are available via the Conversation APIs once the APIs have completed the processing. 
 
@@ -98,7 +101,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.a
     wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
 
 
-### conversation_api class
+## conversation_api class
 
 The Conversation API provides a REST API interface for getting your processed Speech to Text data(also known as Transcripts) and conversational insights.
 
@@ -132,3 +135,5 @@ You can utilize different functions of Conversation APIs by directly utilizing `
 
 [api-keys]: https://platform.symbl.ai/#/login
 [symbl-docs]: https://docs.symbl.ai/docs/
+[async_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#async_api-class
+[conversation_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#conversation_api-class

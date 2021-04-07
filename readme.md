@@ -112,12 +112,13 @@ for file in files:
 
 #### Need support
 
-The first place to look for your use case is in the extended [readme.md][extended-readme] file or the [examples][examples] folder.
+The first place to look for your use case is in the [examples][examples] folder or you can see all the functions provided by SDK in the extended [readme.md][extended-readme] file.
 
-If you can't find the your answers, do let us know at support@symbl.ai or join our slack channel.
+If you can't find the your answers, do let us know at support@symbl.ai or join our slack channel [here][slack-invite].
 
 [api-keys]: https://platform.symbl.ai/#/login
 [symbl-docs]: https://docs.symbl.ai/docs/
-[extended-readme]: https://github.com/symblai/symbl-python/symbl/blob/main/readme.md
+[extended-readme]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md
 [examples]: https://github.com/symblai/symbl-python/examples/
 [unicodeerror]: https://stackoverflow.com/questions/37400974/unicode-error-unicodeescape-codec-cant-decode-bytes-in-position-2-3-trunca
+[slack-invite]: https://symbldotai.slack.com/join/shared_invite/zt-4sic2s11-D3x496pll8UHSJ89cm78CA#/
