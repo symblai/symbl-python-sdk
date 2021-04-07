@@ -84,7 +84,7 @@ from os.path import isfile, join
 
 
 # Initialize with credentials
-symbl.init(app_id="", app_secret="")
+symbl.init(app_id=<app_id>, app_secret=<app_secret>)
 
 # returns lambda function with fileName which is under processing
 def save_transcriptions_in_file(fileName):
@@ -99,7 +99,7 @@ def on_success(jobPayload, fileName):
     file.close()
 
 # Look [here][unicodeerror], if you're getting unicode error
-directory_path = r''
+directory_path = r'<directory_path>'
 
 files = [join(directory_path, file) for file in listdir(directory_path) if isfile(join(directory_path, file))]
 
@@ -119,6 +119,6 @@ If you can't find the your answers, do let us know at support@symbl.ai or join o
 [api-keys]: https://platform.symbl.ai/#/login
 [symbl-docs]: https://docs.symbl.ai/docs/
 [extended-readme]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md
-[examples]: https://github.com/symblai/symbl-python/examples/
+[examples]: https://github.com/symblai/symbl-python/tree/main/example
 [unicodeerror]: https://stackoverflow.com/questions/37400974/unicode-error-unicodeescape-codec-cant-decode-bytes-in-position-2-3-trunca
 [slack-invite]: https://symbldotai.slack.com/join/shared_invite/zt-4sic2s11-D3x496pll8UHSJ89cm78CA#/
