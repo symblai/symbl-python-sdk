@@ -1,0 +1,34 @@
+def isEmpty(value):
+    return value == None or len(value) == 0
+
+def validateActions(actions):
+    if actions != None and isinstance(actions, list):
+        invalidActions = []
+        for action in actions:
+            if isEmpty(action["invokeOn"]) and isEmpty(action["name"]):
+                invalidActions.append(action)
+         
+        if len(invalidActions) > 0 :
+            raise ValueError({'message': "Invalid actions detected. Count: ${invalidActions.length}", "actions": invalidActions})
+
+    else:
+        raise ValueError('actions should be an array.');
+
+def validateEndpoint(endpoint):
+    if isEmpty(endpoint["type"]):
+        raise ValueError("endpoint type is required.")
+    
+    if endpoint["type"].lower() == "pstn":
+        if isEmpty(endpoint["phoneNumber"]):
+            raise ValueError("phoneNumber is required when type = 'pstn'.")
+    
+    elif endpoint["type"].lower() == "sip":
+        if isEmpty(endpoint["uri"]):
+            raise ValueError("uri is required when type = 'sip'.")
+        elif isEmpty(endpoint["providerName"]):
+            endpoint["providerName"] = "AnyMeeting"
+        elif isEmpty(endpoint["transportConfig"]):
+            endpoint["transportConfig"] = "transport=UDP;providerName=${endpoint.providerName};audioTransport=RTP"
+    
+    else:
+        raise ValueError("endpoint.type = '${endpoint.type}' is not valid. Supported types are ['pstn' , 'sip']")

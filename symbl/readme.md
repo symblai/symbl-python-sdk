@@ -7,6 +7,8 @@ SDK offers easy implementation of multiple APIs provided by Symbl.
 
 2. [Conversation APIs][conversation_api-class]
 
+3. [Telephony API][telephony_api-class]
+
 
 ## Key Terms
 ### What is a ConversationId?
@@ -133,7 +135,32 @@ You can utilize different functions of Conversation APIs by directly utilizing `
 
     returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
 
+## telephony_api class
+
+Based on PSTN and SIP protocols, the Telephony API provides an interface for the developers to have Symbl bridge/join VoIP calls and get the results back in real-time as well. Optionally, the developer can also trigger an email at the end of the conversation containing the URL to view the transcription, insights and topics in a single page Web Application.
+
+1. startEndpoint(body):
+
+    The body object needs to be in format.
+
+    i.   endpoint : {type: "pstn", phoneNumber: "", dtmf: ""} or {type: "sip", "uri":"", audioConfig: ""}
+    ii.  actions : [{invokeOn: "stop", name: "sendSummaryEmail", parameters: {emails: ["email@example.com"]}}]
+    iii. data: {session: {name: "sessionName"}}
+   
+    For more details check documentation [here][telephony-docs]
+
+    Returns an object with keys. `eventUrl`, `resultWebSocketUrl`, `connectionId` & `conversationId`.
+
+2. stopEndpoint(body):
+
+    The body object require only connectionId parameter. Other optional parameters can be added as per [docs][telephony-docs]
+
+    Return an updated connection object which will have the conversationId in the response. 
+
+
 [api-keys]: https://platform.symbl.ai/#/login
 [symbl-docs]: https://docs.symbl.ai/docs/
+[telephony-docs]: https://docs.symbl.ai/docs/telephony/introduction
 [async_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#async_api-class
 [conversation_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#conversation_api-class
+[telephony_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#telephony_api-class

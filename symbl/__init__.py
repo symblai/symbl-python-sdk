@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from symbl.TelephonyApi import TelephonyApi
 
 from symbl_rest import AuthenticationApi, JobsApi, ApiClient, Configuration
 from symbl.AsyncApi import AsyncApi
@@ -11,6 +12,7 @@ from symbl.JobStatus import JobStatus
 api_client = None
 async_api = None
 conversations_api = None
+telephony_api = None
 
 
 '''
@@ -36,7 +38,8 @@ def init(app_id=None, app_secret=None, refresh_token=False):
     authenticationResponse = AuthenticationApi().generate_token(body)
     configuration.api_key['x-api-key'] = authenticationResponse.access_token
 
-    global api_client, async_api, conversations_api
+    global api_client, async_api, conversations_api, telephony_api
     api_client = ApiClient(configuration)
     async_api = AsyncApi(api_client)
     conversations_api = ConversationsApi(api_client)
+    telephony_api = TelephonyApi(api_client)

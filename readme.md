@@ -106,7 +106,47 @@ files = [join(directory_path, file) for file in listdir(directory_path) if isfil
 # Process audio files in the above mentioned directory
 for file in files:
     job = symbl.async_api.submit_audio(file_path=file, wait=False).on_complete(save_transcriptions_in_file(file))
-    
+
+```
+
+## Analysis of your Zoom Call on your email (Symbl will join your zoom call and send you analysis on provided email)
+
+```python
+
+import symbl
+
+symbl.init(app_id=<app_id>, app_secret=<app_secret>)
+
+phoneNumber = "" # Zoom phone number to be called, check here https://us02web.zoom.us/zoomconference
+meetingId = "" # Your zoom meetingId
+password = "" # Your zoom meeting passcode
+emailId = ""
+
+connection = symbl.telephony_api.startEndpoint({
+      "endpoint": {
+        "type": "pstn",
+        "phoneNumber": phoneNumber,
+        "dtmf": ",,{}#,,{}#".format(meetingId, password)
+      },
+      "actions": [
+        {
+          "invokeOn": "stop",
+          "name": "sendSummaryEmail",
+          "parameters": {
+            "emails": [
+              emailId
+            ],
+          },
+        },
+      ],
+      "data": {
+        "session": {
+          "name": "Meeting name",
+        },
+      },
+    })
+
+print(connection)
 
 ```
 
