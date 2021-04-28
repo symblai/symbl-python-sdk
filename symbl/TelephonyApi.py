@@ -11,10 +11,9 @@ class TelephonyApi():
         self.api_client = api_client
         self.telephony_api_rest = telephony_api_rest(api_client)
 
-    def initialize_api_client(function):
+    def initialize_api_client(self, function):
         def wrapper(*args, **kw):
             credentials = None
-            self = args[0]
             
             if 'credentials' in kw:
                 credentials = kw['credentials']
@@ -40,26 +39,40 @@ class TelephonyApi():
 
         return self.telephony_api_rest.connect_to_endpoint(body)
         
-    @initialize_api_client
+
     def startEndpoint(self, endpoint, credentials=None, actions={}, data={}):
-        body = dict()
-        body = {
-            "operation": "start", 
-            "endpoint": endpoint, 
-            "actions": actions,
-            "data": data
-        }
+        def inner(function):
+            @self.initialize_api_client
+            def wrapper(*args, **kwrags):
+                body = dict()
+                body = {
+                    "operation": "start", 
+                    "endpoint": endpoint, 
+                    "actions": actions,
+                    "data": data
+                }
+                try:
+                    return function(self.validateAndConnectToEndpoint(body), *args, **kwrags)
+                except Exception as e:
+                    return function(e)
+            return wrapper()
+        return inner
 
-        return self.validateAndConnectToEndpoint(body)
-
-    @initialize_api_client
     def stopEndpoint(self, body):
-        body["operation"] = "stop"
+        def inner(function):
+            @self.initialize_api_client
+            def wrapper(*args, **kwrags):
+                body["operation"] = "stop"
 
-        if body == None:
-            raise ValueError('endpoint configuration is required.')
+                if body == None:
+                    raise ValueError('endpoint configuration is required.')
 
-        if body["connectionId"] == None:
-            raise ValueError('ConnectionId is invalid, Please enter a valid connectionId to stop')
+                if body["connectionId"] == None:
+                    raise ValueError('ConnectionId is invalid, Please enter a valid connectionId to stop')
 
-        return self.telephony_api_rest.connect_to_endpoint(body)
+                try:
+                    return function(self.telephony_api_rest.connect_to_endpoint(body), *args, **kwrags)
+                except Exception as e:
+                    return function(e)
+            return wrapper()
+        return inner
