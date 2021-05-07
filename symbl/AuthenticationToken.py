@@ -97,3 +97,33 @@ def get_api_client(credentials=None):
     if configuration == None:
         init(app_id, app_secret)
     return ApiClient(configuration)
+
+def get_api_header(credentials=None):
+    app_id, app_secret = None, None
+
+    if credentials != None and 'app_id' in credentials:
+        app_id = credentials['app_id']
+    
+    if credentials != None and 'app_secret' in credentials:
+        app_secret = credentials['app_secret']
+
+    global configuration
+    if configuration == None:
+        init(app_id, app_secret)
+
+    return configuration.api_key
+
+def get_access_token(credentials=None):
+    app_id, app_secret = None, None
+
+    if credentials != None and 'app_id' in credentials:
+        app_id = credentials['app_id']
+    
+    if credentials != None and 'app_secret' in credentials:
+        app_secret = credentials['app_secret']
+
+    global configuration
+    if configuration == None:
+        init(app_id, app_secret)
+
+    return configuration.api_key['x-api-key']

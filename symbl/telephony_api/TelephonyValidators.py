@@ -2,17 +2,13 @@ def isEmpty(value):
     return value == None or len(value) == 0
 
 def validateActions(actions):
-    if actions != None and isinstance(actions, list):
-        invalidActions = []
-        for action in actions:
-            if isEmpty(action["invokeOn"]) and isEmpty(action["name"]):
-                invalidActions.append(action)
-         
-        if len(invalidActions) > 0 :
-            raise ValueError({'message': "Invalid actions detected. Count: ${invalidActions.length}", "actions": invalidActions})
-
-    else:
-        raise ValueError('actions should be an array.');
+    invalidActions = []
+    for action in actions:
+        if isEmpty(action["invokeOn"]) and isEmpty(action["name"]):
+            invalidActions.append(action)
+        
+    if len(invalidActions) > 0 :
+        raise ValueError({'message': "Invalid actions detected. Count: ${invalidActions.length}", "actions": invalidActions})
 
 def validateEndpoint(endpoint):
     if isEmpty(endpoint["type"]):

@@ -23,7 +23,7 @@ class ConversationsApi():
             self.api_client = api_client
             self.async_api_rest = conversations_api_rest(api_client)
 
-            function(*args, **kw)
+            return function(*args, **kw)
         
         return wrapper
 

@@ -25,7 +25,7 @@ setup(
     author_email="info@symbl.ai",
     url="",
     keywords=["Symbl.ai SDK"],
-    install_requires=["symbl_rest >= 1.0.0"],
+    install_requires=["symbl_rest >= 1.0.0", "websocket-client >= 0.59.0"],
     packages=["symbl"],
     include_package_data=True,
     long_description="""\
