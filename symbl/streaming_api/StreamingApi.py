@@ -1,25 +1,27 @@
 from symbl import StreamingConnection
 from symbl.configs.configs import SYMBL_STREAMING_API_FORMAT
+from symbl.AuthenticationToken import get_access_token
 import websocket
 import base64
 import random
 import string
-import json
-from symbl.AuthenticationToken import get_access_token
-
 
 class StreamingApi():
     def __init__(self):
         '''
             It will initialize the ConversationsApi class
         '''
-        self.connection = websocket.WebSocket(enable_multithread=True)
+        pass
 
+    def on_error(self, data):
+        print(data)
 
     def start_listening(self, credentials=None, speaker=None, insight_types=None):
         randomId = bytes(''.join(random.choices(string.ascii_uppercase +string.digits, k=12)), 'utf-8')
-        id = base64.b64encode(randomId).decode("utf-8") 
-        self.connection.connect(url=SYMBL_STREAMING_API_FORMAT.format(id, get_access_token(credentials=credentials)))
+        id = base64.b64encode(randomId).decode("utf-8")
+        url = SYMBL_STREAMING_API_FORMAT.format(id, get_access_token(credentials=credentials))
+        # self.connection = websocket.WebSocketApp(url=SYMBL_STREAMING_API_FORMAT.format(id, get_access_token(credentials=credentials)), on_error=self.on_error)
+
         print("Connected to websocket with id", SYMBL_STREAMING_API_FORMAT.format(id, get_access_token(credentials=credentials)))
         start_request = {
             "type": "start_request",
@@ -34,20 +36,26 @@ class StreamingApi():
                 }
             },
         }
+
+        # websocket_thread = threading.Thread(target=self.connection.run_forever)
+        # websocket_thread.daemon = True
+        # websocket_thread.start()
+
+        # conn_timeout = 5
+        # self.connection.on_message = lambda this, data: print('printing in StreamingApi class', data)
+
+        # while not self.connection.sock.connected and conn_timeout:
+        #     print("Is it connected?", conn_timeout)
+        #     sleep(1)
+        #     conn_timeout -= 1
         
-        self.connection.send(json.dumps(start_request))
-        data = ""
-        conversationId = None
+        # print("Is it connected?")
 
-        while conversationId == None:
-            resp_opcode, data = self.connection.recv_data()
-            print("Response opcode: " + str(resp_opcode))
-
-            stringData = data.decode('utf-8')
-            json_data = json.loads(stringData)
-            if 'type' in json_data and json_data['type'] == 'message' and 'data' in json_data['message']:
-                conversationId = str(json_data['message']['data']['conversationId'])
-                print("Conversation id is ", str(json_data['message']['data']['conversationId']))
-
-        return StreamingConnection(webSocket=self.connection, credentials=credentials, conversationId=conversationId, connectionId=id)
+        # self.connection.send(json.dumps(start_request))
     
+        return StreamingConnection(url= url, connectionId=id, start_request=start_request)
+
+    def stop_listening(self, url: str):
+        connection = websocket.WebSocketApp(url=url)
+        stop_payload = {'type': 'stop_request'}
+        connection.send(str(stop_payload))
