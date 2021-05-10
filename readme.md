@@ -38,17 +38,11 @@ available in your [Symbl Dashboard][api-keys].
 ```python
 import symbl
 
-# Initialize with credentials
-symbl.init(app_id=<app_id>, app_secret=<app_secret>)
-
 # Process audio file
-conversation_id = symbl.async_api.process_audio_file(file_path=<file_path>)
-
-# Get Transcription as array of messages
-transcription_messages = symbl.conversation_api.get_messages(conversation_id)
+conversation = symbl.async_api.process_audio_file(credentials={app_id: <app_id>, app_secret: <app_secret>}, file_path=<file_path>)
 
 # Printing transcription messages
-print(transcription_messages)
+print(conversation.messages())
 ```
 
 ## Get topics and action items from your call
@@ -56,22 +50,13 @@ print(transcription_messages)
 ```python
 import symbl
 
-# Initialize with credentials
-symbl.init(app_id=<app_id>, app_secret=<app_secret>)
-
 # Process audio file
-conversation_id = symbl.async_api.process_audio_file(file_path=<file_path>)
+conversation = symbl.async_api.process_audio_file(credentials={app_id: <app_id>, app_secret: <app_secret>}, file_path=<file_path>)
 
-# Get topics as array
-topics = symbl.conversation_api.get_topics(conversation_id)
+# Printing topics and actions
+print("Topics are = " + str(conversation.topics()))
 
-# Get Action items
-action_items = symbl.conversation_api.get_action_items(conversation_id)
-
-# Printing transcription messages
-print("Topics are = " + str(topics))
-
-print("Action Items = " + str(action_items))
+print("Action Items = " + str(conversation.actions()))
 ```
 
 ## SpeechToText of multiple audio files in a directory 
@@ -82,17 +67,13 @@ import symbl
 from os import listdir
 from os.path import isfile, join
 
-
-# Initialize with credentials
-symbl.init(app_id=<app_id>, app_secret=<app_secret>)
-
 # returns lambda function with fileName which is under processing
 def save_transcriptions_in_file(fileName):
-    return lambda jobPayload: on_success(jobPayload, fileName)
+    return lambda conversation: on_success(conversation, fileName)
 
 # returns actual callback to save the transcriptions of a conversation in a file
-def on_success(jobPayload, fileName):
-    transcriptions = symbl.conversations_api.get_messages(jobPayload['conversationId'])
+def on_success(conversation, fileName):
+    transcriptions = conversation.messages()
 
     file = open(fileName + ".txt","w+")
     file.write(str(transcriptions))
@@ -105,7 +86,7 @@ files = [join(directory_path, file) for file in listdir(directory_path) if isfil
 
 # Process audio files in the above mentioned directory
 for file in files:
-    job = symbl.async_api.submit_audio(file_path=file, wait=False).on_complete(save_transcriptions_in_file(file))
+    job = symbl.async_api.submit_audio(credentials={app_id: <app_id>, app_secret: <app_secret>}, file_path=file, wait=False).on_complete(save_transcriptions_in_file(file))
 
 ```
 
@@ -115,20 +96,16 @@ for file in files:
 
 import symbl
 
-symbl.init(app_id=<app_id>, app_secret=<app_secret>)
-
 phoneNumber = "" # Zoom phone number to be called, check here https://us02web.zoom.us/zoomconference
 meetingId = "" # Your zoom meetingId
 password = "" # Your zoom meeting passcode
 emailId = ""
 
-connection = symbl.telephony_api.startEndpoint({
-      "endpoint": {
-        "type": "pstn",
-        "phoneNumber": phoneNumber,
-        "dtmf": ",,{}#,,{}#".format(meetingId, password)
-      },
-      "actions": [
+connection = symbl.telephony_api.start_pstn(
+      credentials={app_id: <app_id>, app_secret: <app_secret>},
+      phoneNumber=phoneNumber,
+      dtmf = ",,{}#,,{}#".format(meetingId, password),
+      actions = [
         {
           "invokeOn": "stop",
           "name": "sendSummaryEmail",
@@ -138,12 +115,7 @@ connection = symbl.telephony_api.startEndpoint({
             ],
           },
         },
-      ],
-      "data": {
-        "session": {
-          "name": "Meeting name",
-        },
-      },
+      ]
     })
 
 print(connection)
