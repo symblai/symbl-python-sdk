@@ -1,7 +1,6 @@
 from symbl.Conversations import Conversation
 from symbl.AuthenticationToken import get_api_client
 from symbl_rest import AsyncApi as async_api_rest
-from symbl.jobs_api.Job import Job
 
 
 class Audio():
