@@ -23,6 +23,17 @@ Install from source with:
 python setup.py install
 ```
 
+To initialize the SDK, you need to provide app_id and app_token which you can get by signing up on [Symbl Dashboard][api-keys].
+
+You can either provide the api_keys by saving a file named symbl.conf in your home directory in the following format.
+
+```
+[credentials]
+app_id=<app_id>
+app_secret=<app_secret>
+
+```
+
 ### Requirements
 
 -   Python 2.7+ or Python 3.4+ (PyPy supported)
@@ -39,7 +50,8 @@ available in your [Symbl Dashboard][api-keys].
 import symbl
 
 # Process audio file
-conversation = symbl.async_api.process_audio_file(credentials={app_id: <app_id>, app_secret: <app_secret>}, file_path=<file_path>)
+conversation = symbl.async_api.process_audio_file(credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
+file_path=<file_path>)
 
 # Printing transcription messages
 print(conversation.messages())
@@ -51,7 +63,8 @@ print(conversation.messages())
 import symbl
 
 # Process audio file
-conversation = symbl.async_api.process_audio_file(credentials={app_id: <app_id>, app_secret: <app_secret>}, file_path=<file_path>)
+conversation = symbl.async_api.process_audio_file(credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
+file_path=<file_path>)
 
 # Printing topics and actions
 print("Topics are = " + str(conversation.topics()))
@@ -86,7 +99,8 @@ files = [join(directory_path, file) for file in listdir(directory_path) if isfil
 
 # Process audio files in the above mentioned directory
 for file in files:
-    job = symbl.async_api.submit_audio(credentials={app_id: <app_id>, app_secret: <app_secret>}, file_path=file, wait=False).on_complete(save_transcriptions_in_file(file))
+    job = symbl.async_api.submit_audio(credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
+    file_path=file, wait=False).on_complete(save_transcriptions_in_file(file))
 
 ```
 
@@ -102,7 +116,7 @@ password = "" # Your zoom meeting passcode
 emailId = ""
 
 connection = symbl.telephony_api.start_pstn(
-      credentials={app_id: <app_id>, app_secret: <app_secret>},
+      credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
       phoneNumber=phoneNumber,
       dtmf = ",,{}#,,{}#".format(meetingId, password),
       actions = [
