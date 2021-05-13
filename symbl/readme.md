@@ -25,7 +25,7 @@ As soon as you upload one of your files, or send one of your text for processing
 
 A job can have a particular status at a time wiz. IN_PROGRESS, SCHEDULED, COMPLETED or FAILED. You can only use a conversationId for the conversation_api class functions once, the job payload is completed.
 
-## audio_api class
+# audio_api class
 
 Symbl's Async APIs provide the functionality for processing audio recordings from files or public/signed URLs. The data processed for these conversations are available via the Conversation APIs once the APIs have completed the processing. 
 
@@ -69,7 +69,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
 
     returns conversation object
 
-## video_api class
+# video_api class
 
 Symbl's Async APIs provide the functionality for processing video recordings from files or public/signed URLs. The data processed for these conversations are available via the Conversation APIs once the APIs have completed the processing. 
 
@@ -114,7 +114,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
 
     returns conversation object
 
-## text_api class
+# text_api class
 
 Symbl's Async APIs provide the functionality for processing textual content from a conversation. The data processed for these conversations are available via the Conversation APIs once the APIs have completed the processing. 
 
@@ -138,7 +138,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.T
 
     returns conversation object
 
-# conversation object
+## conversation object
 
 Conversation object is returned by Async API Text, Audio and Video classes. The conversation object is a shorthand for conversation API and can be utilized for fetching multiple insights.
 
@@ -155,7 +155,7 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
 6. conversation.topics(): returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
 
 
-## conversation_api class
+# conversation_api class
 
 The Conversation API provides a REST API interface for getting your processed Speech to Text data(also known as Transcripts) and conversational insights.
 
@@ -187,7 +187,7 @@ You can utilize different functions of Conversation APIs by directly utilizing `
 
     returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
 
-## telephony_api class
+# telephony_api class
 
 Based on PSTN and SIP protocols, the Telephony API provides an interface for the developers to have Symbl bridge/join VoIP calls and get the results back in real-time as well. Optionally, the developer can also trigger an email at the end of the conversation containing the URL to view the transcription, insights and topics in a single page Web Application.
 
@@ -224,7 +224,7 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     Return an updated connection object which will have the conversationId in the response. 
 
 
-# connection object
+## connection object
 
 The connection object is returned by telephony API's functions. A connection object can be utilized for subscribing to multiple insights using subscribe function and can also be used to stop the telephony connection.
 
@@ -241,9 +241,9 @@ The connection object is returned by telephony API's functions. A connection obj
 [symbl-docs]: https://docs.symbl.ai/docs/
 [telephony-docs]: https://docs.symbl.ai/docs/telephony/introduction
 [async_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#async_api-class
-[audio_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#async_api-class
-[video_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#async_api-class
-[text_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#async_api-class
+[audio_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#audio_api-class
+[video_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#video_api-class
+[text_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#text_api-class
 [conversation_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#conversation_api-class
 [telephony_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#telephony_api-class
 [streaming_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#telephony_api-class
