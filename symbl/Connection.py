@@ -20,8 +20,8 @@ class Connection():
 
     def async_subscribe(self, eventCallbacks: dict):
         print("Eshtablishing connection")
-        print("Connecting to " + str( SYMBL_WEBSOCKET_BASE_PATH + self.connectionId) + " with api header ", self.header)
-        print("Eshtablishing connection", self.connection)
+        # print("Connecting to " + str( SYMBL_WEBSOCKET_BASE_PATH + self.connectionId) + " with api header ", self.header)
+        # print("Eshtablishing connection", self.connection)
         self.connection.connect(url=SYMBL_WEBSOCKET_BASE_PATH + self.connectionId, header=[self.header])
         print("Connection Eshtablished", self.connection)
         while True:
@@ -37,7 +37,6 @@ class Connection():
                 break
 
     def subscribe(self, eventCallbacks: dict):
-        print("Came here", 1)
         thread = threading.Thread(target=self.async_subscribe, args=(eventCallbacks,))
         thread.start()
 

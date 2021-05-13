@@ -40,7 +40,6 @@ class TelephonyApi():
         validateActions(body["actions"])
 
         data = self.telephony_api_rest.connect_to_endpoint(body)
-        print(data)
         connectionObject = Connection(connectionId=data.connection_id, conversationId=data.conversation_id, resultWebSocketUrl=data.result_web_socket_url, eventUrl=data.event_url, credentials=credentials)
         
         return connectionObject
