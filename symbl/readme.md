@@ -21,7 +21,7 @@ When you process any conversation through Symbl whether it's from Async API, Jav
 
 ### What is a JobId?
 
-As soon as you upload one of your file, or send one of your text for processing to Symbl, You get a jobId (and a conversationId) in response. This jobId is a unique identifier for the job processing the payload you sent. 
+As soon as you upload one of your files, or send one of your text for processing to Symbl, You get a jobId (and a conversationId) in response. This jobId is a unique identifier for the job processing the payload you sent. 
 
 A job can have a particular status at a time wiz. IN_PROGRESS, SCHEDULED, COMPLETED or FAILED. You can only use a conversationId for the conversation_api class functions once, the job payload is completed.
 
@@ -140,13 +140,13 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.T
 
 # conversation object
 
-Conversation object is returned by Async API Text, Audio and Video classes. Conversation object is a shorthand for conversation api and can be utilized for fetching multiple insights.
+Conversation object is returned by Async API Text, Audio and Video classes. The conversation object is a shorthand for conversation API and can be utilized for fetching multiple insights.
 
-1. conversation.action_items() : returns Action Items which are some specific outcomes recognized in the conversation that requires one or more people in the conversation to act in the future
+1. conversation.action_items(): returns Action Items which are some specific outcomes recognized in the conversation that requires one or more people in the conversation to act in the future
   
-2. conversation.follow_ups() : return a category of action items with a connotation to follow-up a request or a task like sending an email or making a phone call or booking an appointment or setting up a meeting.
+2. conversation.follow_ups(): return a category of action items with a connotation to follow-up a request or a task like sending an email or making a phone call or booking an appointment or setting up a meeting.
         
-3. conversation.members(): return a list of all the members in a conversation. A Member is referred to a participant in the conversation that is uniquely identified as a speaker. Identifying different participants in the meetings can be done by implementing speaker separation.
+3. conversation.members(): return a list of all the members in a conversation. A Member is referred to as a participant in the conversation that is uniquely identified as a speaker. Identifying different participants in the meetings can be done by implementing speaker separation.
         
 4. conversation.messages(): returns a list of messages (sentences spoken by speakers) in a conversation. You can use this for providing transcription for video conference, meeting or telephone call.
  
@@ -226,11 +226,11 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
 
 # connection object
 
-Connection object is returned by Telephony API's functions. Connection can be utilized for subscribing to multiple insights using subscribe function and can also be used to stop telephony connection.
+The connection object is returned by telephony API's functions. A connection object can be utilized for subscribing to multiple insights using subscribe function and can also be used to stop the telephony connection.
 
 1. connection.subscribe({'event': callback, ...}):
     
-    takes dictionary as body, where key can be an event and callback can be a function which should be executed on occurance of that event.
+    takes a dictionary parameter, where the key can be an event and it's value can be a callback function that should be executed on the occurrence of that event.
 
 2. connection.stop():
 

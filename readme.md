@@ -140,7 +140,7 @@ print(connection)
 
 The first place to look for your use case is in the [examples][examples] folder or you can see all the functions provided by SDK in the extended [readme.md][extended-readme] file.
 
-If you can't find the your answers, do let us know at support@symbl.ai or join our slack channel [here][slack-invite].
+If you can't find your answers, do let us know at support@symbl.ai or join our slack channel [here][slack-invite].
 
 [api-keys]: https://platform.symbl.ai/#/login
 [symbl-docs]: https://docs.symbl.ai/docs/
