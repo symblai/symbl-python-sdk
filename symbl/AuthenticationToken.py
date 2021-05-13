@@ -55,7 +55,7 @@ def fetchAppCredentialsFromFiles():
 def fetchAppCredentialsInPath():
     app_id, app_secret = None, None
     if os.path.isfile("{}/{}".format(os.path.expanduser('~'), SYMBL_CONFIGURATION_FILENAME)):
-        config_parser.read_file(open(SYMBL_CONFIGURATION_FILENAME))
+        config_parser.read_file(open("{}/{}".format(os.path.expanduser('~'), SYMBL_CONFIGURATION_FILENAME)))
         if config_parser.has_option(SYMBL_CREDENTIALS_SECTION, SYMBL_APP_ID_CONSTANT) and config_parser.has_option(SYMBL_CREDENTIALS_SECTION, SYMBL_APP_SECRET_CONSTANT):
             app_id, app_secret =  config_parser.get(SYMBL_CREDENTIALS_SECTION, SYMBL_APP_ID_CONSTANT), config_parser.get(SYMBL_CREDENTIALS_SECTION, SYMBL_APP_SECRET_CONSTANT)
 
