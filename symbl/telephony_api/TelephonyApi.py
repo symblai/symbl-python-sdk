@@ -3,6 +3,22 @@ from symbl.telephony_api.TelephonyValidators import validateActions, validateEnd
 from symbl_rest import ConnectionToEndpointApi as telephony_api_rest
 from symbl.AuthenticationToken import get_api_client
 
+
+def initialize_api_client(function):
+    def wrapper(*args, **kw):
+        credentials = None
+        self = args[0]
+        
+        if 'credentials' in kw:
+            credentials = kw['credentials']
+
+        api_client = get_api_client(credentials)
+        self.api_client = api_client
+        self.async_api_rest = telephony_api_rest(api_client)
+
+        return function(*args, **kw)
+    
+    return wrapper
 class TelephonyApi():
     def __init__(self, api_client=None):
         '''
@@ -11,22 +27,6 @@ class TelephonyApi():
         
         self.api_client = api_client
         self.telephony_api_rest = telephony_api_rest(api_client)
-
-    def initialize_api_client(function):
-        def wrapper(*args, **kw):
-            credentials = None
-            self = args[0]
-            
-            if 'credentials' in kw:
-                credentials = kw['credentials']
-
-            api_client = get_api_client(credentials)
-            self.api_client = api_client
-            self.async_api_rest = telephony_api_rest(api_client)
-
-            return function(*args, **kw)
-        
-        return wrapper
 
     def validateAndConnectToEndpoint(self, body, credentials=None):
         if body == None:
@@ -62,18 +62,18 @@ class TelephonyApi():
         return self.validateAndConnectToEndpoint(body, credentials)
 
     @initialize_api_client
-    def start_sip(self, uri, providerName, transportConfig, credentials=None, actions={}, data={}):
+    def start_sip(self, uri, audioConfig={}, credentials=None, actions={}, data={}):
         body = dict()
         body = {
             "operation": "start", 
             "endpoint": {
-                "type": "pstn",
+                "type": "sip",
                 "uri": uri,
-                "providerName": providerName,
-                "transportConfig": transportConfig
+                "audioConfig": audioConfig
             }, 
             "actions": actions,
-            "data": data
+            "data": data,
+            "pushSpeakerEvents": True
         }
 
         return self.validateAndConnectToEndpoint(body)

@@ -23,7 +23,7 @@ class Connection():
         # print("Connecting to " + str( SYMBL_WEBSOCKET_BASE_PATH + self.connectionId) + " with api header ", self.header)
         # print("Eshtablishing connection", self.connection)
         self.connection.connect(url=SYMBL_WEBSOCKET_BASE_PATH + self.connectionId, header=[self.header])
-        print("Connection Eshtablished", self.connection)
+        print("Connection Eshtablished")
         while True:
             try:
                 data = self.connection.recv()
@@ -42,11 +42,10 @@ class Connection():
 
 
     def async_stop(self):
-        while self.connection != None:
-            self.connection.connect(url=SYMBL_WEBSOCKET_BASE_PATH + self.connectionId, header=[self.header])
-            self.connection.send(payload={
-                'type': 'stop_request'
-            })
+        self.connection.connect(url=SYMBL_WEBSOCKET_BASE_PATH + self.connectionId, header=[self.header])
+        self.connection.send(payload={
+            'type': 'stop_request'
+        })
 
     def stop(self):
         thread = threading.Thread(target=self.async_stop, args=())
