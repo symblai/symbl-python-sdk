@@ -25,13 +25,13 @@ As soon as you upload one of your files, or send one of your text for processing
 
 A job can have a particular status at a time wiz. IN_PROGRESS, SCHEDULED, COMPLETED or FAILED. You can only use a conversationId for the conversation_api class functions once, the job payload is completed.
 
-# audio_api class
+# Audio class
 
 Symbl's Async APIs provide the functionality for processing audio recordings from files or public/signed URLs. The data processed for these conversations are available via the Conversation APIs once the APIs have completed the processing. 
 
 You can utilize different functions of Async APIs by directly utilizing `symbl.Audio`.
 
-1. submit_audio(file_path, content_type='', wait=True):
+1. process_file(file_path, content_type='', wait=True):
 
     audio_file :- (Mandatory) A valid path to a file
 
@@ -41,26 +41,26 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
 
     returns conversation object
 
-2. submit_audio_url(url, wait=True):
+2. process_url(url, wait=True):
     url :- (Mandatory) A valid url to a file hosted directly
 
     wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
 
     returns conversation object
 
-3. append_audio(file_path, content_type='', conversation_id='', wait=True):
+3. append_file(file_path, conversation_id, content_type='', wait=True):
 
     audio_file :- (Mandatory) A valid path to a file
 
-    content_type: (Optional) Parameter defining the content_type of audio. Acceptable values are audio/wav, audio/mp3, audio/mpeg. Leave it blank if you're not sure about the content_type of file 
-
     conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
+
+    content_type: (Optional) Parameter defining the content_type of audio. Acceptable values are audio/wav, audio/mp3, audio/mpeg. Leave it blank if you're not sure about the content_type of file 
 
     wait:- (Optional, by default True) Boolean, Value False will execute the function submit_audio on a separate thread making it a non-blocking API call (Has callback support)
 
     returns conversation object
 
-4. append_audio_url(url, conversation_id='', wait=True):
+4. append_url(url, conversation_id, wait=True):
     url :- (Mandatory) A valid url to a file hosted directly 
 
     conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
@@ -69,14 +69,14 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
 
     returns conversation object
 
-# video_api class
+# Video class
 
 Symbl's Async APIs provide the functionality for processing video recordings from files or public/signed URLs. The data processed for these conversations are available via the Conversation APIs once the APIs have completed the processing. 
 
 You can utilize different functions of Async APIs by directly utilizing `symbl.Video`.
 
 
-1. submit_video(file_path, content_type='', wait=True):
+1. process_file(file_path, content_type='', wait=True):
 
     video_file :- (Mandatory) A valid path to a file
 
@@ -86,26 +86,26 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
 
     returns conversation object
 
-2. submit_video_url(url, wait=True):
+2. process_url(url, wait=True):
     url:- (Mandatory) A valid url to a file hosted directly
 
     wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
 
     returns conversation object
 
-3. append_video(file_path, content_type='', conversation_id='', wait=True):
+3. append_file(file_path, conversation_id, content_type='', wait=True):
 
     video_file :- (Mandatory) A valid path to a file
 
-    content_type: (Optional) Parameter defining the content_type of video. Acceptable values are video/mp4. Leave it blank if you're not sure about the content_type of file 
-
     conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
+
+    content_type: (Optional) Parameter defining the content_type of video. Acceptable values are video/mp4. Leave it blank if you're not sure about the content_type of file. 
 
     wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
 
     returns conversation object
 
-4. append_video_url(url, conversation_id='', wait=True):
+4. append_url(url, conversation_id, wait=True):
     url :- (Mandatory) A valid url to a file hosted directly 
 
     conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
@@ -114,23 +114,23 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
 
     returns conversation object
 
-# text_api class
+# Text class
 
 Symbl's Async APIs provide the functionality for processing textual content from a conversation. The data processed for these conversations are available via the Conversation APIs once the APIs have completed the processing. 
 
 You can utilize different functions of Async APIs by directly utilizing `symbl.Text`.
 
-1. submit_text(text_payload, wait=True):
+1. process(payload, wait=True):
 
-    text_payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][symbl-docs] for payload 
+    payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][symbl-docs] for payload 
 
     wait:- (Optional, by default True) Boolean, Value False will execute the function submit_text on a separate thread making it a non-blocking API call (Has callback support)
 
     returns conversation object
 
-2. append_text(text_payload, conversation_id='' wait=True):
+2. append(payload, conversation_id, wait=True):
 
-    text_payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][symbl-docs] for payload 
+    payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][symbl-docs] for payload 
 
     conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
 
@@ -155,13 +155,13 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
 6. conversation.topics(): returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
 
 
-# conversation_api class
+# Conversations class
 
 The Conversation API provides a REST API interface for getting your processed Speech to Text data(also known as Transcripts) and conversational insights.
 
 These APIs require a conversationId.
 
-You can utilize different functions of Conversation APIs by directly utilizing `symbl.conversation_api`
+You can utilize different functions of Conversation APIs by directly utilizing `symbl.Conversations`
 
 1. get_action_items(conversation_id):
 

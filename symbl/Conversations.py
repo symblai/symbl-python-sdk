@@ -5,53 +5,52 @@ from symbl_rest import JobsApi
 
 class Conversation():
 
-    INTERVAL_TIME_IN_SECONDS = 30  ## in seconds
+    __INTERVAL_TIME_IN_SECONDS = 30  ## in seconds
 
     def __init__(self, conversationId: str, jobId: str,  wait=True, credentials=None):
         
-        self.conversation_id = conversationId
-        self.job = Job(conversationId=conversationId, jobId=jobId, wait=wait)
-        self.wait = wait
-        self.credentials = credentials
-        self.conversation_api = ConversationsApi()
+        self.__conversation_id = conversationId
+        self.__job = Job(conversation_id=conversationId, job_id=jobId, wait=wait)
+        self.__wait = wait
+        self.__credentials = credentials
+        self.__conversation_api = ConversationsApi()
         
-        self.monitorJob()
+        self.__monitorJob()
     
-    def getConversationId(self):
-        return self.conversation_id
+    def get_conversation_id(self):
+        return self.__conversation_id
     
-    def getJobStatus(self):
-        return self.job.job_status.value
+    def get_job_status(self):
+        return self.__job.__job_status.value
 
     def on_complete(self, func):
-        self.job.success_func = func
+        self.__job.__success_func = func
         return self
 
     def on_error(self, func):
-        self.job.error_func = func
+        self.__job.__error_func = func
         return self
 
-
     def action_items(self):
-        return self.conversation_api.get_action_items(self.conversation_id, credentials=self.credentials)
+        return self.__conversation_api.get_action_items(self.__conversation_id, credentials=self.__credentials)
 
     def follow_ups(self ):  
-        return self.conversation_api.get_follow_ups(self.conversation_id, credentials=self.credentials)
+        return self.__conversation_api.get_follow_ups(self.__conversation_id, credentials=self.__credentials)
 
     def insights(self):  
-        return self.conversation_api.get_insights(self.conversation_id, credentials=self.credentials)
+        return self.__conversation_api.get_insights(self.__conversation_id, credentials=self.__credentials)
   
     def members(self):  
-        return self.conversation_api.get_members(self.conversation_id, credentials=self.credentials)
+        return self.__conversation_api.get_members(self.__conversation_id, credentials=self.__credentials)
   
     def messages(self):  
-        return self.conversation_api.get_messages(self.conversation_id, credentials=self.credentials)
+        return self.__conversation_api.get_messages(self.__conversation_id, credentials=self.__credentials)
   
     def questions(self):  
-        return self.conversation_api.get_questions(self.conversation_id, credentials=self.credentials)
+        return self.__conversation_api.get_questions(self.__conversation_id, credentials=self.__credentials)
   
     def topics(self):  
-        return self.conversation_api.get_topics(self.conversation_id, credentials=self.credentials)
+        return self.__conversation_api.get_topics(self.__conversation_id, credentials=self.__credentials)
     
-    def monitorJob(self):
-        self.job.monitorJob(self, interval=self.INTERVAL_TIME_IN_SECONDS, wait=self.wait, credentials=self.credentials)
+    def __monitorJob(self):
+        self.__job.monitor_job(self, interval=self.__INTERVAL_TIME_IN_SECONDS, wait=self.__wait, credentials=self.__credentials)

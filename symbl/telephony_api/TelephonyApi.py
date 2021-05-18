@@ -3,6 +3,22 @@ from symbl.telephony_api.TelephonyValidators import validateActions, validateEnd
 from symbl_rest import ConnectionToEndpointApi as telephony_api_rest
 from symbl.AuthenticationToken import get_api_client
 
+
+def initialize_api_client(function):
+    def wrapper(*args, **kw):
+        credentials = None
+        self = args[0]
+        
+        if 'credentials' in kw:
+            credentials = kw['credentials']
+
+        api_client = get_api_client(credentials)
+        self.api_client = api_client
+        self.async_api_rest = telephony_api_rest(api_client)
+
+        return function(*args, **kw)
+    
+    return wrapper
 class TelephonyApi():
     def __init__(self, api_client=None):
         '''
@@ -11,22 +27,6 @@ class TelephonyApi():
         
         self.api_client = api_client
         self.telephony_api_rest = telephony_api_rest(api_client)
-
-    def initialize_api_client(function):
-        def wrapper(*args, **kw):
-            credentials = None
-            self = args[0]
-            
-            if 'credentials' in kw:
-                credentials = kw['credentials']
-
-            api_client = get_api_client(credentials)
-            self.api_client = api_client
-            self.async_api_rest = telephony_api_rest(api_client)
-
-            return function(*args, **kw)
-        
-        return wrapper
 
     def validateAndConnectToEndpoint(self, body, credentials=None):
         if body == None:
@@ -45,13 +45,13 @@ class TelephonyApi():
         return connectionObject
 
     @initialize_api_client
-    def start_pstn(self, phoneNumber, dtmf=None, credentials=None, actions={}, data={}):
+    def start_pstn(self, phone_number, dtmf=None, credentials=None, actions={}, data={}):
         body = dict()
         body = {
             "operation": "start", 
             "endpoint": {
                 "type": "pstn",
-                "phoneNumber": phoneNumber,
+                "phoneNumber": phone_number,
                 "dtmf": dtmf
             }, 
             "actions": actions,
@@ -62,30 +62,30 @@ class TelephonyApi():
         return self.validateAndConnectToEndpoint(body, credentials)
 
     @initialize_api_client
-    def start_sip(self, uri, providerName, transportConfig, credentials=None, actions={}, data={}):
+    def start_sip(self, uri, audio_config={}, credentials=None, actions={}, data={}):
         body = dict()
         body = {
             "operation": "start", 
             "endpoint": {
-                "type": "pstn",
+                "type": "sip",
                 "uri": uri,
-                "providerName": providerName,
-                "transportConfig": transportConfig
+                "audioConfig": audio_config
             }, 
             "actions": actions,
-            "data": data
+            "data": data,
+            "pushSpeakerEvents": True
         }
 
         return self.validateAndConnectToEndpoint(body)
 
     @initialize_api_client
-    def stop(self, connectionId):
+    def stop(self, connection_id):
         body = dict()
         body["operation"] = "stop"
-        body["connectionId"] = connectionId
+        body["connectionId"] = connection_id
 
 
-        if connectionId == None:
+        if connection_id == None:
             raise ValueError('ConnectionId is invalid, Please enter a valid connectionId to stop')
 
         return self.telephony_api_rest.connect_to_endpoint(body)
