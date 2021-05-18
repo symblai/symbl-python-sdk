@@ -50,8 +50,9 @@ available in your [Symbl Dashboard][api-keys].
 import symbl
 
 # Process audio file
-conversation = symbl.Audio.process_audio_file(credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
-file_path=<file_path>)
+conversation = symbl.Audio.process_file(
+  # credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
+  file_path=<file_path>)
 
 # Printing transcription messages
 print(conversation.messages())
@@ -63,7 +64,7 @@ print(conversation.messages())
 import symbl
 
 # Process audio file
-conversation = symbl.Audio.process_audio_file(
+conversation = symbl.Audio.process_file(
   # credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
   file_path=<file_path>)
 
@@ -100,7 +101,7 @@ files = [join(directory_path, file) for file in listdir(directory_path) if isfil
 
 # Process audio files in the above mentioned directory
 for file in files:
-    job = symbl.Audio.submit_audio(
+    job = symbl.Audio.process_file(
       # credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
       file_path=file, wait=False).on_complete(save_transcriptions_in_file(file))
 
@@ -117,9 +118,9 @@ meetingId = "" # Your zoom meetingId
 password = "" # Your zoom meeting passcode
 emailId = ""
 
-connection = symbl.telephony_api.start_pstn(
+connection = symbl.Telephony.start_pstn(
       # credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
-      phoneNumber=phoneNumber,
+      phone_number=phoneNumber,
       dtmf = ",,{}#,,{}#".format(meetingId, password),
       actions = [
         {
