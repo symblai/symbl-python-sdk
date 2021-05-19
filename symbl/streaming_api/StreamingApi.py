@@ -36,22 +36,6 @@ class StreamingApi():
                 }
             },
         }
-
-        # websocket_thread = threading.Thread(target=self.connection.run_forever)
-        # websocket_thread.daemon = True
-        # websocket_thread.start()
-
-        # conn_timeout = 5
-        # self.connection.on_message = lambda this, data: print('printing in StreamingApi class', data)
-
-        # while not self.connection.sock.connected and conn_timeout:
-        #     print("Is it connected?", conn_timeout)
-        #     sleep(1)
-        #     conn_timeout -= 1
-        
-        # print("Is it connected?")
-
-        # self.connection.send(json.dumps(start_request))
     
         return StreamingConnection(url= url, connectionId=id, start_request=start_request)
 
