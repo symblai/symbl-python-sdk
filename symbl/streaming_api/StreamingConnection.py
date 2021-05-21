@@ -1,9 +1,20 @@
+from symbl.utils.Threads import Thread
 from symbl.configs.configs import X_API_KEY_HEADER
 import json
-import threading
 import websocket
 import json
 from time import sleep
+
+def wrap_keyboard_interrupt(function):
+    def wrapper(*args, **kw):
+        try:
+            function(*args, **kw)
+        except KeyboardInterrupt:
+            self = args[0]
+            self.connection.sock.close()
+            Thread.getInstance().stop_all_threads()
+    
+    return wrapper
 
 class StreamingConnection():
 
@@ -20,10 +31,7 @@ class StreamingConnection():
     def connect(self):
         self.connection = websocket.WebSocketApp(url=self.url, on_message=lambda this, data: self.__listen_to_events(data), on_data=lambda this, data: self.__listen_to_events(data), on_error=lambda error: print(error))
 
-        websocket_thread = threading.Thread(target=self.connection.run_forever)
-        # websocket_thread.daemon = True
-        websocket_thread.start()
-
+        Thread.getInstance().start_on_thread(target=self.connection.run_forever)
         conn_timeout = 5
         while not self.connection.sock.connected and conn_timeout:
             sleep(1)
@@ -54,15 +62,19 @@ class StreamingConnection():
             stop_payload = {'type': 'stop_request'}
             self.connection.send(str(stop_payload))
 
-    def async_send(self, data):
+    @wrap_keyboard_interrupt
+    def send_data(self, data):
+        if self.connection != None:
+            self.connection.send(data)
+    
+    @wrap_keyboard_interrupt
+    def send_audio(self, data):
         if self.connection != None:
             self.connection.send(data, opcode=websocket.ABNF.OPCODE_BINARY)
 
-    def send_data(self, data):
-        if self.connection != None:
-            print('Sending data')
-            self.connection.send(data)
-    
-    def send_audio(self, data):
-        thread = threading.Thread(target=self.async_send, args=(data,))
-        thread.start()
+    @wrap_keyboard_interrupt
+    def send_audio_from_mic(self, device=None):
+        import sounddevice as sd
+        with sd.InputStream(blocksize=4096, samplerate=44100, channels=1, callback= lambda indata, *args: self.send_audio(indata.copy().tobytes()), dtype='int16', device=device):
+            while True:
+                pass
