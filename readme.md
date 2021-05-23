@@ -139,6 +139,18 @@ print(connection)
 
 ```
 
+## Live audio transcript using your system's microphone
+
+```python
+import symbl
+
+connection = symbl.Streaming.start_connection()
+
+connection.subscribe({'transcript_response': lambda response: print('got this response from callback', response)})
+
+connection.send_audio_from_mic()
+```
+
 #### Need support
 
 The first place to look for your use case is in the [examples][examples] folder or you can see all the functions provided by SDK in the extended [readme.md][extended-readme] file.

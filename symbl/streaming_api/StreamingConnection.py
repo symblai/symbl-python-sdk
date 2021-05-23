@@ -13,22 +13,24 @@ class StreamingConnection():
         self.url = url
         self.event_callbacks = {}
         self.start_request = start_request
+        self.connection = None
+        self.__connect()
 
-        self.connect()
 
+    def __connect(self):
+        if self.connection == None:
 
-    def connect(self):
-        self.connection = websocket.WebSocketApp(url=self.url, on_message=lambda this, data: self.__listen_to_events(data), on_data=lambda this, data: self.__listen_to_events(data), on_error=lambda error: print(error))
+            self.connection = websocket.WebSocketApp(url=self.url, on_message=lambda this, data: self.__listen_to_events(data), on_data=lambda this, data: self.__listen_to_events(data), on_error=lambda error: print(error))
 
-        Thread.getInstance().start_on_thread(target=self.connection.run_forever)
-        conn_timeout = 5
-        while not self.connection.sock.connected and conn_timeout:
-            sleep(1)
-            conn_timeout -= 1
+            Thread.getInstance().start_on_thread(target=self.connection.run_forever)
+            conn_timeout = 5
+            while not self.connection.sock.connected and conn_timeout:
+                sleep(1)
+                conn_timeout -= 1
 
-        self.connection.send(json.dumps(self.start_request))
+            self.connection.send(json.dumps(self.start_request))
     
-    def set_conversation_id(self, conversationId: str):
+    def __set_conversation_id(self, conversationId: str):
         self.conversationId = conversationId
 
     def __listen_to_events(self, data):
@@ -38,7 +40,7 @@ class StreamingConnection():
             if 'type' in json_data and json_data['type'] in self.event_callbacks:
                 self.event_callbacks[json_data['type']](data) 
             elif 'type' in json_data and json_data['type'] == 'message' and 'data' in json_data['message']:
-                self.set_conversation_id(str(json_data['message']['data']['conversationId']))
+                self.__set_conversation_id(str(json_data['message']['data']['conversationId']))
                 print("Conversation id is ", str(json_data['message']['data']['conversationId']))
         except Exception as error:
             print(error)
@@ -50,11 +52,6 @@ class StreamingConnection():
         if self.connection != None:
             stop_payload = {'type': 'stop_request'}
             self.connection.send(str(stop_payload))
-
-    @wrap_keyboard_interrupt
-    def send_data(self, data):
-        if self.connection != None:
-            self.connection.send(data)
     
     @wrap_keyboard_interrupt
     def send_audio(self, data):

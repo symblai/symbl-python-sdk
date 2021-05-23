@@ -19,7 +19,6 @@ class StreamingApi():
         id = base64.b64encode(randomId).decode("utf-8")
         url = SYMBL_STREAMING_API_FORMAT.format(id, get_access_token(credentials=credentials))
 
-        print("Connected to websocket with id", SYMBL_STREAMING_API_FORMAT.format(id, get_access_token(credentials=credentials)))
         start_request = {
             "type": "start_request",
             "insightTypes": [] if insight_types == None else [] if type(insight_types) != list else insight_types,
