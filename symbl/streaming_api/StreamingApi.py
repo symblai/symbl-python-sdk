@@ -13,14 +13,11 @@ class StreamingApi():
         '''
         pass
 
-    def on_error(self, data):
-        print(data)
 
-    def start_listening(self, credentials=None, speaker=None, insight_types=None):
+    def start_connection(self, credentials=None, speaker=None, insight_types=None):
         randomId = bytes(''.join(random.choices(string.ascii_uppercase +string.digits, k=12)), 'utf-8')
         id = base64.b64encode(randomId).decode("utf-8")
         url = SYMBL_STREAMING_API_FORMAT.format(id, get_access_token(credentials=credentials))
-        # self.connection = websocket.WebSocketApp(url=SYMBL_STREAMING_API_FORMAT.format(id, get_access_token(credentials=credentials)), on_error=self.on_error)
 
         print("Connected to websocket with id", SYMBL_STREAMING_API_FORMAT.format(id, get_access_token(credentials=credentials)))
         start_request = {

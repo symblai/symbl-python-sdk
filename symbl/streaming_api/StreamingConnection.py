@@ -1,20 +1,9 @@
+from symbl.utils.Decorators import wrap_keyboard_interrupt
 from symbl.utils.Threads import Thread
-from symbl.configs.configs import X_API_KEY_HEADER
+from time import sleep
 import json
 import websocket
 import json
-from time import sleep
-
-def wrap_keyboard_interrupt(function):
-    def wrapper(*args, **kw):
-        try:
-            function(*args, **kw)
-        except KeyboardInterrupt:
-            self = args[0]
-            self.connection.sock.close()
-            Thread.getInstance().stop_all_threads()
-    
-    return wrapper
 
 class StreamingConnection():
 
