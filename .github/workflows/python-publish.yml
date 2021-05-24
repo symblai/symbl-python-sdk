@@ -4,8 +4,22 @@
 name: Upload Python Package
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - 'develop'
+      - 'main'
+
+env:
+  PRODUCTION_BRANCH: main
+  PRODUCTION_USERNAME: ${{ secrets.PYPI_USERNAME }}
+  PRODUCTION_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+  PRODUCTION_REPOSITORY_URL: ${{secrests.PYPI_REPOSITORY_URL}}
+
+  DEVELOP_BRANCH: develop
+  DEVELOP_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+  DEVELOP_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+  DEVELOP_REPOSITORY_URL: ${{secrests.NEXUS_REPOSITORY_URL}}
+
 
 jobs:
   deploy:
@@ -14,18 +28,27 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install setuptools wheel twine
-    - name: Build and publish
-      env:
-        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+
+    - name: Build
       run: |
         python setup.py sdist bdist_wheel
-        twine upload dist/*
+
+    - name: Publish package to production
+      if: ${{ env.BRANCH_NAME == env.PRODUCTION_BRANCH }}
+      run: |
+        twine upload -u {{PRODUCTION_USER_NAME}} -p {{PRODUCTION_PASSWORD}} --repository-url {{PRODUCTION_REPOSITORY_URL}} dist/*
+
+    - name: Publish package to develop
+      if: ${{ env.BRANCH_NAME == env.DEVELOP_BRANCH }}
+      run: |
+        twine upload -u {{NEXUS_USERNAME}} -p {{NEXUS_PASSWORD}} --repository-url {{NEXUS_REPOSITORY_URL}} dist/*
