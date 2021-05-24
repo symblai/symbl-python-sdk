@@ -9,9 +9,11 @@ SDK offers easy implementation of multiple APIs provided by Symbl.
 
 3. [Text][text_api-class]
 
-4. [Conversation APIs][conversation_api-class]
+4. [Conversation API][conversation_api-class]
 
 5. [Telephony API][telephony_api-class]
+
+6. [Streaming API][streaming_api-class]
 
 
 ## Key Terms
@@ -187,13 +189,11 @@ You can utilize different functions of Conversation APIs by directly utilizing `
 
     returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
 
-# telephony_api class
+# Telephony class
 
 Based on PSTN and SIP protocols, the Telephony API provides an interface for the developers to have Symbl bridge/join VoIP calls and get the results back in real-time as well. Optionally, the developer can also trigger an email at the end of the conversation containing the URL to view the transcription, insights and topics in a single page Web Application.
 
 1. start_pstn(phoneNumber, dtmf, actions, data):
-
-    The body object needs to be in format.
 
     i.   phoneNumber: phoneNumber where symbl should call
     ii.  dtmf : (Optional) dtmf sequence to entered by symbl to join the call 
@@ -205,8 +205,6 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     Returns a connection object
 
 2. start_sip(uri, audioConfig, actions, data):
-
-    The body object needs to be in format.
 
     i.   uri: uri where symbl should connect
     ii.  audioConfig : (Optional) audioConfigs of the SIP  
@@ -223,27 +221,63 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
 
     Return an updated connection object which will have the conversationId in the response. 
 
+# Streaming class
+
+Symbl's Streaming API is based on WebSocket protocol and can be used for real-time use-cases where both the audio and its results from Symbl's back-end need to be available in real-time.
+
+1. start_connection(credentials=None, speaker=None, insight_types=None):
+
+    i.   credentials: (Optional) Credentials to be provided, if not already passed in the local directory or home directory
+    ii.  speaker : (Optional) speaker object containing name and email field 
+    iii. insight_types : (Optional) insight_types to be available in the websocket connection.
+   
+    For more details check documentation [here][streaming-docs]
+
+    Returns a connection object
 
 ## connection object
 
-The connection object is returned by telephony API's functions. A connection object can be utilized for subscribing to multiple insights using subscribe function and can also be used to stop the telephony connection.
+The connection object is returned by telephony API's start_pstn & start_sip or Streaming API' start_connection function. A connection object can be utilized for communicating with Symbl Server through underlying websocket implementation.
 
 1. connection.subscribe({'event': callback, ...}):
     
+    ##### subscribe function can be used with both Telephony as well as Streaming class
+
     takes a dictionary parameter, where the key can be an event and it's value can be a callback function that should be executed on the occurrence of that event.
 
 2. connection.stop():
 
+    ##### stop function can be used with both Telephony as well as Streaming class
+
     used to stop the telephony connection.
+
+3. connection.send_audio_from_mic(device=None):
+
+    ##### send_audio_from_mic function can be used with Streaming class only
+    
+    Uses sounddevice library to take input from User's mic and send data to websocket directly. Recommended function for first time users.
+
+    device parameter can take the deviceId (integer) as input, for more information see sd.query_devices() [here][sound_device-query_devices] 
+
+    If this function is not running correctly, please make sure the sounddevice library is installed correctly and has access to your microphone. For more details, check [here][sound_device-installation]
+
+4. connection.send_audio(data):
+
+    ##### send_audio function can be used with Streaming class only
+
+    Can be used when user is willing to send custom audio data from some other library. 
+    
+    send_audio function sends audio data to websockets in binary format.
 
 
 [api-keys]: https://platform.symbl.ai/#/login
 [symbl-docs]: https://docs.symbl.ai/docs/
 [telephony-docs]: https://docs.symbl.ai/docs/telephony/introduction
-[async_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#async_api-class
-[audio_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#audio_api-class
-[video_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#video_api-class
-[text_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#text_api-class
-[conversation_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#conversation_api-class
-[telephony_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#telephony_api-class
-[streaming_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#telephony_api-class
+[audio_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#audio-class
+[video_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#video-class
+[text_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#text-class
+[conversation_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#conversations-class
+[telephony_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#telephony-class
+[streaming_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#streaming-class
+[sound_device-query_devices]: https://python-sounddevice.readthedocs.io/en/0.3.12/api.html#sounddevice.query_devices
+[sound_device-installation]: https://python-sounddevice.readthedocs.io/en/0.4.1/installation.html
