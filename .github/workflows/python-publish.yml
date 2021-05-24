@@ -11,14 +11,14 @@ on:
 
 env:
   PRODUCTION_BRANCH: main
-  PRODUCTION_USERNAME: ${{ secrets.PYPI_USERNAME }}
-  PRODUCTION_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-  PRODUCTION_REPOSITORY_URL: ${{secrests.PYPI_REPOSITORY_URL}}
+  PUBLIC_PYPI_USER: ${{ secrets.PYPI_USERNAME }}
+  PUBLIC_PYPI_PASSWD: ${{ secrets.PYPI_PASSWORD }}
+  PUBLIC_PYPI_HOST: ${{secrets.PYPI_REPOSITORY_URL}}
 
   DEVELOP_BRANCH: develop
-  DEVELOP_USERNAME: ${{ secrets.NEXUS_USERNAME }}
-  DEVELOP_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-  DEVELOP_REPOSITORY_URL: ${{secrests.NEXUS_REPOSITORY_URL}}
+  INTERNAL_PYPI_USER: ${{ secrets.NEXUS_USERNAME }}
+  INTERNAL_PYPI_PASSWD: ${{ secrets.NEXUS_PASSWORD }}
+  INTERNAL_PYPI_HOST: ${{secrets.NEXUS_REPOSITORY_URL}}
 
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -46,9 +46,9 @@ jobs:
     - name: Publish package to production
       if: ${{ env.BRANCH_NAME == env.PRODUCTION_BRANCH }}
       run: |
-        twine upload -u {{PRODUCTION_USER_NAME}} -p {{PRODUCTION_PASSWORD}} --repository-url {{PRODUCTION_REPOSITORY_URL}} dist/*
+        twine upload -u {{PUBLIC_PYPI_USER}} -p {{PUBLIC_PYPI_PASSWD}} --repository-url {{PUBLIC_PYPI_HOST}} dist/*
 
     - name: Publish package to develop
       if: ${{ env.BRANCH_NAME == env.DEVELOP_BRANCH }}
       run: |
-        twine upload -u {{NEXUS_USERNAME}} -p {{NEXUS_PASSWORD}} --repository-url {{NEXUS_REPOSITORY_URL}} dist/*
+        twine upload -u {{INTERNAL_PYPI_USER}} -p {{INTERNAL_PYPI_PASSWD}} --repository-url {{INTERNAL_PYPI_HOST}} dist/*
