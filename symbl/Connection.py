@@ -1,3 +1,4 @@
+from symbl.Conversations import Conversation
 from symbl.utils.Decorators import wrap_keyboard_interrupt
 from symbl.utils.Threads import Thread
 from symbl.configs.configs import SYMBL_WEBSOCKET_BASE_PATH, X_API_KEY_HEADER
@@ -9,7 +10,7 @@ class Connection():
 
     def __init__(self, conversationId: str, connectionId: str, resultWebSocketUrl: str, eventUrl: str, credentials=None):
         
-        self.conversation_id = conversationId
+        self.conversation = Conversation(conversationId)
         self.credentials = credentials
         self.connectionId = connectionId
         self.resultWebSocketUrl = resultWebSocketUrl
