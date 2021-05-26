@@ -23,9 +23,11 @@ python setup.py install
 
 ## Configuration
 
-To initialize the SDK, you need to provide app_id and app_token which you can get by signing up on [Symbl Dashboard][api-keys].
+To initialize the SDK, you need to provide app_id and app_token which you can get by signing up on [Symbl Platform][api-keys].
 
 You can either provide the api_keys by saving a file named symbl.conf in your home directory in the following format.
+
+>Home directory will be C:/Users/\<Your Username\> on your windows system, or ~ in your Linux or Mac system.
 
 ```conf
 [credentials]
@@ -40,7 +42,7 @@ app_secret=<app_secret>
 ### Usages
 
 The library needs to be configured with your account's credentials (appId & appSecret) which is
-available in your [Symbl Dashboard][api-keys].
+available in your [Symbl Platform][api-keys].
 
 ## A speech to text converter under 5 lines of code
 
@@ -57,6 +59,50 @@ print(conversation.messages())
 ```
 
 To know more about conversation object and it's functions, click [here][extended-readme-conversation-object]
+
+## Extracting insights from Textual conversation
+
+  <details>
+
+  <summary>Click to View Full Code</summary>
+  
+  ``` python
+
+import symbl
+
+payload = {
+  "messages": [
+    {
+      "payload": {"content": "Hi Anthony. I saw your complaints about bad call reception on your mobile phone. Can I know what issues you are currently facing?"},
+      "from": {"userId": "surbhi@example.com","name": "Surbhi Rathore"}
+    },
+    {
+      "payload": {"content": "Hey Surbhi, thanks for reaching out. Whenever I am picking up the call there is a lot of white noise and I literally can’t hear anything."},
+      "from": {"userId": "anthony@example.com","name": "Anthony Claudia"}
+    },
+    {
+      "payload": {"content": "Okay. I can schedule a visit from one of our technicians for tomorrow afternoon at 1:00 PM. He can look at your mobile and handle any issue right away"},
+      "from": {"userId": "surbhi@example.com","name": "Surbhi Rathore"}
+    },
+    {
+      "payload": {"content": "That will be really helpful. I'll follow up with the technician about some other issues too, tomorrow"},
+      "from": {"userId": "anthony@example.com","name": "Anthony Claudia"}
+    },
+    {
+      "payload": {"content": "Sure. We are happy to help. I am scheduling the visit for tomorrow. Thanks for using Abccorp networks. Have a good day."},
+      "from": {"userId": "surbhi@example.com","name": "Surbhi Rathore"}
+    }
+  ]
+}
+
+conversation = symbl.Text.process(payload=payload)
+
+print(conversation.action_items())
+print(conversation.topics())
+print(conversation.follow_ups())
+
+  ```
+  </details>
 
 ## SpeechToText of multiple audio files in a directory
 
@@ -137,7 +183,9 @@ connection.send_audio_from_mic()
 
 ## Need support
 
-The first place to look for your use case is in the [examples][examples] folder or you can see all the functions provided by SDK in the extended [readme.md][extended-readme] file.
+You can see all the functions provided by SDK in the **extended [readme.md][extended-readme] file**.
+
+And The place to look for your use case is in the [examples][examples] folder.
 
 If you can't find your answers, do let us know at support@symbl.ai or join our slack channel [here][slack-invite].
 

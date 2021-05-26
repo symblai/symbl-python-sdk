@@ -34,9 +34,9 @@ Symbl's Async APIs provide the functionality for processing audio recordings fro
 
 You can utilize different functions of Async APIs by directly utilizing `symbl.Audio`.
 
-1. process_file(file_path, content_type='', wait=True):
+1. process_file(file_path):
     >
-    >audio_file :- (Mandatory) A valid path to a file
+    >file_path :- (Mandatory) A valid path to a file
     >
     >content_type: (Optional) Parameter defining the content_type of audio. Acceptable values are audio/wav, audio/mp3, audio/mpeg. Leave it blank if you're not sure about the content_type of file
     >
@@ -44,7 +44,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     >
     >returns conversation object
 
-2. process_url(url, wait=True):
+2. process_url(url):
 
     >url :- (Mandatory) A valid url to a file hosted directly
     >
@@ -52,9 +52,9 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     >
     >returns conversation object
 
-3. append_file(file_path, conversation_id):
+3. append_file(file_path):
     >
-    >audio_file :- (Mandatory) A valid path to a file
+    >file_path :- (Mandatory) A valid path to a file
     >
     >conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
     >
@@ -64,7 +64,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     >
     >returns conversation object
 
-4. append_url(url, conversation_id, wait=True):
+4. append_url(url, conversation_id):
     >
     >url :- (Mandatory) A valid url to a file hosted directly
     >
@@ -80,9 +80,9 @@ Symbl's Async APIs provide the functionality for processing video recordings fro
 
 You can utilize different functions of Async APIs by directly utilizing `symbl.Video`.
 
-1. process_file(file_path, content_type='', wait=True):
+1. process_file(file_path):
     >
-    >video_file :- (Mandatory) A valid path to a file
+    >file_path :- (Mandatory) A valid path to a file
     >
     >content_type: (Optional) Parameter defining the content_type of video. Acceptable values are video/mp4. Leave it blank if you're not sure about the content_type of file
     >
@@ -90,7 +90,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     >
     >returns conversation object
 
-2. process_url(url, wait=True):
+2. process_url(url):
     >
     >url:- (Mandatory) A valid url to a file hosted directly
     >
@@ -98,9 +98,9 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     >
     >returns conversation object
 
-3. append_file(file_path, conversation_id, content_type='', wait=True):
+3. append_file(file_path, conversation_id):
     >
-    >video_file :- (Mandatory) A valid path to a file
+    >file_path :- (Mandatory) A valid path to a file
     >
     >conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
     >
@@ -110,7 +110,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     >
     >returns conversation object
 
-4. append_url(url, conversation_id, wait=True):
+4. append_url(url, conversation_id):
     >
     >url :- (Mandatory) A valid url to a file hosted directly
     >
@@ -126,7 +126,7 @@ Symbl's Async APIs provide the functionality for processing textual content from
 
 You can utilize different functions of Async APIs by directly utilizing `symbl.Text`.
 
-1. process(payload, wait=True):
+1. process(payload):
     >
     >payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][symbl-docs] for payload
     >
@@ -134,7 +134,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.T
     >
     >returns conversation object
 
-2. append(payload, conversation_id, wait=True):
+2. append(payload, conversation_id):
     >
     >payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][symbl-docs] for payload
     >
@@ -262,6 +262,13 @@ The connection object is returned by telephony API's start_pstn & start_sip or S
     >**subscribe function can be used with both Telephony as well as Streaming class**
     >
     >takes a dictionary parameter, where the key can be an event and it's value can be a callback function that should be executed on the occurrence of that event.
+    >
+    >The list of events that can be subscribed by connection object are:-
+    >
+    > 1. **insight_response** :- generates an event whenever a question or an action_item is found.
+    > 2. **message_response**:- generates and event whenever a transcription is available.
+    > 3. **transcript_response**:- (Part of telephony API), these are also transcription values, however these will include an isFinal property which will be False initially meaning the transcription are not finalized.
+    > 4. **tracker_response**:- It will generate an event whenever a tracker is identified in any transcription.
 
 2. connection.stop():
     >
