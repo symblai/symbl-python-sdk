@@ -64,6 +64,14 @@ class TelephonyApi():
     @initialize_api_client
     def start_sip(self, uri, audio_config={}, credentials=None, actions={}, data={}):
         body = dict()
+
+        if audio_config == {}:
+
+            audio_config = { 
+                "sampleRate": 16000,
+                "sampleSize": "16"
+            }
+
         body = {
             "operation": "start", 
             "endpoint": {
@@ -73,7 +81,7 @@ class TelephonyApi():
             }, 
             "actions": actions,
             "data": data,
-            "pushSpeakerEvents": True
+            # "pushSpeakerEvents": True
         }
 
         return self.validateAndConnectToEndpoint(body)

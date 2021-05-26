@@ -3,7 +3,6 @@ from symbl.utils.Threads import Thread
 from time import sleep
 import json
 import websocket
-import json
 
 class StreamingConnection():
 
