@@ -62,10 +62,6 @@ To know more about conversation object and it's functions, click [here][extended
 
 ## Extracting insights from Textual conversation
 
-  <details>
-
-  <summary>Click to View Full Code</summary>
-  
   ``` python
 
 import symbl
@@ -102,7 +98,6 @@ print(conversation.topics())
 print(conversation.follow_ups())
 
   ```
-  </details>
 
 ## SpeechToText of multiple audio files in a directory
 
@@ -181,11 +176,14 @@ connection.subscribe({'transcript_response': lambda response: print('got this re
 connection.send_audio_from_mic()
 ```
 
-## Need support
+
+## Extended Readme
 
 You can see all the functions provided by SDK in the **extended [readme.md][extended-readme] file**.
 
-And The place to look for your use case is in the [examples][examples] folder.
+## Need support
+
+If you are looking for some specific use cases do check our [examples][examples] folder.
 
 If you can't find your answers, do let us know at support@symbl.ai or join our slack channel [here][slack-invite].
 
