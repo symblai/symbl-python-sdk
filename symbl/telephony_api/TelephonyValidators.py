@@ -21,10 +21,6 @@ def validateEndpoint(endpoint):
     elif endpoint["type"].lower() == "sip":
         if isEmpty(endpoint["uri"]):
             raise ValueError("uri is required when type = 'sip'.")
-        elif isEmpty(endpoint["providerName"]):
-            endpoint["providerName"] = "AnyMeeting"
-        elif isEmpty(endpoint["transportConfig"]):
-            endpoint["transportConfig"] = "transport=UDP;providerName=${endpoint.providerName};audioTransport=RTP"
     
     else:
         raise ValueError("endpoint.type = '${endpoint.type}' is not valid. Supported types are ['pstn' , 'sip']")

@@ -2,11 +2,9 @@
 
 The Symbl Python SDK provides convenient access to the Symbl API from applications written in the Python language. It includes a pre-defined set of classes for a simple and clear utilization of APIs.
 
-
 ## Documentation
 
 See the [Python API docs](https://docs.symbl.ai/docs/).
-
 
 ## Installation
 
@@ -23,26 +21,28 @@ Install from source with:
 python setup.py install
 ```
 
-To initialize the SDK, you need to provide app_id and app_token which you can get by signing up on [Symbl Dashboard][api-keys].
+## Configuration
+
+To initialize the SDK, you need to provide app_id and app_token which you can get by signing up on [Symbl Platform][api-keys].
 
 You can either provide the api_keys by saving a file named symbl.conf in your home directory in the following format.
 
-```
+>Home directory will be C:/Users/\<Your Username\> on your windows system, or ~ in your Linux or Mac system.
+
+```conf
 [credentials]
 app_id=<app_id>
 app_secret=<app_secret>
-
 ```
 
 ### Requirements
 
--   Python 2.7+ or Python 3.4+ (PyPy supported)
+- Python 2.7+ or Python 3.4+ (PyPy supported)
 
 ### Usages
 
 The library needs to be configured with your account's credentials (appId & appSecret) which is
-available in your [Symbl Dashboard][api-keys].
-
+available in your [Symbl Platform][api-keys].
 
 ## A speech to text converter under 5 lines of code
 
@@ -58,23 +58,48 @@ conversation = symbl.Audio.process_file(
 print(conversation.messages())
 ```
 
-## Get topics and action items from your call
+To know more about conversation object and it's functions, click [here][extended-readme-conversation-object]
 
-```python
+## Extracting insights from Textual conversation
+
+  ``` python
+
 import symbl
 
-# Process audio file
-conversation = symbl.Audio.process_file(
-  # credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
-  file_path=<file_path>)
+payload = {
+  "messages": [
+    {
+      "payload": {"content": "Hi Anthony. I saw your complaints about bad call reception on your mobile phone. Can I know what issues you are currently facing?"},
+      "from": {"userId": "surbhi@example.com","name": "Surbhi Rathore"}
+    },
+    {
+      "payload": {"content": "Hey Surbhi, thanks for reaching out. Whenever I am picking up the call there is a lot of white noise and I literally can’t hear anything."},
+      "from": {"userId": "anthony@example.com","name": "Anthony Claudia"}
+    },
+    {
+      "payload": {"content": "Okay. I can schedule a visit from one of our technicians for tomorrow afternoon at 1:00 PM. He can look at your mobile and handle any issue right away"},
+      "from": {"userId": "surbhi@example.com","name": "Surbhi Rathore"}
+    },
+    {
+      "payload": {"content": "That will be really helpful. I'll follow up with the technician about some other issues too, tomorrow"},
+      "from": {"userId": "anthony@example.com","name": "Anthony Claudia"}
+    },
+    {
+      "payload": {"content": "Sure. We are happy to help. I am scheduling the visit for tomorrow. Thanks for using Abccorp networks. Have a good day."},
+      "from": {"userId": "surbhi@example.com","name": "Surbhi Rathore"}
+    }
+  ]
+}
 
-# Printing topics and actions
-print("Topics are = " + str(conversation.topics()))
+conversation = symbl.Text.process(payload=payload)
 
-print("Action Items = " + str(conversation.actions()))
-```
+print(conversation.action_items())
+print(conversation.topics())
+print(conversation.follow_ups())
 
-## SpeechToText of multiple audio files in a directory 
+  ```
+
+## SpeechToText of multiple audio files in a directory
 
 ```python
 
@@ -151,15 +176,21 @@ connection.subscribe({'transcript_response': lambda response: print('got this re
 connection.send_audio_from_mic()
 ```
 
-#### Need support
 
-The first place to look for your use case is in the [examples][examples] folder or you can see all the functions provided by SDK in the extended [readme.md][extended-readme] file.
+## Extended Readme
+
+You can see all the functions provided by SDK in the **extended [readme.md][extended-readme] file**.
+
+## Need support
+
+If you are looking for some specific use cases do check our [examples][examples] folder.
 
 If you can't find your answers, do let us know at support@symbl.ai or join our slack channel [here][slack-invite].
 
 [api-keys]: https://platform.symbl.ai/#/login
 [symbl-docs]: https://docs.symbl.ai/docs/
 [extended-readme]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md
+[extended-readme-conversation-object]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#conversation-object
 [examples]: https://github.com/symblai/symbl-python/tree/main/example
 [unicodeerror]: https://stackoverflow.com/questions/37400974/unicode-error-unicodeescape-codec-cant-decode-bytes-in-position-2-3-trunca
 [slack-invite]: https://symbldotai.slack.com/join/shared_invite/zt-4sic2s11-D3x496pll8UHSJ89cm78CA#/

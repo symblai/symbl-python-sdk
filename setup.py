@@ -20,7 +20,7 @@ from setuptools import setup, find_packages  # noqa: H301
 
 setup(
     name="symbl",
-    version="1.0.2",
+    version="1.0.4",
     description="symbl.ai SDK",
     author_email="info@symbl.ai",
     url="",
