@@ -19,12 +19,12 @@ SDK offers easy implementation of multiple APIs provided by Symbl.
 
 **What is a ConversationId?**
 >
->When you process any conversation through Symbl whether it's from Async API, Javascript SDK, Telephony or Streaming API, you'll always receive a unique Conversation ID (conversationId), which consists of numerical  digits.
+>When you process any conversation through Symbl whether it's from Async API, Javascript SDK, Telephony or Streaming API, you'll always receive a unique Conversation ID (conversationId), which consists of numerical digits.
 >
 
 **What is a JobId?**
 
->As soon as you upload one of your files, or send one of your text for processing to Symbl, You get a jobId (and a conversationId) in response. This jobId is a unique identifier for the job processing the payload    you sent.
+>As soon as you upload one of your files, or send one of your text for processing to Symbl, You get a jobId (and a conversationId) in response. This jobId is a unique identifier for the job processing the payload you sent.
 >
 >A job can have a particular status at a time wiz. IN_PROGRESS, SCHEDULED, COMPLETED or FAILED. You can only use a conversationId for the conversation_api class functions once, the job payload is completed.
 
@@ -128,7 +128,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.T
 
 1. process(payload):
     >
-    >payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][symbl-docs] for payload
+    >payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][text_payload-docs] for payload
     >
     >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_text on a separate thread making it a non-blocking API call (Has callback support)
     >
@@ -136,7 +136,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.T
 
 2. append(payload, conversation_id):
     >
-    >payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][symbl-docs] for payload
+    >payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][text_payload-docs] for payload
     >
     >conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
     >
@@ -296,7 +296,9 @@ The connection object is returned by telephony API's start_pstn & start_sip or S
 
 [api-keys]: https://platform.symbl.ai/#/login
 [symbl-docs]: https://docs.symbl.ai/docs/
-[telephony-docs]: https://docs.symbl.ai/docs/telephony/introduction
+[text_payload-docs]: https://docs.symbl.ai/docs/async-api/overview/text/post-text#code-example-1
+[telephony-docs]: https://docs.symbl.ai/docs/telephony-api/api-reference#endpoint
+[streaming-docs]: https://docs.symbl.ai/docs/streaming-api/api-reference#request-parameters
 [audio_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#audio-class
 [video_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#video-class
 [text_api-class]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#text-class
