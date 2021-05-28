@@ -22,7 +22,6 @@ class Thread():
     def start_on_thread(self, target, *args):
         thread = threading.Thread(target=target, args=(*args,))
         self.threads.append(thread)
-        print("Creating a new thread", target.__name__)
         thread.start()
 
     def stop_all_threads(self):

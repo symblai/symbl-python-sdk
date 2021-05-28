@@ -40,7 +40,8 @@ class StreamingConnection():
                 self.event_callbacks[json_data['type']](data) 
             elif 'type' in json_data and json_data['type'] == 'message' and 'data' in json_data['message']:
                 self.__set_conversation_id(str(json_data['message']['data']['conversationId']))
-                print("Conversation id is ", str(json_data['message']['data']['conversationId']))
+                print("Conversation id is", str(json_data['message']['data']['conversationId']))
+                print("Started Listening...")
         except Exception as error:
             print(error)
             

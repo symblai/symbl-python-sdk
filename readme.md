@@ -46,6 +46,8 @@ available in your [Symbl Platform][api-keys].
 
 ## A speech to text converter under 5 lines of code
 
+To know more about **Async Audio Api**, click [here][async_audio-docs]. To know more about the Python SDK Audio Package, click [here][extended_readme-audio]
+
 ```python
 import symbl
 
@@ -58,9 +60,11 @@ conversation = symbl.Audio.process_file(
 print(conversation.messages())
 ```
 
-To know more about conversation object and it's functions, click [here][extended-readme-conversation-object]
+To know more about conversation object and it's functions, click [here][extended_readme-conversation-object]
 
 ## Extracting insights from Textual conversation
+
+To know more about **Async Text Api**, click [here][async_text-docs]. To know more about the Python SDK Text Package, click [here][extended_readme-text]
 
   ``` python
 
@@ -99,40 +103,9 @@ print(conversation.follow_ups())
 
   ```
 
-## SpeechToText of multiple audio files in a directory
-
-```python
-
-import symbl
-from os import listdir
-from os.path import isfile, join
-
-# returns lambda function with fileName which is under processing
-def save_transcriptions_in_file(fileName):
-    return lambda conversation: on_success(conversation, fileName)
-
-# returns actual callback to save the transcriptions of a conversation in a file
-def on_success(conversation, fileName):
-    transcriptions = conversation.messages()
-
-    file = open(fileName + ".txt","w+")
-    file.write(str(transcriptions))
-    file.close()
-
-# Look [here][unicodeerror], if you're getting unicode error
-directory_path = r'<directory_path>'
-
-files = [join(directory_path, file) for file in listdir(directory_path) if isfile(join(directory_path, file))]
-
-# Process audio files in the above mentioned directory
-for file in files:
-    job = symbl.Audio.process_file(
-      # credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
-      file_path=file, wait=False).on_complete(save_transcriptions_in_file(file))
-
-```
-
 ## Analysis of your Zoom Call on your email (Symbl will join your zoom call and send you analysis on provided email)
+
+To know more about **telephony api**, click [here][telephony_api-docs]. To know more about the Python SDK Telephony Package, click [here][extended_readme-telephony]
 
 ```python
 
@@ -166,20 +139,31 @@ print(connection)
 
 ## Live audio transcript using your system's microphone
 
+To know more about **streaming api**, click [here][streaming_api-docs]. To know more about the Python SDK Streaming Package, click [here][extended_readme-streaming]
+
 ```python
 import symbl
 
 connection = symbl.Streaming.start_connection()
 
-connection.subscribe({'transcript_response': lambda response: print('got this response from callback', response)})
+connection.subscribe({'message_response': lambda response: print('got this response from callback', response)})
 
 connection.send_audio_from_mic()
 ```
 
-
 ## Extended Readme
 
 You can see all the functions provided by SDK in the **extended [readme.md][extended-readme] file**.
+
+## Possible Errros
+
+1. PortAudio Errors on Mac Systems:-
+
+   If you're getting PortAudio Error which looks like this
+    > sounddevice.PortAudioError: Error opening InputStream: Internal PortAudio error [PaErrorCode -9986]
+  
+   Please consider updating the PortAudio library in your system. Running the following command can help.
+    > brew install portaudio
 
 ## Need support
 
@@ -189,8 +173,16 @@ If you can't find your answers, do let us know at support@symbl.ai or join our s
 
 [api-keys]: https://platform.symbl.ai/#/login
 [symbl-docs]: https://docs.symbl.ai/docs/
+[streaming_api-docs]: https://docs.symbl.ai/docs/streamingapi/introduction
+[telephony_api-docs]: https://docs.symbl.ai/docs/telephony/introduction
+[async_text-docs]: https://docs.symbl.ai/docs/async-api/overview/text/post-text/
+[async_audio-docs]: https://docs.symbl.ai/docs/async-api/overview/audio/post-audio
 [extended-readme]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md
-[extended-readme-conversation-object]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#conversation-object
+[extended_readme-conversation-object]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#conversation-object
+[extended_readme-streaming]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#streaming-class
+[extended_readme-telephony]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#telephony-class
+[extended_readme-text]: <https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#text-class>
+[extended_readme-audio]: https://github.com/symblai/symbl-python/blob/main/symbl/readme.md#audio-class
 [examples]: https://github.com/symblai/symbl-python/tree/main/example
 [unicodeerror]: https://stackoverflow.com/questions/37400974/unicode-error-unicodeescape-codec-cant-decode-bytes-in-position-2-3-trunca
 [slack-invite]: https://symbldotai.slack.com/join/shared_invite/zt-4sic2s11-D3x496pll8UHSJ89cm78CA#/
