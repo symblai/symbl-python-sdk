@@ -1,8 +1,9 @@
+from symbl.utils.Decorators import wrap_keyboard_interrupt
+from symbl.utils.Threads import Thread
 from symbl.AuthenticationToken import get_api_client
 from symbl.jobs_api.JobStatus import JobStatus
 from symbl_rest import JobsApi
 
-import threading
 import time
 
 
@@ -58,25 +59,24 @@ class Job():
         else:
             raise ValueError("Job object not initialized correctly. Please contact administrator.")
 
-    def syncronous_monitor_job(self, conversation, interval=None, wait=True, credentials=None):
+    def syncronous_monitor_job(self, conversation, interval=None, credentials=None):
         if interval is None:
             interval = self.__INTERVAL_TIME_IN_SECONDS
         
         while self.__job_status != JobStatus.COMPLETED and self.__job_status != JobStatus.FAILED:
+            time.sleep(interval)
             self.__fetch_current_job_status(credentials=credentials)
             print("Fetching latest status of job {0}, current status is {1}".format(self.__job_id, self.__job_status.value))
-            time.sleep(interval)
-
+            
         if self.__job_status == JobStatus.COMPLETED and self.__success_func != None:
             self.__success_func(conversation)
 
         elif self.__error_func != None:
             self.__error_func(conversation)
 
-    
+    @wrap_keyboard_interrupt
     def monitor_job(self, conversation, interval=None, wait=True, credentials=None):
         if wait:
             self.syncronous_monitor_job(conversation, interval, wait, credentials)
         else:
-            thread = threading.Thread(target=self.syncronous_monitor_job, args=(conversation, interval, wait, credentials))
-            thread.start()
+            Thread.getInstance().start_on_thread(self.syncronous_monitor_job, conversation, interval, credentials)
