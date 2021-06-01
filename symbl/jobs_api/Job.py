@@ -59,7 +59,7 @@ class Job():
         else:
             raise ValueError("Job object not initialized correctly. Please contact administrator.")
 
-    def syncronous_monitor_job(self, conversation, interval=None, credentials=None):
+    def syncronous_monitor_job(self, conversation, interval=None, wait=True,  credentials=None):
         if interval is None:
             interval = self.__INTERVAL_TIME_IN_SECONDS
         
@@ -79,4 +79,4 @@ class Job():
         if wait:
             self.syncronous_monitor_job(conversation, interval, wait, credentials)
         else:
-            Thread.getInstance().start_on_thread(self.syncronous_monitor_job, conversation, interval, credentials)
+            Thread.getInstance().start_on_thread(self.syncronous_monitor_job, conversation, interval, wait, credentials)
