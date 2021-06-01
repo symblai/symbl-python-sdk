@@ -1,7 +1,6 @@
 from symbl.jobs_api.Job import Job
 from symbl.jobs_api.JobStatus import JobStatus
 from symbl.conversations_api.ConversationsApi import ConversationsApi
-from symbl_rest import JobsApi
 
 class Conversation():
 
@@ -25,11 +24,11 @@ class Conversation():
         return self.__job.__job_status.value
 
     def on_complete(self, func):
-        self.__job.__success_func = func
+        self.__job.on_complete(func)
         return self
 
     def on_error(self, func):
-        self.__job.__error_func = func
+        self.__job.on_error(func)
         return self
 
     def action_items(self):
