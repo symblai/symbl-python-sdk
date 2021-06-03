@@ -1,5 +1,4 @@
-from symbl.utils.Decorators import wrap_keyboard_interrupt
-from symbl.utils.Threads import Thread
+from symbl.utils import wrap_keyboard_interrupt, Thread, Log
 from symbl.AuthenticationToken import get_api_client
 from symbl.jobs_api.JobStatus import JobStatus
 from symbl_rest import JobsApi
@@ -66,7 +65,7 @@ class Job():
         while self.__job_status != JobStatus.COMPLETED and self.__job_status != JobStatus.FAILED:
             time.sleep(interval)
             self.__fetch_current_job_status(credentials=credentials)
-            print("Fetching latest status of job {0}, current status is {1}".format(self.__job_id, self.__job_status.value))
+            Log.getInstance().info("Fetching latest status of job {0}, current status is {1}".format(self.__job_id, self.__job_status.value))
             
         if self.__job_status == JobStatus.COMPLETED and self.__success_func != None:
             self.__success_func(conversation)

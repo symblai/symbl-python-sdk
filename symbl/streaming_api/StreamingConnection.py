@@ -1,3 +1,5 @@
+from symbl.Conversations import Conversation
+from symbl.utils.Logger import Log
 from symbl.utils.Decorators import wrap_keyboard_interrupt
 from symbl.utils.Threads import Thread
 from time import sleep
@@ -19,7 +21,7 @@ class StreamingConnection():
     def __connect(self):
         if self.connection == None:
 
-            self.connection = websocket.WebSocketApp(url=self.url, on_message=lambda this, data: self.__listen_to_events(data), on_data=lambda this, data: self.__listen_to_events(data), on_error=lambda error: print(error))
+            self.connection = websocket.WebSocketApp(url=self.url, on_message=lambda this, data: self.__listen_to_events(data), on_data=lambda this, data: self.__listen_to_events(data), on_error=lambda error: Log.getInstance().error(error))
 
             Thread.getInstance().start_on_thread(target=self.connection.run_forever)
             conn_timeout = 5
@@ -29,8 +31,8 @@ class StreamingConnection():
 
             self.connection.send(json.dumps(self.start_request))
     
-    def __set_conversation_id(self, conversationId: str):
-        self.conversationId = conversationId
+    def __set_conversation(self, conversationId: str):
+        self.conversation = Conversation(conversationId)
 
     def __listen_to_events(self, data):
         try:
@@ -39,11 +41,11 @@ class StreamingConnection():
             if 'type' in json_data and json_data['type'] in self.event_callbacks:
                 self.event_callbacks[json_data['type']](data) 
             elif 'type' in json_data and json_data['type'] == 'message' and 'data' in json_data['message']:
-                self.__set_conversation_id(str(json_data['message']['data']['conversationId']))
-                print("Conversation id is", str(json_data['message']['data']['conversationId']))
-                print("Started Listening...")
+                self.__set_conversation(str(json_data['message']['data']['conversationId']))
+                Log.getInstance().info("Conversation id is", str(json_data['message']['data']['conversationId']))
+                Log.getInstance().info("Started Listening...")
         except Exception as error:
-            print(error)
+            Log.getInstance().error(error)
             
     def subscribe(self, event_callbacks: dict):
         self.event_callbacks = event_callbacks
