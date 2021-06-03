@@ -1,3 +1,4 @@
+from symbl.utils.Logger import Log
 from symbl.Conversations import Conversation
 from symbl.AuthenticationToken import get_api_client
 from symbl_rest import AsyncApi as async_api_rest
@@ -45,7 +46,7 @@ class Text():
             raise ValueError("Please enter a valid payload.")
 
         response = self.__async_api_rest.add_text(body=payload, **correct_boolean_values(parameters))
-        print("Job with jobId {} for conversationId {} started".format(response.job_id, response.conversation_id))
+        Log.getInstance().info("Job with jobId {} for conversationId {} started".format(response.job_id, response.conversation_id))
 
         return Conversation(response.conversation_id, response.job_id, wait=wait, credentials=credentials)
 
@@ -62,6 +63,6 @@ class Text():
             raise ValueError("Please enter a valid conversationId")
 
         response = self.__async_api_rest.append_text(conversation_id, body=payload, **correct_boolean_values(parameters))
-        print("Job with jobId {} for conversationId {} started".format(response.job_id, response.conversation_id))
+        Log.getInstance().info("Job with jobId {} for conversationId {} started".format(response.job_id, response.conversation_id))
 
         return Conversation(response.conversation_id, response.job_id, wait=wait, credentials=credentials)

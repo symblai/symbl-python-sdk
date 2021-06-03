@@ -1,3 +1,4 @@
+from symbl.utils.Logger import Log
 from symbl.Conversations import Conversation
 from symbl.utils.Decorators import wrap_keyboard_interrupt
 from symbl.utils.Threads import Thread
@@ -26,24 +27,24 @@ class Connection():
                 if 'type' in json_data and json_data['type'] in event_callbacks:
                     event_callbacks[json_data['type']](data) 
         except Exception as error:
-            print(error)
+            Log.getInstance().error(error)
 
     def subscribe(self, event_callbacks: dict):
         try:
             if event_callbacks != None or event_callbacks != {}:
-                print("Eshtablishing connection")
+                Log.getInstance().info("Eshtablishing connection")
                 self.connection = websocket.WebSocketApp(url=SYMBL_WEBSOCKET_BASE_PATH + self.connectionId, header=[self.header])
-                print("Connection Eshtablished")
+                Log.getInstance().info("Connection Eshtablished")
 
                 self.connection.on_message = lambda this, data : self.__on_message_handler(data=data, event_callbacks=event_callbacks)
-                self.connection.on_error = lambda self, error : print(error)
+                self.connection.on_error = lambda self, error : Log.getInstance().error(error)
 
                 self.connection.run_forever()
             else:
-                print("Can not subscribe to empty events")
+                Log.getInstance().error("Can not subscribe to empty events")
         except (KeyboardInterrupt, SystemExit):
             self.stop()
-            print("Exiting")
+            Log.getInstance().error("Exiting")
 
     def stop(self):
         self.connection.send(data=str({

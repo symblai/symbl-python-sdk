@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from symbl.utils import Log
 from symbl_rest import  JobsApi, ApiClient
 
 from symbl.async_api.Audio import Audio
