@@ -1,5 +1,5 @@
 from symbl.utils import wrap_keyboard_interrupt, Thread, Log
-from symbl.AuthenticationToken import get_api_client
+from symbl import AuthenticationToken
 from symbl.jobs_api.JobStatus import JobStatus
 from symbl_rest import JobsApi
 
@@ -10,11 +10,11 @@ def initialize_api_client(function):
     def wrapper(*args, **kw):
         credentials = None
         self = args[0]
-        
+
         if not hasattr(self,'__jobs_api'):
             if 'credentials' in kw:
                 credentials = kw['credentials']
-            api_client = get_api_client(credentials)
+            api_client = AuthenticationToken.get_api_client(credentials)
 
             self.__jobs_api = JobsApi(api_client)
 
@@ -34,10 +34,10 @@ class Job():
         self.__error_func = None
         self.__job_status = JobStatus.IN_PROGRESS
         self.__wait = wait
-    
+
     def getConversationId(self):
         return self.__conversation_id
-    
+
     def getJobStatus(self):
         return self.__job_status.value
 
@@ -48,25 +48,25 @@ class Job():
     def on_error(self, func):
         self.__error_func = func
         return self
-    
+
 
     @initialize_api_client
     def __fetch_current_job_status(self, credentials=None):
-        if self.__jobs_api != None:
+        if self.__jobs_api is not None:
             response = self.__jobs_api.get_job_status(self.__job_id)
             self.__job_status = JobStatus(response.status)
         else:
             raise ValueError("Job object not initialized correctly. Please contact administrator.")
 
-    def syncronous_monitor_job(self, conversation, interval=None, wait=True,  credentials=None):
+    def synchronous_monitor_job(self, conversation, interval=None, wait=True, credentials=None):
         if interval is None:
             interval = self.__INTERVAL_TIME_IN_SECONDS
-        
+
         while self.__job_status != JobStatus.COMPLETED and self.__job_status != JobStatus.FAILED:
             time.sleep(interval)
             self.__fetch_current_job_status(credentials=credentials)
             Log.getInstance().info("Fetching latest status of job {0}, current status is {1}".format(self.__job_id, self.__job_status.value))
-            
+
         if self.__job_status == JobStatus.COMPLETED and self.__success_func != None:
             self.__success_func(conversation)
 
@@ -76,6 +76,6 @@ class Job():
     @wrap_keyboard_interrupt
     def monitor_job(self, conversation, interval=None, wait=True, credentials=None):
         if wait:
-            self.syncronous_monitor_job(conversation, interval, wait, credentials)
+            self.synchronous_monitor_job(conversation, interval, wait, credentials)
         else:
-            Thread.getInstance().start_on_thread(self.syncronous_monitor_job, conversation, interval, wait, credentials)
+            Thread.getInstance().start_on_thread(self.synchronous_monitor_job, conversation, interval, wait, credentials)

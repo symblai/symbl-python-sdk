@@ -1,7 +1,7 @@
 from symbl.Connection import Connection
 from symbl.telephony_api.TelephonyValidators import validateActions, validateEndpoint
 from symbl_rest import ConnectionToEndpointApi as telephony_api_rest
-from symbl.AuthenticationToken import get_api_client
+from symbl import AuthenticationToken
 
 
 def initialize_api_client(function):
@@ -12,7 +12,7 @@ def initialize_api_client(function):
         if 'credentials' in kw:
             credentials = kw['credentials']
 
-        api_client = get_api_client(credentials)
+        api_client = AuthenticationToken.get_api_client(credentials)
         self.api_client = api_client
         self.async_api_rest = telephony_api_rest(api_client)
 
