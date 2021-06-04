@@ -1,4 +1,4 @@
-from symbl.AuthenticationToken import get_api_client
+from symbl import AuthenticationToken
 from symbl_rest import ConversationsApi as conversations_api_rest
 
 def initialize_api_client(function):
@@ -9,7 +9,7 @@ def initialize_api_client(function):
         if 'credentials' in kw:
             credentials = kw['credentials']
 
-        api_client = get_api_client(credentials)
+        api_client = AuthenticationToken.get_api_client(credentials)
         self.async_api_rest = conversations_api_rest(api_client)
 
         return function(*args, **kw)

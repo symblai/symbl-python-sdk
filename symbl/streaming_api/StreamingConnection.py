@@ -21,7 +21,7 @@ class StreamingConnection():
     def __connect(self):
         if self.connection == None:
 
-            self.connection = websocket.WebSocketApp(url=self.url, on_message=lambda this, data: self.__listen_to_events(data), on_data=lambda this, data: self.__listen_to_events(data), on_error=lambda error: Log.getInstance().error(error))
+            self.connection = websocket.WebSocketApp(url=self.url, on_message=lambda this, data: self.__listen_to_events(data), on_data=lambda this, data, *args: self.__listen_to_events(data), on_error=lambda error: Log.getInstance().error(error))
 
             Thread.getInstance().start_on_thread(target=self.connection.run_forever)
             conn_timeout = 5
