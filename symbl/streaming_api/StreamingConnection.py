@@ -38,12 +38,12 @@ class StreamingConnection():
         try:
             decoded_data = data if type(data) == str else data.decode('utf-8')
             json_data = json.loads(decoded_data)
+            if 'type' in json_data and json_data['type'] == 'message' and 'data' in json_data['message']:
+                self.__set_conversation(str(json_data['message']['data']['conversationId']))
+                Log.getInstance().info("Conversation id is {}".format(str(json_data['message']['data']['conversationId'])))
+                Log.getInstance().info("Started Listening...")
             if 'type' in json_data and json_data['type'] in self.event_callbacks:
                 self.event_callbacks[json_data['type']](data) 
-            elif 'type' in json_data and json_data['type'] == 'message' and 'data' in json_data['message']:
-                self.__set_conversation(str(json_data['message']['data']['conversationId']))
-                Log.getInstance().info("Conversation id is", str(json_data['message']['data']['conversationId']))
-                Log.getInstance().info("Started Listening...")
         except Exception as error:
             Log.getInstance().error(error)
             
