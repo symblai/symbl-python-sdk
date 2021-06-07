@@ -38,10 +38,19 @@ class Log():
             self.__logger.info(message)
 
     def debug(self, data, *args):
-        self.__logger.debug(data, args[0])
+        if args != None and len(args) > 0:
+            self.__logger.debug(data, args[0])
+        else:
+            self.__logger.debug(data)
 
     def warning(self, data, *args):
-        self.__logger.warning(data, args[0])
+        if args != None and len(args) > 0:
+            self.__logger.warning(data, args[0])
+        else:
+            self.__logger.warning(data)
     
     def error(self, data, *args):
-        self.__logger.error(data, args[0])
+        if args != None and len(args) > 0:
+            self.__logger.error(data, args[0])
+        else:
+            self.__logger.error(data)

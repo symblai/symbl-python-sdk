@@ -14,7 +14,7 @@ class StreamingApi():
         pass
 
 
-    def start_connection(self, credentials=None, speaker=None, insight_types=None):
+    def start_connection(self, credentials=None, speaker=None, insight_types=None, configs={}):
         randomId = bytes(''.join(random.choices(string.ascii_uppercase +string.digits, k=12)), 'utf-8')
         id = base64.b64encode(randomId).decode("utf-8")
         url = SYMBL_STREAMING_API_FORMAT.format(id, get_access_token(credentials=credentials))
@@ -23,7 +23,7 @@ class StreamingApi():
             "type": "start_request",
             "insightTypes": [] if insight_types == None else [] if type(insight_types) != list else insight_types,
             "speaker": speaker,
-             "config": {
+             "config": configs if configs != {} and configs != None else {
                 "confidenceThreshold": 0.5,
                 "languageCode": 'en-US',
                 "speechRecognition": {
