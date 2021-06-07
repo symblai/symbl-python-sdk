@@ -21,7 +21,7 @@ class StreamingConnection():
     def __connect(self):
         if self.connection == None:
 
-            self.connection = websocket.WebSocketApp(url=self.url, on_message=lambda this, data: self.__listen_to_events(data), on_data=lambda this, data, *args: self.__listen_to_events(data), on_error=lambda error: Log.getInstance().error(error))
+            self.connection = websocket.WebSocketApp(url=self.url, on_message=lambda this, data: self.__listen_to_events(data), on_error=lambda error: Log.getInstance().error(error))
 
             Thread.getInstance().start_on_thread(target=self.connection.run_forever)
             conn_timeout = 5
@@ -38,12 +38,12 @@ class StreamingConnection():
         try:
             decoded_data = data if type(data) == str else data.decode('utf-8')
             json_data = json.loads(decoded_data)
-            if 'type' in json_data and json_data['type'] == 'message' and 'data' in json_data['message']:
+            if 'type' in json_data and json_data['type'] == 'message' and 'data' in json_data['message'] and 'conversationId' in json_data['message']['data']:
                 self.__set_conversation(str(json_data['message']['data']['conversationId']))
                 Log.getInstance().info("Conversation id is {}".format(str(json_data['message']['data']['conversationId'])))
                 Log.getInstance().info("Started Listening...")
-            if 'type' in json_data and json_data['type'] in self.event_callbacks:
-                self.event_callbacks[json_data['type']](data) 
+            elif 'type' in json_data and json_data['type'] in self.event_callbacks:
+                self.event_callbacks[json_data['type']](json_data) 
         except Exception as error:
             Log.getInstance().error(error)
             
