@@ -1,3 +1,4 @@
+from symbl.utils.Helper import correct_boolean_values
 from symbl import AuthenticationToken
 from symbl_rest import ConversationsApi as conversations_api_rest
 
@@ -15,14 +16,6 @@ def initialize_api_client(function):
         return function(*args, **kw)
     
     return wrapper
-
-def correct_boolean_values(dictionary: dict):
-    for key in dictionary:
-        if dictionary[key] == True:
-            dictionary[key] = "true"
-        elif dictionary[key] == False:
-            dictionary[key] = "false"
-    return dictionary
 
 class ConversationsApi():
 

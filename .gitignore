@@ -3,6 +3,7 @@ build/
 dist/
 venv/
 Symbl.egg-info/
-.idea/
-.vscode
 .coverage
+.idea/
+.vscode/
+**/*.pyc

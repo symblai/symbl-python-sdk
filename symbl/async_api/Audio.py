@@ -1,8 +1,8 @@
+from symbl.utils.Helper import change_camel_case_to_snake_case, correct_boolean_values
 from symbl.utils.Logger import Log
 from symbl.Conversations import Conversation
 from symbl import AuthenticationToken
 from symbl_rest import AsyncApi as async_api_rest
-
 
 def initialize_api_client(function):
     def wrapper(*args, **kw):
@@ -18,14 +18,6 @@ def initialize_api_client(function):
         return function(*args, **kw)
     
     return wrapper
-
-def correct_boolean_values(dictionary: dict):
-    for key in dictionary:
-        if dictionary[key] == True:
-            dictionary[key] = "true"
-        elif dictionary[key] == False:
-            dictionary[key] = "false"
-    return dictionary
 
 class Audio():
 
@@ -44,25 +36,29 @@ class Audio():
         '''
         if file_path == None:
             raise ValueError("Please enter a valid file_path")
+        
+        params = change_camel_case_to_snake_case(parameters)
 
         file = open(file_path, 'rb')
         audio_file = file.read()
-        response = self.__async_api_rest.add_audio(body=audio_file, content_type=content_type, **correct_boolean_values(parameters))
+        response = self.__async_api_rest.add_audio(body=audio_file, content_type=content_type, **correct_boolean_values(params))
         Log.getInstance().info("Job with jobId {} for conversationId {} started".format(response.job_id, response.conversation_id))
 
         return Conversation(response.conversation_id, response.job_id, wait=wait, credentials=credentials)
 
     @initialize_api_client
-    def process_url(self, url:str, credentials=None, wait:bool=True, parameters={}):
+    def process_url(self, payload:dict, credentials=None, wait:bool=True, parameters={}):
         '''
             url of audio file to be analyzed
             returns Conversation object
         '''
 
-        if url == None:
+        if 'url' not in payload or payload['url'] == None:
             raise ValueError("Please enter a valid file_path")
+        
+        params = change_camel_case_to_snake_case(parameters)
 
-        response = self.__async_api_rest.add_audio_url(body={ 'url': url }, **correct_boolean_values(parameters))
+        response = self.__async_api_rest.add_audio_url(body=payload, **correct_boolean_values(params))
         Log.getInstance().info("Job with jobId {} for conversationId {} started".format(response.job_id, response.conversation_id))
 
         return Conversation(response.conversation_id, response.job_id, wait=wait, credentials=credentials)
@@ -79,27 +75,31 @@ class Audio():
         
         if conversation_id == None or len(conversation_id) == 0:
             raise ValueError("Please enter a valid conversation_id")
+        
+        params = change_camel_case_to_snake_case(parameters)
 
         file = open(file_path, 'rb')
         audio_file = file.read()
-        response = self.__async_api_rest.append_audio(body=audio_file, content_type=content_type, conversation_id=conversation_id,  **correct_boolean_values(parameters))
+        response = self.__async_api_rest.append_audio(body=audio_file, content_type=content_type, conversation_id=conversation_id,  **correct_boolean_values(params))
         Log.getInstance().info("Job with jobId {} for conversationId {} started".format(response.job_id, response.conversation_id))
 
         return Conversation(response.conversation_id, response.job_id, wait=wait, credentials=credentials)
   
     @initialize_api_client  
-    def append_url(self, url:str, conversation_id:str, credentials=None, wait:bool=True, parameters={}):
+    def append_url(self, payload:dict, conversation_id:str, credentials=None, wait:bool=True, parameters={}):
         '''
             url of audio file to be appended
             returns Conversation object
         '''
-        if url == None:
+        if 'url' not in payload or payload['url'] == None:
             raise ValueError("Please enter a valid url")
 
         if conversation_id == None or len(conversation_id) == 0:
             raise ValueError("Please enter a valid conversationId")
+        
+        params = change_camel_case_to_snake_case(parameters)
 
-        response = self.__async_api_rest.append_audio_url(body={ 'url': url }, conversation_id=conversation_id,  **correct_boolean_values(parameters))
+        response = self.__async_api_rest.append_audio_url(body=payload, conversation_id=conversation_id,  **correct_boolean_values(params))
         Log.getInstance().info("Job with jobId {} for conversationId {} started".format(response.job_id, response.conversation_id))
 
         return Conversation(response.conversation_id, response.job_id, wait=wait, credentials=credentials)
