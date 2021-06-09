@@ -57,7 +57,7 @@ conversation = symbl.Audio.process_file(
   file_path=<file_path>)
 
 # Printing transcription messages
-print(conversation.messages())
+print(conversation.get_messages())
 ```
 
 To know more about conversation object and it's functions, click [here][extended_readme-conversation-object]
@@ -97,9 +97,9 @@ payload = {
 
 conversation = symbl.Text.process(payload=payload)
 
-print(conversation.action_items())
-print(conversation.topics())
-print(conversation.follow_ups())
+print(conversation.get_action_items())
+print(conversation.get_topics())
+print(conversation.get_follow_ups())
 
   ```
 
