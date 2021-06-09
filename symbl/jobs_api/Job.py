@@ -38,8 +38,11 @@ class Job():
     def getConversationId(self):
         return self.__conversation_id
 
-    def getJobStatus(self):
+    def get_job_status(self):
         return self.__job_status.value
+
+    def get_job_id(self):
+        return self.__job_id
 
     def on_complete(self, func):
         self.__success_func = func
@@ -48,7 +51,6 @@ class Job():
     def on_error(self, func):
         self.__error_func = func
         return self
-
 
     @initialize_api_client
     def __fetch_current_job_status(self, credentials=None):

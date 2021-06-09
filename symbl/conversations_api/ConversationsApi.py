@@ -35,10 +35,6 @@ class ConversationsApi():
     def get_follow_ups(self, conversation_id, credentials=None ):  
         return self.conversations_api_rest.get_follow_ups_by_conversation_id(conversation_id)
 
-    @initialize_api_client
-    def get_insights(self, conversation_id, credentials=None):  
-        return self.conversations_api_rest.get_insights_by_conversation_id(conversation_id)
-  
     @initialize_api_client      
     def get_members(self, conversation_id, credentials=None):  
         return self.conversations_api_rest.get_members_by_conversation_id(conversation_id)

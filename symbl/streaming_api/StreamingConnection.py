@@ -9,7 +9,7 @@ import websocket
 class StreamingConnection():
 
     def __init__(self, url: str, connectionId: str, start_request: dict):
-        
+        self.conversation = Conversation(None)
         self.connectionId = connectionId
         self.url = url
         self.event_callbacks = {}
