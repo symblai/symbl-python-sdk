@@ -49,7 +49,7 @@ class VideoTest(unittest.TestCase):
             "time.sleep", Mock(return_value=None)
         ):
             self.assertEqual(demo_response.conversation_id, video_class.process_url(
-                'abcd').get_conversation_id())
+                {'url':'abcd'}).get_conversation_id())
 
     def test_append_file_should_succeed_given_valid_path(self):
         demo_response = SimpleNamespace(
@@ -81,7 +81,7 @@ class VideoTest(unittest.TestCase):
             "time.sleep", Mock(return_value=None)
         ):
             self.assertEqual(demo_response.conversation_id,
-                             video_class.append_url('abcd', 'conversationId').get_conversation_id())
+                             video_class.append_url({'url':'abcd'}, 'conversationId').get_conversation_id())
 
 
 if __name__ == '__main__':

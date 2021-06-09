@@ -29,13 +29,6 @@ class ConversationsApiTest(unittest.TestCase):
         with patch("symbl.AuthenticationToken.get_api_client", Mock(return_value="None")), patch("symbl_rest.ConversationsApi.get_follow_ups_by_conversation_id", Mock(return_value=demo_response)):
             self.assertEqual(demo_response, conversations_api.get_follow_ups("6549352073920512"))
 
-    def test_get_insights_should_succeed_given_valid_conversation_id(self):
-        demo_response = SimpleNamespace(**{"insights":[{"id":"4529863081852928","text":"Steve needs to follow up about this next Monday.","type":"follow_up","score":1,"messageIds":["5399026486738944"],"entities":[{"type":"date","text":"next monday","offset":38,"value":"2021-06-07"},{"type":"person","text":"Steve","offset":0,"value":{"assignee":True,"id":"e2219a6c-ec5e-4412-94d7-46f565ba5eb7","name":"Steve","userId":"Steve@example.com"}}],"phrases":[],"from":{"id":"e2219a6c-ec5e-4412-94d7-46f565ba5eb7","name":"Steve","userId":"Steve@example.com"},"definitive":True,"assignee":{"id":"e2219a6c-ec5e-4412-94d7-46f565ba5eb7","name":"Steve","email":"Steve@example.com"}}]})
-        conversations_api = ConversationsApi()
-
-        with patch("symbl.AuthenticationToken.get_api_client", Mock(return_value="None")), patch("symbl_rest.ConversationsApi.get_insights_by_conversation_id", Mock(return_value=demo_response)):
-            self.assertEqual(demo_response, conversations_api.get_insights("6549352073920512"))
-
     def test_get_members_should_succeed_given_valid_conversation_id(self):
         demo_response = SimpleNamespace(**{"members":[{"id":"25f497bd-2800-4e2b-bc71-e143a8f71d6b","name":"Steve","email":"steve@abccorp.com"}]})
         conversations_api = ConversationsApi()
