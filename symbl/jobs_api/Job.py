@@ -1,26 +1,10 @@
 from symbl.utils import wrap_keyboard_interrupt, Thread, Log
-from symbl import AuthenticationToken
+from symbl.utils.Helper import initialize_api_client
 from symbl.jobs_api.JobStatus import JobStatus
 from symbl_rest import JobsApi
 
 import time
 
-
-def initialize_api_client(function):
-    def wrapper(*args, **kw):
-        credentials = None
-        self = args[0]
-
-        if not hasattr(self,'__jobs_api'):
-            if 'credentials' in kw:
-                credentials = kw['credentials']
-            api_client = AuthenticationToken.get_api_client(credentials)
-
-            self.__jobs_api = JobsApi(api_client)
-
-        function(*args, **kw)
-    
-    return wrapper
 class Job():
 
     __INTERVAL_TIME_IN_SECONDS = 5  ## in seconds

@@ -1,5 +1,4 @@
 from symbl.jobs_api.Job import Job
-from symbl.jobs_api.JobStatus import JobStatus
 from symbl.conversations_api.ConversationsApi import ConversationsApi
 
 
@@ -62,7 +61,7 @@ class Conversation():
         return self.__conversation_api.get_members(self.__conversation_id, credentials=self.__credentials)
   
     @validate_conversation_id
-    def get_messages(self, parameters={}):  
+    def get_messages(self, parameters={}):
         return self.__conversation_api.get_messages(self.__conversation_id, credentials=self.__credentials, parameters=parameters)
   
     @validate_conversation_id
@@ -70,5 +69,5 @@ class Conversation():
         return self.__conversation_api.get_questions(self.__conversation_id, credentials=self.__credentials)
   
     @validate_conversation_id
-    def get_topics(self, parameters={}):  
+    def get_topics(self, parameters={}):
         return self.__conversation_api.get_topics(self.__conversation_id, credentials=self.__credentials, parameters=parameters)

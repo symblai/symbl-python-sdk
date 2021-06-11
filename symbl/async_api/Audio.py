@@ -1,32 +1,16 @@
-from symbl.utils.Helper import change_camel_case_to_snake_case, correct_boolean_values
+from symbl.utils.Helper import dictionary_to_valid_json, correct_boolean_values, initialize_api_client
 from symbl.utils.Logger import Log
 from symbl.Conversations import Conversation
-from symbl import AuthenticationToken
 from symbl_rest import AsyncApi as async_api_rest
-
-def initialize_api_client(function):
-    def wrapper(*args, **kw):
-        credentials = None
-        self = args[0]
-        
-        if 'credentials' in kw:
-            credentials = kw['credentials']
-
-        api_client = AuthenticationToken.get_api_client(credentials)
-        self.__async_api_rest = async_api_rest(api_client)
-
-        return function(*args, **kw)
-    
-    return wrapper
 
 class Audio():
 
-    def __init__(self, api_client=None):
+    def __init__(self):
         '''
             It will initialize the Analysis class
             with the object of Initialize Class
         '''
-        self.__async_api_rest = async_api_rest(api_client)
+        self.__async_api_rest = async_api_rest()
 
     @initialize_api_client
     def process_file(self, file_path:str, credentials=None, content_type:str='', wait:bool=True, parameters={}):
@@ -37,7 +21,7 @@ class Audio():
         if file_path == None:
             raise ValueError("Please enter a valid file_path")
         
-        params = change_camel_case_to_snake_case(parameters)
+        params = dictionary_to_valid_json(parameters)
 
         file = open(file_path, 'rb')
         audio_file = file.read()
@@ -56,7 +40,7 @@ class Audio():
         if 'url' not in payload or payload['url'] == None:
             raise ValueError("Please enter a valid file_path")
         
-        params = change_camel_case_to_snake_case(parameters)
+        params = dictionary_to_valid_json(parameters)
 
         response = self.__async_api_rest.add_audio_url(body=payload, **correct_boolean_values(params))
         Log.getInstance().info("Job with jobId {} for conversationId {} started".format(response.job_id, response.conversation_id))
@@ -76,7 +60,7 @@ class Audio():
         if conversation_id == None or len(conversation_id) == 0:
             raise ValueError("Please enter a valid conversation_id")
         
-        params = change_camel_case_to_snake_case(parameters)
+        params = dictionary_to_valid_json(parameters)
 
         file = open(file_path, 'rb')
         audio_file = file.read()
@@ -97,7 +81,7 @@ class Audio():
         if conversation_id == None or len(conversation_id) == 0:
             raise ValueError("Please enter a valid conversationId")
         
-        params = change_camel_case_to_snake_case(parameters)
+        params = dictionary_to_valid_json(parameters)
 
         response = self.__async_api_rest.append_audio_url(body=payload, conversation_id=conversation_id,  **correct_boolean_values(params))
         Log.getInstance().info("Job with jobId {} for conversationId {} started".format(response.job_id, response.conversation_id))
