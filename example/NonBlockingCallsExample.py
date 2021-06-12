@@ -2,7 +2,7 @@ import symbl
 
 # A success callback to be triggered if Job is completed
 def success_callback(conversation):
-    print(conversation.messages())
+    print(conversation.get_messages())
 
 # An error callback to be triggered if Job is Failed
 def error_callback(conversation):
