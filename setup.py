@@ -20,12 +20,12 @@ from setuptools import setup, find_packages  # noqa: H301
 
 setup(
     name="symbl",
-    version="1.0.11",
+    version="1.0.12",
     description="symbl.ai SDK",
     author_email="info@symbl.ai",
     url="",
     keywords=["Symbl.ai SDK"],
-    install_requires=["symbl_rest >= 1.0.5", "websocket-client >= 0.59.0", "sounddevice >= 0.4.1", "numpy"],
+    install_requires=["symbl_rest >= 1.0.6", "websocket-client >= 0.59.0", "sounddevice >= 0.4.1", "numpy"],
     packages=find_packages(),
     include_package_data=True,
     long_description="""\
