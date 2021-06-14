@@ -1,5 +1,6 @@
 from symbl.jobs_api.Job import Job
 from symbl.conversations_api.ConversationsApi import ConversationsApi
+from symbl.utils.Logger import Log
 
 
 def validate_conversation_id(function):
@@ -8,7 +9,7 @@ def validate_conversation_id(function):
         if self.get_conversation_id() != None:
             return function(*args, **kwargs)
         else:
-            raise ValueError('Conversation not initialized')
+            Log.getInstance().error("Conversation not initialized")
     return wrapper
 class Conversation():
 
