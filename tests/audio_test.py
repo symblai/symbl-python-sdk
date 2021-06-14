@@ -1,3 +1,4 @@
+from symbl.utils.Helper import dictionary_to_valid_json
 from unittest import mock
 
 from symbl.async_api.Audio import Audio, correct_boolean_values
@@ -13,6 +14,11 @@ class AudioTest(unittest.TestCase):
         test_dict = {'a': True, 'b': 'true', 'c': 'hello'}
         expected_dict = {'a': 'true', 'b': 'true', 'c': 'hello'}
         self.assertDictEqual(correct_boolean_values(test_dict), expected_dict)
+
+    def test_dictionary_to_valid_json(self):
+        test_dict = d1= {'apiKey':'85489541','apiSecret':'abcdefg','channelData':{'speaker':'john','email':'john@example.com'},'metaData':['john','Doe']}
+        expected_dict = {'api_key': '85489541', 'api_secret': 'abcdefg', 'channel_data': '{"speaker": "john", "email": "john@example.com"}', 'meta_data': '["john", "Doe"]'}
+        self.assertDictEqual(dictionary_to_valid_json(test_dict),expected_dict)
 
     def test_process_file_should_fail_if_no_file_path(self):
         audio_class = Audio()
