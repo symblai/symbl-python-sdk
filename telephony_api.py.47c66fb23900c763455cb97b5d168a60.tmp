@@ -1,0 +1,29 @@
+import symbl
+
+phoneNumber = "+13017158592" # Zoom phone number to be called, check here https://us02web.zoom.us/zoomconference
+meetingId = "83313098855" # Your zoom meetingId
+password = "108921" # Your zoom meeting passcode
+emailId = "roshani.jawale@symbl.ai"
+data = {
+        session: {
+          name: meetingName,
+        }
+      }
+connection = symbl.Telephony.start_pstn(
+      # credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
+      phone_number=phoneNumber,
+      dtmf = ",,{}#,,{}#".format(meetingId, password),
+      actions = [
+        {
+          "invokeOn": "stop",
+          "name": "sendSummaryEmail",
+          "parameters": {
+            "emails": [
+              emailId
+            ],
+          },
+        },
+      ]
+    )
+
+print(connection)
