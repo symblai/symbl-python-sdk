@@ -12,7 +12,7 @@ extract_text = lambda responses : [response.text for response in responses]
 pretty_print = lambda text_array : [print(text) for text in text_array]
 
 # Fetching actual transcripts using the conversationId
-response = conversation.messages()
+response = conversation.get_messages()
 
 # pretty printing transcripts (every message on a new line) 
-pretty_print(extract_text(response.messages))
+pretty_print(extract_text(response.get_messages))

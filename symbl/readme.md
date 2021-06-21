@@ -195,6 +195,8 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
     >
     >returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
 
+6. conversation.get_conversation_data():
+    >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
 # Conversations class
 
 The Conversation API provides a REST API interface for getting your processed Speech to Text data(also known as Transcripts) and conversational insights.
@@ -230,6 +232,10 @@ You can utilize different functions of Conversation APIs by directly utilizing `
     >parameters:- (Optional) dictionary, takes a dictionary of parameters. For list of parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/get-topics#query-params)
     >
     >returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
+
+7. get_conversation_data(conversation_id)
+
+    >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
 
 # Telephony class
 
