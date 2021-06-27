@@ -195,7 +195,7 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
     >
     >returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
 
-6. conversation.get_conversation_data():
+6. conversation.get_conversation():
     >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
 # Conversations class
 
@@ -233,7 +233,7 @@ You can utilize different functions of Conversation APIs by directly utilizing `
     >
     >returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
 
-7. get_conversation_data(conversation_id)
+7. get_conversation(conversation_id)
 
     >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
 
