@@ -14,10 +14,11 @@ See the [Python API docs](https://docs.symbl.ai/docs/).
 
 First make sure that Python is installed in your system.
 
-To install the python, just visit the links mentioned below:
+To install the python, just click on the system mentioned below:
 
-Windows: https://phoenixnap.com/kb/how-to-install-python-3-windows
-Mac: https://flaviocopes.com/python-installation-macos/
+- [Windows](https://phoenixnap.com/kb/how-to-install-python-3-windows)
+
+- [Mac](https://flaviocopes.com/python-installation-macos/)
 
 You don't need this source code unless you want to modify the package. If you just
 want to use the package, then you can install it, either using 'pip' or with 'source':
@@ -47,7 +48,7 @@ You can either provide the api_keys by saving a file named symbl.conf in your wo
 app_id=<app_id>
 app_secret=<app_secret>
 ```
-Example for 'symbl.conf' file
+>Example for 'symbl.conf' file
 
 ```conf
 [credentials]
