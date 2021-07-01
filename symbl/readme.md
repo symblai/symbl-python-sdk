@@ -36,7 +36,9 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
 
 1. process_file(file_path):
     >
-    >file_path :- (Mandatory) A valid path to a file
+    >file_path:- (Mandatory) A valid path to a file
+    >
+    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
     >
     >content_type: (Optional) Parameter defining the content_type of audio. Acceptable values are audio/wav, audio/mp3, audio/mpeg. Leave it blank if you're not sure about the content_type of file
     >
@@ -46,9 +48,11 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     >
     >returns conversation object
 
-2. process_url(url):
+2. process_url(payload):
 
-    >url :- (Mandatory) A valid url to a file hosted directly
+    >payload :- (Mandatory) A valid payload having 'url' as the member and it should be valid to a file hosted directly
+    >
+    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
     >
     >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
     >
@@ -56,11 +60,13 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     >
     >returns conversation object
 
-3. append_file(file_path):
+3. append_file(file_path, conversation_id):
     >
     >file_path :- (Mandatory) A valid path to a file
     >
     >conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
+    >
+    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
     >
     >content_type: (Optional) Parameter defining the content_type of audio. Acceptable values are audio/wav, audio/mp3, audio/mpeg. Leave itblank if you're not sure about the content_type of file
     >
@@ -70,11 +76,13 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     >
     >returns conversation object
 
-4. append_url(url, conversation_id):
+4. append_url(payload, conversation_id):
     >
-    >url :- (Mandatory) A valid url to a file hosted directly
+    >payload :- (Mandatory) A valid payload having 'url' as the member and it should be valid to a file hosted directly
     >
     >conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
+    >
+    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
     >
     >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
     >
@@ -92,6 +100,8 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     >
     >file_path :- (Mandatory) A valid path to a file
     >
+    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
+    >
     >content_type: (Optional) Parameter defining the content_type of video. Acceptable values are video/mp4. Leave it blank if you're not sure about the content_type of file
     >
     >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
@@ -100,9 +110,11 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     >
     >returns conversation object
 
-2. process_url(url):
+2. process_url(payload):
     >
-    >url:- (Mandatory) A valid url to a file hosted directly
+    >payload :- (Mandatory) A valid payload having 'url' as the member and it should be valid to a file hosted directly
+    >
+    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
     >
     >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
     >
@@ -116,6 +128,8 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     >
     >conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
     >
+    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
+    >
     >content_type: (Optional) Parameter defining the content_type of video. Acceptable values are video/mp4. Leave it blank if you're not sure about the content_type of file.
     >
     >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
@@ -124,11 +138,13 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     >
     >returns conversation object
 
-4. append_url(url, conversation_id):
+4. append_url(payload, conversation_id):
     >
-    >url :- (Mandatory) A valid url to a file hosted directly
+    >payload :- (Mandatory) A valid payload having 'url' as the member and it should be valid to a file hosted directly
     >
     >conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
+    >
+    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
     >
     >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
     >
@@ -146,6 +162,8 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.T
     >
     >payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][text_payload-docs] for payload
     >
+    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
+    >
     >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_text on a separate thread making it a non-blocking API call (Has callback support)
     >
     >parameters:- (Optional, by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/text/post-text#query-params)
@@ -157,6 +175,8 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.T
     >payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][text_payload-docs] for payload
     >
     >conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
+    >
+    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
     >
     >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_text on a separate thread making it a non-blocking API call (Has callback support)
     >
@@ -235,15 +255,20 @@ You can utilize different functions of Conversation APIs by directly utilizing `
 
 Based on PSTN and SIP protocols, the Telephony API provides an interface for the developers to have Symbl bridge/join VoIP calls and get the results back in real-time as well. Optionally, the developer can also trigger an email at the end of the conversation containing the URL to view the transcription, insights and topics in a single page Web Application.
 
+
+
 1. start_pstn(phoneNumber, dtmf, actions, data):
     >
     >1. phoneNumber: phoneNumber where symbl should call
     >2. dtmf : (Optional) dtmf sequence to entered by symbl to join the call
+    >3. credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
     >3. actions : (Optional) follows the following pattern
     >
     >        [{invokeOn: "stop", name: "sendSummaryEmail", parameters: {emails: ["email@example.com"]}}]
     >
     >4. data: (Optional) {session: {name: "sessionName"}}
+    >5. languages: (optinal) To provide the Language list explicitly
+    >6. timezone: (optinal) To provide timezone explicitly
     >
     >For more details check documentation [here][telephony-docs]
     >
@@ -252,12 +277,15 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
 2. start_sip(uri, audioConfig, actions, data):
     >
     >1. uri: uri where symbl should connect
-    >2. audioConfig : (Optional) audioConfigs of the SIP  
-    >3. actions : (Optional) follows the following pattern
+    >2. audioConfig : (Optional) audioConfigs of the SIP 
+    >3. credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
+    >4. actions : (Optional) follows the following pattern
     >
     >        [{invokeOn: "stop", name: "sendSummaryEmail", parameters: {emails: ["email@example.com"]}}]
     >
-    >4. data: (Optional) {session: {name: "sessionName"}}
+    >5. data: (Optional) {session: {name: "sessionName"}}
+    >5. languages: (optinal) To provide the Language list explicitly
+    >6. timezone: (optinal) To provide timezone explicitly
     >
     >For more details check documentation [here][telephony-docs]
     >
@@ -269,19 +297,35 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     >
     >Return an updated connection object which will have the conversationId in the response.
 
+
+>You can subscribe the following events for Telephony API by the connection object
+    > 1. **insight_response** :- generates an event whenever a question or an action_item is found.
+    > 2. **message_response**:- generates an event whenever a transcription is available.
+    > 3. **transcript_response**:- (Part of telephony API), these are also transcription values, however these will include an isFinal property which will be False initially meaning the transcription are not finalized.
+    > 4. **tracker_response**:- It will generate an event whenever a tracker is identified in any transcription.
+    > 5. **topic_response**:- It will generate an event whenever a topic is identified in any transcription.
+    > 6. **message**:- (Part of stremaing API), It will generate an event for live transcriptions. It will include isFinal property which will be False initially, meaning the transcription is not finalized.
+
 # Streaming class
 
 Symbl's Streaming API is based on WebSocket protocol and can be used for real-time use-cases where both the audio and its results from Symbl's back-end need to be available in real-time.
 
 1. start_connection(credentials=None, speaker=None, insight_types=None):
-    >
-    >1. credentials: (Optional) Credentials to be provided, if not already passed in the local directory or home directory
+    
+    >1. credentials: (Optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
     >2. speaker : (Optional) speaker object containing name and email field
     >3. insight_types : (Optional) insight_types to be available in the websocket connection.
-    >
+    >4. config: (optinal) using this parameter you can pass confidenceThreshold, languageCode
     >For more details check documentation [here][streaming-docs]
     >
     >Returns a connection object
+
+>You can subscribe the following events for Streaming API by the connection object
+    > 1. **insight_response** :- generates an event whenever a question or an action_item is found.
+    > 2. **message_response**:- generates an event whenever a transcription is available.
+    > 3. **tracker_response**:- It will generate an event whenever a tracker is identified in any transcription.
+    > 4. **topic_response**:- It will generate an event whenever a topic is identified in any transcription.
+    > 5. **message**:- (Part of stremaing API), It will generate an event for live transcriptions. It will include isFinal property which will be False initially, meaning the transcription is not finalized.
 
 ## connection object
 
