@@ -298,13 +298,14 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     >Return an updated connection object which will have the conversationId in the response.
 
 
->You can subscribe the following events for Telephony API by the connection object
+You can subscribe the following events for Telephony API by the connection object
+
     > 1. **insight_response** :- generates an event whenever a question or an action_item is found.
     > 2. **message_response**:- generates an event whenever a transcription is available.
-    > 3. **transcript_response**:- (Part of telephony API), these are also transcription values, however these will include an isFinal property which will be False initially meaning the transcription are not finalized.
+    > 3. **transcript_response**:- (Part of telephony API), these are also transcription values, however these will include an isFinal property which will be False initially           meaning the transcription are not finalized.
     > 4. **tracker_response**:- It will generate an event whenever a tracker is identified in any transcription.
     > 5. **topic_response**:- It will generate an event whenever a topic is identified in any transcription.
-    > 6. **message**:- (Part of stremaing API), It will generate an event for live transcriptions. It will include isFinal property which will be False initially, meaning the transcription is not finalized.
+    > 6. **message**:- (Part of stremaing API), It will generate an event for live transcriptions. It will include isFinal property which will be False initially, meaning the          transcription is not finalized.
 
 # Streaming class
 
@@ -320,7 +321,8 @@ Symbl's Streaming API is based on WebSocket protocol and can be used for real-ti
     >
     >Returns a connection object
 
->You can subscribe the following events for Streaming API by the connection object
+You can subscribe the following events for Streaming API by the connection object
+
     > 1. **insight_response** :- generates an event whenever a question or an action_item is found.
     > 2. **message_response**:- generates an event whenever a transcription is available.
     > 3. **tracker_response**:- It will generate an event whenever a tracker is identified in any transcription.
