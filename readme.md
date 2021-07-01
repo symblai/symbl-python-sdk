@@ -14,7 +14,7 @@ See the [Python API docs](https://docs.symbl.ai/docs/).
 
 First make sure that Python is installed in your system.
 
-To install the python, just click on the system mentioned below:
+To install the python, just click on the system which you are using:
 
 - [Windows](https://phoenixnap.com/kb/how-to-install-python-3-windows)
 
