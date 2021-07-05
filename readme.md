@@ -6,16 +6,30 @@ The Symbl Python SDK provides convenient access to the Symbl API from applicatio
 
 See the [Python API docs](https://docs.symbl.ai/docs/).
 
+### Requirements
+
+- Python 2.7+ or Python 3.4+ (PyPy supported)
+
 ## Installation
 
+First make sure that Python is installed in your system.
+
+To install the python, just click on the system which you are using:
+
+- [Windows](https://phoenixnap.com/kb/how-to-install-python-3-windows)
+
+- [Mac](https://flaviocopes.com/python-installation-macos/)
+
 You don't need this source code unless you want to modify the package. If you just
-want to use the package, just run:
+want to use the package, then you can install it, either using 'pip' or with 'source':
+
+>just run the command mentioned below to install using 'pip':
 
 ```sh
 pip install --upgrade symbl
 ```
 
-Install from source with:
+>or you can also install the package with source:
 
 ```sh
 python setup.py install
@@ -25,7 +39,7 @@ python setup.py install
 
 To initialize the SDK, you need to provide app_id and app_token which you can get by signing up on [Symbl Platform][api-keys].
 
-You can either provide the api_keys by saving a file named symbl.conf in your home directory in the following format.
+You can either provide the api_keys by saving a file named symbl.conf in your working directory or home directory in the following format.
 
 >Home directory will be C:/Users/\<Your Username\> on your windows system, or ~ in your Linux or Mac system.
 
@@ -34,11 +48,13 @@ You can either provide the api_keys by saving a file named symbl.conf in your ho
 app_id=<app_id>
 app_secret=<app_secret>
 ```
+>Example for 'symbl.conf' file
 
-### Requirements
-
-- Python 2.7+ or Python 3.4+ (PyPy supported)
-
+```conf
+[credentials]
+app_id=1234567890 #Update with your app_id, without any quotes
+app_secret=abcdefghijklmnop #Update with your app_secret, without any quotes
+```
 ### Usages
 
 The library needs to be configured with your account's credentials (appId & appSecret) which is
@@ -117,7 +133,7 @@ password = "" # Your zoom meeting passcode
 emailId = ""
 
 connection = symbl.Telephony.start_pstn(
-      # credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
+      # credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory or working directory
       phone_number=phoneNumber,
       dtmf = ",,{}#,,{}#".format(meetingId, password),
       actions = [
@@ -154,6 +170,8 @@ connection.send_audio_from_mic()
 ## Extended Readme
 
 You can see all the functions provided by SDK in the **extended [readme.md][extended-readme] file**.
+
+You can go through some examples for understanding the use of all functionality [Explore more example](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example)
 
 ## Possible Errros
 

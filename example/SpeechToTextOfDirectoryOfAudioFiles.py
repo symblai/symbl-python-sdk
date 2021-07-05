@@ -10,7 +10,7 @@ def save_transcriptions_in_file(fileName):
 
 # returns actual callback to save the transcriptions of a conversation in a file
 def on_success(conversation, fileName):
-    transcriptions = conversation.messages()
+    transcriptions = conversation.get_messages()
 
     file = open(fileName + ".txt","w+")
     file.write(str(transcriptions))
