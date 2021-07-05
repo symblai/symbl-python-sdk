@@ -4,7 +4,10 @@ import symbl
 events = {
     'transcript_response': lambda transcript: print('printing the first response ', str(transcript))
 }
-connection = symbl.Telephony.start_sip(uri="sip:8002@sip.rammer.ai")
+
+sip_uri = "<sip_end_point>"
+
+connection = symbl.Telephony.start_sip(uri=sip_uri)
 
 connection.subscribe(events)
 
