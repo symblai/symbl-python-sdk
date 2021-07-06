@@ -62,7 +62,7 @@ available in your [Symbl Platform][api-keys].
 
 ## A speech to text converter under 5 lines of code
 
-To know more about **Async Audio Api**, click [here][async_audio-docs]. To know more about the Python SDK Audio Package, click [here][extended_readme-audio]
+To know more about **Async Audio API**, see the [Async Audio API docs][async_audio-docs]. To know more about the Python SDK Audio Package, see the docs for [Audio class][extended_readme-audio].
 
 ```python
 import symbl
@@ -76,11 +76,11 @@ conversation = symbl.Audio.process_file(
 print(conversation.get_messages())
 ```
 
-To know more about conversation object and it's functions, click [here][extended_readme-conversation-object]
+To know more about conversation object and its functions, see the docs on [conversation object][extended_readme-conversation-object].
 
 ## Extracting insights from Textual conversation
 
-To know more about **Async Text Api**, click [here][async_text-docs]. To know more about the Python SDK Text Package, click [here][extended_readme-text]
+To know more about **Async Text Api**, see [Async Text API docs][async_text-docs]. To know more about the Python SDK Text Package, see the docs for [Text class][extended_readme-text].
 
   ``` python
 
@@ -121,7 +121,7 @@ print(conversation.get_follow_ups())
 
 ## Analysis of your Zoom Call on your email (Symbl will join your zoom call and send you analysis on provided email)
 
-To know more about **telephony api**, click [here][telephony_api-docs]. To know more about the Python SDK Telephony Package, click [here][extended_readme-telephony]
+To know more about **Telephony API**, see the docs on [Telephony API][telephony_api-docs]. To know more about the Python SDK Telephony Package, see the docs for [Telephony class][extended_readme-telephony].
 
 ```python
 
@@ -155,7 +155,7 @@ print(connection)
 
 ## Live audio transcript using your system's microphone
 
-To know more about **streaming api**, click [here][streaming_api-docs]. To know more about the Python SDK Streaming Package, click [here][extended_readme-streaming]
+To know more about **Streaming API**, see the docs on [Streaming API][streaming_api-docs]. To know more about the Python SDK Streaming Package, see the docs for the [Streaming class][extended_readme-streaming].
 
 ```python
 import symbl
@@ -187,7 +187,7 @@ You can go through some examples for understanding the use of all functionality 
 
 If you are looking for some specific use cases do check our [examples][examples] folder.
 
-If you can't find your answers, do let us know at support@symbl.ai or join our slack channel [here][slack-invite].
+If you can't find your answers, do let us know at support@symbl.ai or join our [slack channel][slack-invite].
 
 [api-keys]: https://platform.symbl.ai/#/login
 [symbl-docs]: https://docs.symbl.ai/docs/
