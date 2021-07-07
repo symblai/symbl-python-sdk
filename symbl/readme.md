@@ -45,7 +45,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Audio_API/process_audio_file.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Audio_API/process_audio_file.py) to check the example for usage of parameters/arguments and conversation object
 
 2. process_url(payload):
     >Parameter Name | Required | Value
@@ -57,7 +57,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Audio_API/process_audio_url.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Audio_API/process_audio_url.py) to check the example for usage of parameters/arguments and conversation object
  
 3. append_file(file_path, conversation_id):
     >Parameter Name | Required | Value
@@ -71,7 +71,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Audio_API/append_audio_file.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Audio_API/append_audio_file.py) to check the example for usage of parameters/arguments and conversation object
  
 4. append_url(payload, conversation_id):
     >Parameter Name | Required | Value
@@ -84,7 +84,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Audio_API/append_audio_url.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Audio_API/append_audio_url.py) to check the example for usage of parameters/arguments and conversation object
 
 # Video class
 
@@ -103,7 +103,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Video_API/process_video_file.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Video_API/process_video_file.py) to check the example for usage of parameters/arguments and conversation object
 
 2. process_url(payload):
     >Parameter Name | Required | Value
@@ -115,7 +115,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Video_API/process_video_url.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Video_API/process_video_url.py) to check the example for usage of parameters/arguments and conversation object
 
 3. append_file(file_path, conversation_id):
     >Parameter Name | Required | Value
@@ -129,7 +129,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Video_API/append_video_file.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Video_API/append_video_file.py) to check the example for usage of parameters/arguments and conversation object
 
 4. append_url(payload, conversation_id):
     >Parameter Name | Required | Value
@@ -142,7 +142,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Video_API/append_video_url.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Video_API/append_video_url.py) to check the example for usage of parameters/arguments and conversation object
 # Text class
 
 Symbl's Async APIs provide the functionality for processing textual content from a conversation. The data processed for these conversations are available via the Conversation APIs once the APIs have completed the processing.
@@ -160,7 +160,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.T
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Text_API/process_text.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example/Async_API/Text_API/process_text.py) to check the example for usage of parameters/arguments and conversation object
 
 
 2. append(payload, conversation_id):
@@ -174,7 +174,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.T
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Text_API/append_text.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example/Async_API/Text_API/append_text.py) to check the example for usage of parameters/arguments and conversation object
 
 ## conversation object
 
@@ -267,7 +267,7 @@ conversation_id=1234567890 # Update with the conversation Id of your conversatio
 
 print(symbl.Conversations.get_messages(conversation_id))
 ```
->to access more insights click [here](https://github.com/symblai/symbl-python/blob/main/example/Conversation_Class/conversation_class.py)
+>to access more insights click [here](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example/Conversation_Class/conversation_class.py)
 
 # Telephony class
 
@@ -287,7 +287,7 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     
     >returns connection object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Telephony_API/telephony_pstn.py) to check the example for usage of parameters/arguments and connection object
+    >click [here](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example/Telephony_API/telephony_pstn.py) to check the example for usage of parameters/arguments and connection object
     >
     >For more details check [here][telephony-docs]
 
@@ -305,7 +305,7 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     
     >returns connection object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Telephony_API/telephony_sip.py) to check the example for usage of parameters/arguments and connection object
+    >click [here](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example/Telephony_API/telephony_sip.py) to check the example for usage of parameters/arguments and connection object
     >
     >For more details check [here][telephony-docs]
 
@@ -320,13 +320,13 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     >returns an updated connection object which will have the conversationId in the response.
 
 
->You can subscribe the following events for Telephony API by the connection object
+    >You can subscribe the following events for Telephony API by the connection object
     > 1. **insight_response**:- generates an event whenever a question or an action_item is found.
     > 2. **message_response**:- generates an event whenever a transcription is available.
     > 3. **transcript_response**:- (Part of telephony API only), these are also transcription values, however these will include an isFinal property which will be False initially meaning the transcription are not finalized.
     > 4. **tracker_response**:- It will generate an event whenever a tracker is identified in any transcription.
     > 5. **topic_response**:- It will generate an event whenever a topic is identified in any transcription.
-    >
+    
     >by this way you can subscribe the events
     >
      ```
@@ -355,17 +355,17 @@ Symbl's Streaming API is based on WebSocket protocol and can be used for real-ti
     
     >returns connection object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Streaming_API/streaming.py) to check the example for usage of parameters/arguments and connection object
+    >click [here](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example/Streaming_API/streaming.py) to check the example for usage of parameters/arguments and connection object
     >
     >For more details check [here][streaming-docs]
 
->You can subscribe the following events for Streaming API by the connection object
+    >You can subscribe the following events for Streaming API by the connection object
     > 1. **insight_response**:- generates an event whenever a question or an action_item is found.
     > 2. **message_response**:- generates an event whenever a transcription is available.
     > 3. **tracker_response**:- It will generate an event whenever a tracker is identified in any transcription.
     > 4. **topic_response**:- It will generate an event whenever a topic is identified in any transcription.
     > 5. **message**:- (Part of streaming API only), It will generate an event for live transcriptions. It will include isFinal property which will be False initially, meaning the transcription is not finalized.
-    >
+
     >by this way you can subscribe the events
     >
      ```
