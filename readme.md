@@ -63,12 +63,12 @@ To know more about **Async Audio Api**, click [here][async_audio-docs]. To know 
 import symbl
 
 # Process audio file
-conversation = symbl.Audio.process_file(
+conversation_object = symbl.Audio.process_file(
   # credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
   file_path=<file_path>)
 
 # Printing transcription messages
-print(conversation.get_messages())
+print(conversation_object.get_messages())
 ```
 
 To know more about conversation object and it's functions, click [here][extended_readme-conversation-object]

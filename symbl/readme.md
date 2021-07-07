@@ -266,16 +266,12 @@ import symbl
 conversation_id=1234567890 # Update with the conversation Id of your conversation
 
 print(symbl.Conversations.get_messages(conversation_id))
-print(symbl.Conversations.get_action_items(conversation_id))
-print(symbl.Conversations.get_follow_ups(conversation_id))
-print(symbl.Conversations.get_members(conversation_id))
-print(symbl.Conversations.get_topics(conversation_id))
-print(symbl.Conversations.get_questions(conversation_id))
 ```
+>to access more insights click [here](https://github.com/symblai/symbl-python/blob/main/example/Conversation_Class/conversation_class.py)
+
 # Telephony class
 
 Based on PSTN and SIP protocols, the Telephony API provides an interface for the developers to have Symbl bridge/join VoIP calls and get the results back in real-time as well. Optionally, the developer can also trigger an email at the end of the conversation containing the URL to view the transcription, insights and topics in a single page Web Application.
-
 
 
 1. start_pstn(phoneNumber, dtmf, actions, data):
@@ -288,7 +284,7 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     >data | optional | `{session: {name: "sessionName"}}`
     >languages | optional | To provide the Language list explicitly
     >timezone | optional | To provide timezone explicitly
-    >
+    
     >returns connection object
     >
     >click [here](https://github.com/symblai/symbl-python/blob/main/example/Telephony_API/telephony_pstn.py) to check the example for usage of parameters/arguments and connection object
@@ -306,7 +302,7 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     >data | optional | `{session: {name: "sessionName"}}`
     >languages | optional | To provide the Language list explicitly
     >timezone | optional | To provide timezone explicitly
-    >
+    
     >returns connection object
     >
     >click [here](https://github.com/symblai/symbl-python/blob/main/example/Telephony_API/telephony_sip.py) to check the example for usage of parameters/arguments and connection object
@@ -318,7 +314,7 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     >Parameter Name | Required | Value
     >--- | --- | ---
     >connection_id | Mandatory | connection id of the conversation is required to stop the connection
-    >
+    
     >only connection_id parameter is required
     >
     >returns an updated connection object which will have the conversationId in the response.
@@ -356,7 +352,7 @@ Symbl's Streaming API is based on WebSocket protocol and can be used for real-ti
     >config | optional | using this parameter you can pass confidenceThreshold, languageCode
     >languages | optional | To provide the Language list explicitly
     >timezone | optional | To provide timezone explicitly
-    >
+    
     >returns connection object
     >
     >click [here](https://github.com/symblai/symbl-python/blob/main/example/Streaming_API/streaming.py) to check the example for usage of parameters/arguments and connection object
