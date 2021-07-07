@@ -165,9 +165,9 @@ connection_object.send_audio_from_mic()
 
 ## Extended Readme
 
-You can see all the functions provided by SDK in the **extended [readme.md][extended-readme] file**.
+You can see all the functions provided by SDK in the **extended [readme.md](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/symbl/readme.md) file**.
 
-You can go through some examples for understanding the use of all functionality [Explore more example](https://github.com/symblai/symbl-python/tree/main/example)
+You can go through some examples for understanding the use of all functionality [Explore more example](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example)
 
 ## Possible Errros
 
