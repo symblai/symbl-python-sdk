@@ -36,9 +36,10 @@ python setup.py install
 
 ## Configuration
 
-To initialize the SDK, you need to provide app_id and app_token which you can get by signing up on [Symbl Platform][api-keys].
+The library needs to be configured with your account's credentials (appId & appSecret) which is
+available in your [Symbl Platform][api-keys].
 
-You can either provide the api_keys by saving a file named symbl.conf in your working directory or home directory in the following format.
+You can either provide the credentials by saving a file named symbl.conf in your working directory or home directory in the following format.
 
 >Home directory will be C:/Users/\<Your Username\> on your windows system, or ~ in your Linux or Mac system.
 
@@ -54,11 +55,6 @@ Example for 'symbl.conf' file
 app_id=1234567890 #Update with your app_id, without any quotes
 app_secret=abcdefghijklmnop #Update with your app_secret, without any quotes
 ```
-### Usages
-
-The library needs to be configured with your account's credentials (appId & appSecret) which is
-available in your [Symbl Platform][api-keys].
-
 ## A speech to text converter under 5 lines of code
 
 To know more about **Async Audio Api**, click [here][async_audio-docs]. To know more about the Python SDK Audio Package, click [here][extended_readme-audio]
@@ -110,11 +106,12 @@ payload = {
   ]
 }
 
-conversation = symbl.Text.process(payload=payload)
+conversation_object = symbl.Text.process(payload=payload)
 
-print(conversation.get_action_items())
-print(conversation.get_topics())
-print(conversation.get_follow_ups())
+print(conversation_object.get_messages())
+print(conversation_object.get_topics())
+print(conversation_object.get_action_items())
+print(conversation_object.get_follow_ups())
 
   ```
 
@@ -131,7 +128,7 @@ meetingId = "" # Your zoom meetingId
 password = "" # Your zoom meeting passcode
 emailId = ""
 
-connection = symbl.Telephony.start_pstn(
+connection_object = symbl.Telephony.start_pstn(
       # credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory or working directory
       phone_number=phoneNumber,
       dtmf = ",,{}#,,{}#".format(meetingId, password),
@@ -148,7 +145,7 @@ connection = symbl.Telephony.start_pstn(
       ]
     )
 
-print(connection)
+print(connection_object)
 
 ```
 
@@ -159,16 +156,18 @@ To know more about **streaming api**, click [here][streaming_api-docs]. To know 
 ```python
 import symbl
 
-connection = symbl.Streaming.start_connection()
+connection_object = symbl.Streaming.start_connection()
 
-connection.subscribe({'message_response': lambda response: print('got this response from callback', response)})
+connection_object.subscribe({'message_response': lambda response: print('got this response from callback', response)})
 
-connection.send_audio_from_mic()
+connection_object.send_audio_from_mic()
 ```
 
 ## Extended Readme
 
 You can see all the functions provided by SDK in the **extended [readme.md][extended-readme] file**.
+
+You can go through some examples for understanding the use of all functionality [Explore more example](https://github.com/symblai/symbl-python/tree/main/example)
 
 ## Possible Errros
 

@@ -35,60 +35,56 @@ Symbl's Async APIs provide the functionality for processing audio recordings fro
 You can utilize different functions of Async APIs by directly utilizing `symbl.Audio`.
 
 1. process_file(file_path):
-    >
-    >file_path:- (Mandatory) A valid path to a file
-    >
-    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
-    >
-    >content_type: (Optional) Parameter defining the content_type of audio. Acceptable values are audio/wav, audio/mp3, audio/mpeg. Leave it blank if you're not sure about the content_type of file
-    >
-    >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_audio on a separate thread making it a non-blocking API call (Has callback support)
-    >
-    >parameters:- (Optional, by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/audio/post-audio#query-params)
-    >
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >file_path | Mandatory | A valid path to a file
+    >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
+    >content_type | optional | Parameter defining the content_type of audio. Acceptable values are [`audio/wav`, `audio/mp3`, `audio/mpeg`]. Leave it blank if you're not sure about the content_type of file
+    >wait | optional |  (by default True) Boolean, Value `False` will execute the function submit_audio on a separate thread making it a non-blocking API call (Has callback support)
+    >parameters | optional | (by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/audio/post-audio#query-params)
+    
     >returns conversation object
+    >
+    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Audio_API/process_audio_file.py) to check the example for usage of parameters/arguments and conversation object
 
 2. process_url(payload):
-
-    >payload :- (Mandatory) A valid payload having 'url' as the member and it should be valid to a file hosted directly
-    >
-    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
-    >
-    >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
-    >
-    >parameters:- (Optional, by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/audio/post-audio-url#query-params)
-    >
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >payload | Mandatory | A valid payload having `url` as the member and it should be valid to a file hosted directly. valid payload [`payload = { 'url': "<url>" }`]
+    >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
+    >wait | optional |  (by default True) Boolean, Value `False` will execute the function submit_audio on a separate thread making it a non-blocking API call (Has callback support)
+    >parameters | optional | (by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/audio/post-audio-url#query-params)
+    
     >returns conversation object
-
+    >
+    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Audio_API/process_audio_url.py) to check the example for usage of parameters/arguments and conversation object
+ 
 3. append_file(file_path, conversation_id):
-    >
-    >file_path :- (Mandatory) A valid path to a file
-    >
-    >conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
-    >
-    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
-    >
-    >content_type: (Optional) Parameter defining the content_type of audio. Acceptable values are audio/wav, audio/mp3, audio/mpeg. Leave itblank if you're not sure about the content_type of file
-    >
-    >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_audio on a separate thread making it a non-blocking API call (Has callback support)
-    >
-    >parameters:- (Optional, by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/audio/put-audio#query-params)
-    >
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >file_path | Mandatory | A valid path to a file
+    >conversation_id | Mandatory | conversationId of a previous conversation to which appending the current conversation
+    >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
+    >content_type | optional | Parameter defining the content_type of audio. Acceptable values are [`audio/wav`, `audio/mp3`, `audio/mpeg`]. Leave it blank if you're not sure about the content_type of file
+    >wait | optional |  (by default True) Boolean, Value `False` will execute the function submit_audio on a separate thread making it a non-blocking API call (Has callback support)
+    >parameters | optional | (by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/audio/put-audio#query-params)
+    
     >returns conversation object
-
+    >
+    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Audio_API/append_audio_file.py) to check the example for usage of parameters/arguments and conversation object
+ 
 4. append_url(payload, conversation_id):
-    >
-    >payload :- (Mandatory) A valid payload having 'url' as the member and it should be valid to a file hosted directly
-    >
-    >conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
-    >
-    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
-    >
-    >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
-    >
-    >parameters:- (Optional, by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/audio/put-audio-url#query-params)
-    >
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >payload | Mandatory | A valid payload having `url` as the member and it should be valid to a file hosted directly. valid payload [`payload = { 'url': "<url>" }`]
+    >conversation_id | Mandatory | conversationId of a previous conversation to which appending the current conversation
+    >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
+    >wait | optional |  (by default True) Boolean, Value `False` will execute the function submit_audio on a separate thread making it a non-blocking API call (Has callback support)
+    >parameters | optional | (by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/audio/put-audio-url#query-params)
+    
     >returns conversation object
+    >
+    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Audio_API/append_audio_url.py) to check the example for usage of parameters/arguments and conversation object
 
 # Video class
 
@@ -97,61 +93,56 @@ Symbl's Async APIs provide the functionality for processing video recordings fro
 You can utilize different functions of Async APIs by directly utilizing `symbl.Video`.
 
 1. process_file(file_path):
-    >
-    >file_path :- (Mandatory) A valid path to a file
-    >
-    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
-    >
-    >content_type: (Optional) Parameter defining the content_type of video. Acceptable values are video/mp4. Leave it blank if you're not sure about the content_type of file
-    >
-    >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
-    >
-    >parameters:- (Optional, by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/video/post-video#query-params)
-    >
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >file_path | Mandatory | A valid path to a file
+    >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
+    >content_type | optional | Parameter defining the content_type of video. Acceptable values is [`video/mp4`]. Leave it blank if you're not sure about the content_type of file
+    >wait | optional |  (by default True) Boolean, Value `False` will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
+    >parameters | optional | (by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/video/post-video#query-params)
+    
     >returns conversation object
+    >
+    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Video_API/process_video_file.py) to check the example for usage of parameters/arguments and conversation object
 
 2. process_url(payload):
-    >
-    >payload :- (Mandatory) A valid payload having 'url' as the member and it should be valid to a file hosted directly
-    >
-    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
-    >
-    >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
-    >
-    >parameters:- (Optional, by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/video/post-video-url#query-params)
-    >
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >payload | Mandatory | A valid payload having `url` as the member and it should be valid to a file hosted directly. valid payload [`payload = { 'url': "<url>" }`]
+    >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
+    >wait | optional |  (by default True) Boolean, Value `False` will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
+    >parameters | optional | (by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/video/post-video-url#query-params)
+    
     >returns conversation object
+    >
+    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Video_API/process_video_url.py) to check the example for usage of parameters/arguments and conversation object
 
 3. append_file(file_path, conversation_id):
-    >
-    >file_path :- (Mandatory) A valid path to a file
-    >
-    >conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
-    >
-    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
-    >
-    >content_type: (Optional) Parameter defining the content_type of video. Acceptable values are video/mp4. Leave it blank if you're not sure about the content_type of file.
-    >
-    >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
-    >
-    >parameters:- (Optional, by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/video/put-video#query-params)
-    >
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >file_path | Mandatory | A valid path to a file
+    >conversation_id | Mandatory | conversationId of a previous conversation to which appending the current conversation
+    >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
+    >content_type | optional | Parameter defining the content_type of video. Acceptable values is [`video/mp4`]. Leave it blank if you're not sure about the content_type of file
+    >wait | optional |  (by default True) Boolean, Value `False` will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
+    >parameters | optional | (by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/video/put-video#query-params)
+    
     >returns conversation object
+    >
+    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Video_API/append_video_file.py) to check the example for usage of parameters/arguments and conversation object
 
 4. append_url(payload, conversation_id):
-    >
-    >payload :- (Mandatory) A valid payload having 'url' as the member and it should be valid to a file hosted directly
-    >
-    >conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
-    >
-    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
-    >
-    >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
-    >
-    >parameters:- (Optional, by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/video/put-video-url#query-params)
-    >
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >payload | Mandatory | A valid payload having `url` as the member and it should be valid to a file hosted directly. valid payload [`payload = { 'url': "<url>" }`]
+    >conversation_id | Mandatory | conversationId of a previous conversation to which appending the current conversation
+    >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
+    >wait | optional |  (by default True) Boolean, Value `False` will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
+    >parameters | optional | (by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/video/put-video-url#query-params)
+    
     >returns conversation object
-
+    >
+    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Video_API/append_video_url.py) to check the example for usage of parameters/arguments and conversation object
 # Text class
 
 Symbl's Async APIs provide the functionality for processing textual content from a conversation. The data processed for these conversations are available via the Conversation APIs once the APIs have completed the processing.
@@ -159,30 +150,31 @@ Symbl's Async APIs provide the functionality for processing textual content from
 You can utilize different functions of Async APIs by directly utilizing `symbl.Text`.
 
 1. process(payload):
-    >
-    >payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][text_payload-docs] for payload
-    >
-    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
-    >
-    >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_text on a separate thread making it a non-blocking API call (Has callback support)
-    >
-    >parameters:- (Optional, by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/text/post-text#query-params)
-    >
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >payload | Mandatory | textual dictionary containing the conversation to be processed in textual form, valid payload `payload={"messages": [{"payload": {"content": "Hi Anthony. I saw your complaints about bad call reception on your mobile phone. Can I know what issues you are currently facing?"},"from": {"userId": "surbhi@example.com", "name": "Surbhi Rathore"}}]}`. See [docs][text_payload-docs] for payload
+    >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
+    >content_type | optional | Parameter defining the content_type of video. Acceptable values is [`video/mp4`]. Leave it blank if you're not sure about the content_type of file
+    >wait | optional |  (by default True) Boolean, Value `False` will execute the function submit_text on a separate thread making it a non-blocking API call (Has callback support)
+    >parameters | optional | (by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/video/post-video#query-params)
+    
     >returns conversation object
+    >
+    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Text_API/process_text.py) to check the example for usage of parameters/arguments and conversation object
+
 
 2. append(payload, conversation_id):
-    >
-    >payload:- (Mandatory) textual dictionary containing the conversation to be processed in textual form, See [docs][text_payload-docs] for payload
-    >
-    >conversation_id:- (Mandatory) conversationId of a previous conversation to which appending the current conversation
-    >
-    >credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
-    >
-    >wait:- (Optional, by default True) Boolean, Value False will execute the function submit_text on a separate thread making it a non-blocking API call (Has callback support)
-    >
-    >parameters:- (Optional, by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/text/put-text#query-params)
-    >
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >payload | Mandatory | textual dictionary containing the conversation to be processed in textual form, valid payload `payload={"messages": [{"payload": {"content": "Hi Anthony. I saw your complaints about bad call reception on your mobile phone. Can I know what issues you are currently facing?"},"from": {"userId": "surbhi@example.com", "name": "Surbhi Rathore"}}]}`. See [docs][text_payload-docs] for payload
+    >conversation_id | Mandatory | conversationId of a previous conversation to which appending the current conversation
+    >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
+    >wait | optional |  (by default True) Boolean, Value `False` will execute the function submit_text on a separate thread making it a non-blocking API call (Has callback support)
+    >parameters | optional | (by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/text/put-text#query-params)
+    
     >returns conversation object
+    >
+    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Async_API/Text_API/append_text.py) to check the example for usage of parameters/arguments and conversation object
 
 ## conversation object
 
@@ -214,7 +206,22 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
     >parameters:- (Optional) dictionary, takes a dictionary of parameters. For list of parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/get-topics#query-params)
     >
     >returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
+>
+>example for demonstrate the use of conversation class
+>
+```
+import symbl
 
+file = "<file_path>"
+conversation_object = symbl.Audio.process_file(file_path=file)
+
+print(conversation_object.get_messages())
+print(conversation_object.get_action_items())
+print(conversation_object.get_follow_ups())
+print(conversation_object.get_members())
+print(conversation_object.get_topics())
+print(conversation_object.get_questions())
+```
 # Conversations class
 
 The Conversation API provides a REST API interface for getting your processed Speech to Text data(also known as Transcripts) and conversational insights.
@@ -251,6 +258,20 @@ You can utilize different functions of Conversation APIs by directly utilizing `
     >
     >returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
 
+>example for demonstrate the use of conversation class
+>
+```
+import symbl
+
+conversation_id=1234567890 # Update with the conversation Id of your conversation
+
+print(symbl.Conversations.get_messages(conversation_id))
+print(symbl.Conversations.get_action_items(conversation_id))
+print(symbl.Conversations.get_follow_ups(conversation_id))
+print(symbl.Conversations.get_members(conversation_id))
+print(symbl.Conversations.get_topics(conversation_id))
+print(symbl.Conversations.get_questions(conversation_id))
+```
 # Telephony class
 
 Based on PSTN and SIP protocols, the Telephony API provides an interface for the developers to have Symbl bridge/join VoIP calls and get the results back in real-time as well. Optionally, the developer can also trigger an email at the end of the conversation containing the URL to view the transcription, insights and topics in a single page Web Application.
@@ -258,75 +279,113 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
 
 
 1. start_pstn(phoneNumber, dtmf, actions, data):
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >phoneNumber | Mandatory | phoneNumber where symbl should call
+    >dtmf | Optional | dtmf sequence to entered by symbl to join the call
+    >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
+    >actions | Optional | follows the following pattern `[{invokeOn: "stop", name: "sendSummaryEmail", parameters: {emails: ["email@example.com"]}}]`
+    >data | optional | `{session: {name: "sessionName"}}`
+    >languages | optional | To provide the Language list explicitly
+    >timezone | optional | To provide timezone explicitly
     >
-    >1. phoneNumber: phoneNumber where symbl should call
-    >2. dtmf : (Optional) dtmf sequence to entered by symbl to join the call
-    >3. credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
-    >3. actions : (Optional) follows the following pattern
+    >returns connection object
     >
-    >        [{invokeOn: "stop", name: "sendSummaryEmail", parameters: {emails: ["email@example.com"]}}]
+    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Telephony_API/telephony_pstn.py) to check the example for usage of parameters/arguments and connection object
     >
-    >4. data: (Optional) {session: {name: "sessionName"}}
-    >5. languages: (optinal) To provide the Language list explicitly
-    >6. timezone: (optinal) To provide timezone explicitly
-    >
-    >For more details check documentation [here][telephony-docs]
-    >
-    >Returns a connection object
+    >For more details check [here][telephony-docs]
 
 2. start_sip(uri, audioConfig, actions, data):
+    
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >uri | Mandatory | uri where symbl should connect
+    >audioConfig | Optional | audioConfigs of the SIP 
+    >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
+    >actions | Optional | follows the following pattern `[{invokeOn: "stop", name: "sendSummaryEmail", parameters: {emails: ["email@example.com"]}}]`
+    >data | optional | `{session: {name: "sessionName"}}`
+    >languages | optional | To provide the Language list explicitly
+    >timezone | optional | To provide timezone explicitly
     >
-    >1. uri: uri where symbl should connect
-    >2. audioConfig : (Optional) audioConfigs of the SIP 
-    >3. credentials:- (optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
-    >4. actions : (Optional) follows the following pattern
+    >returns connection object
     >
-    >        [{invokeOn: "stop", name: "sendSummaryEmail", parameters: {emails: ["email@example.com"]}}]
+    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Telephony_API/telephony_sip.py) to check the example for usage of parameters/arguments and connection object
     >
-    >5. data: (Optional) {session: {name: "sessionName"}}
-    >5. languages: (optinal) To provide the Language list explicitly
-    >6. timezone: (optinal) To provide timezone explicitly
-    >
-    >For more details check documentation [here][telephony-docs]
-    >
-    >Returns a connection object
+    >For more details check [here][telephony-docs]
 
 3. stop(connectionId):
 
-    >Only connectionId parameter is required. Other optional parameters can be added as per [docs][telephony-docs]
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >connection_id | Mandatory | connection id of the conversation is required to stop the connection
     >
-    >Return an updated connection object which will have the conversationId in the response.
+    >only connection_id parameter is required
+    >
+    >returns an updated connection object which will have the conversationId in the response.
 
 
 >You can subscribe the following events for Telephony API by the connection object
-    > 1. **insight_response** :- generates an event whenever a question or an action_item is found.
+    > 1. **insight_response**:- generates an event whenever a question or an action_item is found.
     > 2. **message_response**:- generates an event whenever a transcription is available.
-    > 3. **transcript_response**:- (Part of telephony API), these are also transcription values, however these will include an isFinal property which will be False initially meaning the transcription are not finalized.
+    > 3. **transcript_response**:- (Part of telephony API only), these are also transcription values, however these will include an isFinal property which will be False initially meaning the transcription are not finalized.
     > 4. **tracker_response**:- It will generate an event whenever a tracker is identified in any transcription.
     > 5. **topic_response**:- It will generate an event whenever a topic is identified in any transcription.
-    > 6. **message**:- (Part of stremaing API), It will generate an event for live transcriptions. It will include isFinal property which will be False initially, meaning the transcription is not finalized.
+    >
+    >by this way you can subscribe the events
+    >
+     ```
+     import symbl
+        events = {transcript_response': lambda transcript: print('printing the transcript response ', str(transcript))}
+
+        sip_uri = "<sip_url>"
+        connection_object = symbl.Telephony.start_sip(uri=sip_uri)
+
+        connection_object.subscribe(events)
+    ```
 
 # Streaming class
 
 Symbl's Streaming API is based on WebSocket protocol and can be used for real-time use-cases where both the audio and its results from Symbl's back-end need to be available in real-time.
 
 1. start_connection(credentials=None, speaker=None, insight_types=None):
-    
-    >1. credentials: (Optional) Don't add this parameter if you have symbl.conf file in your home directory or working directory
-    >2. speaker : (Optional) speaker object containing name and email field
-    >3. insight_types : (Optional) insight_types to be available in the websocket connection.
-    >4. config: (optinal) using this parameter you can pass confidenceThreshold, languageCode
-    >For more details check documentation [here][streaming-docs]
+    >Parameter Name | Required | Value
+    >--- | --- | ---
+    >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
+    >speaker | Optional | speaker object containing name and email field
+    >insight_type | Optional |  insight_types to be available in the websocket connection.
+    >config | optional | using this parameter you can pass confidenceThreshold, languageCode
+    >languages | optional | To provide the Language list explicitly
+    >timezone | optional | To provide timezone explicitly
     >
-    >Returns a connection object
+    >returns connection object
+    >
+    >click [here](https://github.com/symblai/symbl-python/blob/main/example/Streaming_API/streaming.py) to check the example for usage of parameters/arguments and connection object
+    >
+    >For more details check [here][streaming-docs]
 
 >You can subscribe the following events for Streaming API by the connection object
-    > 1. **insight_response** :- generates an event whenever a question or an action_item is found.
+    > 1. **insight_response**:- generates an event whenever a question or an action_item is found.
     > 2. **message_response**:- generates an event whenever a transcription is available.
     > 3. **tracker_response**:- It will generate an event whenever a tracker is identified in any transcription.
     > 4. **topic_response**:- It will generate an event whenever a topic is identified in any transcription.
-    > 5. **message**:- (Part of stremaing API), It will generate an event for live transcriptions. It will include isFinal property which will be False initially, meaning the transcription is not finalized.
+    > 5. **message**:- (Part of streaming API only), It will generate an event for live transcriptions. It will include isFinal property which will be False initially, meaning the transcription is not finalized.
+    >
+    >by this way you can subscribe the events
+    >
+     ```
+    events = {
+        'message_response': lambda response: print('Final Messages -> ', [message['payload']['content'] for message in response['messages']])}
 
+    insight_types = ['question', 'action_item']
+
+    connection_object = symbl.Streaming.start_connection(
+        insight_types=insight_types)
+
+    connection_object.subscribe(events)
+
+    connection_object.send_audio_from_mic()
+    ```
+    >
 ## connection object
 
 The connection object is returned by telephony API's start_pstn & start_sip or Streaming API' start_connection function. A connection object can be utilized for communicating with Symbl Server through underlying websocket implementation.
@@ -345,6 +404,14 @@ The connection object is returned by telephony API's start_pstn & start_sip or S
     > 4. **tracker_response**:- It will generate an event whenever a tracker is identified in any transcription.
     > 5. **topic_response**:- It will generate an event whenever a topic is identified in any transcription.
     > 6. **message**:- (Part of stremaing API), It will generate an event for live transcriptions. It will include isFinal property which will be False initially, meaning the transcription is not finalized.
+    >
+    >you can define the events like this
+    >
+    >
+    ```
+    events = {'message_response': lambda message: print('printing the transcription', str(message)),
+    'insight_response': lambda insight: print('printing the insight response ', str(insight))}
+    ```
 
 2. connection.stop():
     >
@@ -378,11 +445,11 @@ The connection object is returned by telephony API's start_pstn & start_sip or S
 
     import symbl
 
-    connection = symbl.Streaming.start_connection()
+    connection_object = symbl.Streaming.start_connection()
 
     ...
 
-    connection.conversation.get_topics()
+    connection_object.conversation.get_topics()
 
     ```
 
