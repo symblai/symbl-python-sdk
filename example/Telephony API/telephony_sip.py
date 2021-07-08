@@ -14,6 +14,7 @@ connection.subscribe(events)
 # you can get the response from the conversation object, when you will stop the connection explicitly 
 # or when Python SDK will detect the silence in the on going conversation
 
+print(connection.conversation.get_conversation())
 print(connection.conversation.get_messages())
 # print(connection.conversation.get_action_items())
 # print(connection.conversation.get_follow_ups())

@@ -27,6 +27,7 @@ conversation = symbl.Video.process_file(file_path=file, parameters=params)
 '''
 conversation = symbl.Video.process_file(file_path=file)
 
+print(conversation.get_conversation())
 print(conversation.get_messages())
 #print(conversation.get_action_items())
 #print(conversation.get_follow_ups())

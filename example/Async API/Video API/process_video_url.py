@@ -33,6 +33,7 @@ conversation = symbl.Video.process_url(payload=payload)
 payload = {'url': "<url>"} #write the url path of the video, which you want to process
 conversation = symbl.Video.process_url(payload=payload)
 
+print(conversation.get_conversation())
 print(conversation.get_messages())
 #print(conversation.get_action_items())
 #print(conversation.get_follow_ups())

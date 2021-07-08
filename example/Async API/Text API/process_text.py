@@ -18,7 +18,7 @@ payload = {
 
 conversation = symbl.Text.process(payload=payload)
 
-
+print(conversation.get_conversation())
 print(conversation.get_messages())
 #print(conversation.get_action_items())
 #print(conversation.get_follow_ups())

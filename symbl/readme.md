@@ -215,6 +215,9 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
     >
     >returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
 
+7. conversation.get_conversation():
+
+    >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
 # Conversations class
 
 The Conversation API provides a REST API interface for getting your processed Speech to Text data(also known as Transcripts) and conversational insights.
@@ -251,6 +254,9 @@ You can utilize different functions of Conversation APIs by directly utilizing `
     >
     >returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
 
+7. get_conversation(conversation_id)
+
+    >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
 # Telephony class
 
 Based on PSTN and SIP protocols, the Telephony API provides an interface for the developers to have Symbl bridge/join VoIP calls and get the results back in real-time as well. Optionally, the developer can also trigger an email at the end of the conversation containing the URL to view the transcription, insights and topics in a single page Web Application.
