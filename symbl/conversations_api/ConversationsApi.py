@@ -39,4 +39,4 @@ class ConversationsApi():
 
     @initialize_api_client      
     def get_conversation(self, conversation_id, credentials=None):
-        return self.conversations_api_rest.get_conversation_by_conversation_id(conversation_id, **correct_boolean_values(params))
+        return self.conversations_api_rest.get_conversation_by_conversation_id(conversation_id)
