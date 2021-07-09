@@ -1,6 +1,5 @@
 import symbl
-import time
-import threading
+
 
 # here you can add more events which support the Streaming API like 'insight_response', 'message_response' etc.
 events = {
