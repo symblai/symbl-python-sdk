@@ -72,3 +72,7 @@ class Conversation():
     @validate_conversation_id
     def get_topics(self, parameters={}):
         return self.__conversation_api.get_topics(self.__conversation_id, credentials=self.__credentials, parameters=parameters)
+
+    @validate_conversation_id
+    def get_conversation(self):
+        return self.__conversation_api.get_conversation(self.__conversation_id, credentials=self.__credentials)

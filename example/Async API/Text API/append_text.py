@@ -20,6 +20,7 @@ conversation_id = "1234567890" #update with the conversation ID with which you w
 
 conversation = symbl.Text.append(payload=payload, conversation_id=conversation_id)
 
+print(conversation.get_conversation())
 print(conversation.get_messages())
 #print(conversation.get_action_items())
 #print(conversation.get_follow_ups())
