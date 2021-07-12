@@ -9,6 +9,12 @@ See the [Python API docs](https://docs.symbl.ai/docs/).
 ### Requirements
 
 - Python 2.7+ or Python 3.4+ (PyPy supported)
+>
+>just run the command mentioned below in your terminal to know the version of Python installed in your system:
+
+```sh
+  python --version
+```
 
 ## Installation
 
@@ -16,13 +22,17 @@ First make sure that Python is installed in your system.
 
 To install the python, just visit the links mentioned below:
 
-Windows: https://phoenixnap.com/kb/how-to-install-python-3-windows
-Mac: https://flaviocopes.com/python-installation-macos/
+- Windows: https://phoenixnap.com/kb/how-to-install-python-3-windows
+- Mac: https://flaviocopes.com/python-installation-macos/
 
 You don't need this source code unless you want to modify the package. If you just
 want to use the package, then you can install it, either using 'pip' or with 'source':
 
->just run the command mentioned below to install using 'pip':
+>just run the command mentioned below to install using 'pip' 
+>
+>Use `pip` if you are working on Python 2.x
+>
+>Use `pip3` if you are working on Python 3.x
 
 ```sh
 pip install --upgrade symbl
@@ -65,7 +75,7 @@ import symbl
 # Process audio file
 conversation_object = symbl.Audio.process_file(
   # credentials={app_id: <app_id>, app_secret: <app_secret>}, #Optional, Don't add this parameter if you have symbl.conf file in your home directory
-  file_path=<file_path>)
+  file_path="<file_path>")
 
 # Printing transcription messages
 print(conversation_object.get_messages())

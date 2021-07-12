@@ -1,6 +1,6 @@
 import symbl
 
-file = "D:\Hani\Symbl\Internship\Material\sample_audio_file.wav"
+file = "<file_path>"
 ''' like this you can pass the parameter
 params = {
     'name': "Meeting",
