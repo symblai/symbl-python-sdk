@@ -36,7 +36,3 @@ class ConversationsApi():
     def get_topics(self, conversation_id, credentials=None, parameters={}):
         params = dictionary_to_valid_json(parameters)
         return self.conversations_api_rest.get_topics_by_conversation_id(conversation_id, **correct_boolean_values(params))
-
-    @initialize_api_client      
-    def get_conversation(self, conversation_id, credentials=None):
-        return self.conversations_api_rest.get_conversation_by_conversation_id(conversation_id)
