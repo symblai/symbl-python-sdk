@@ -179,7 +179,7 @@ You can see all the functions provided by SDK in the **extended [readme.md](http
 
 You can go through some examples for understanding the use of all functionality [Explore more example](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example)
 
-## Possible Errros
+## Possible Errors
 
 1. PortAudio Errors on Mac Systems:-
 
