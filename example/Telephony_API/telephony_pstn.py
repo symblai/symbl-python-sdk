@@ -37,14 +37,11 @@ connection_object.subscribe(events)
 # you can get the response from the conversation object, when you will stop the connection explicitly using keyboard interrupt or by using
 # connection_object.stop() # you can also stop the connection after sspecifying some interval of timing
 
-''' need to fix this block
-you will need to import time module
-time.sleep(10)
-connection_object.stop()
-'''
-
 # To get the message from the meeting
 #print(connection_object.conversation.get_messages())
+
+#To get the conversation data from the conversation
+#print(connection_object.conversation.get_conversation())
 
 # To get the action items from the meeting
 # print(connection_object.conversation.get_action_items())

@@ -10,6 +10,9 @@ conversation_object = symbl.Video.append_file(file_path=file, conversation_id=co
 #To get the message from the conversation
 print(conversation_object.get_messages())
 
+#To get the conversation data from the conversation
+#print(conversation_object.get_conversation())
+
 #To get the action items from the conversation
 #print(conversation_object.get_action_items())
 

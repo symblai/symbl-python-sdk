@@ -22,6 +22,9 @@ conversation_object = symbl.Text.append(payload=payload, conversation_id=convers
 #To get the message from the conversation
 print(conversation_object.get_messages())
 
+#To get the conversation data from the conversation
+#print(conversation_object.get_conversation())
+
 #To get the action items from the conversation
 #print(conversation_object.get_action_items())
 

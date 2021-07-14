@@ -45,7 +45,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Audio_API/process_audio_file.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Async_API/Audio_API/process_audio_file.py) to check the example for usage of parameters/arguments and conversation object
 
 2. process_url(payload):
     >Parameter Name | Required | Value
@@ -57,7 +57,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Audio_API/process_audio_url.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Async_API/Audio_API/process_audio_url.py) to check the example for usage of parameters/arguments and conversation object
  
 3. append_file(file_path, conversation_id):
     >Parameter Name | Required | Value
@@ -71,8 +71,8 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Audio_API/append_audio_file.py) to check the example for usage of parameters/arguments and conversation object
- 
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Async_API/Audio_API/append_audio_file.py) to check the example for usage of parameters/arguments and conversation object
+
 4. append_url(payload, conversation_id):
     >Parameter Name | Required | Value
     >--- | --- | ---
@@ -84,7 +84,8 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Audio_API/append_audio_url.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Async_API/Audio_API/append_audio_url.py) to check the example for usage of parameters/arguments and conversation object
+
 
 # Video class
 
@@ -103,7 +104,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Video_API/process_video_file.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Async_API/Video_API/process_video_file.py) to check the example for usage of parameters/arguments and conversation object
 
 2. process_url(payload):
     >Parameter Name | Required | Value
@@ -115,7 +116,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Video_API/process_video_url.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Async_API/Video_API/process_video_url.py) to check the example for usage of parameters/arguments and conversation object
 
 3. append_file(file_path, conversation_id):
     >Parameter Name | Required | Value
@@ -129,7 +130,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Video_API/append_video_file.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Async_API/Video_API/append_video_file.py) to check the example for usage of parameters/arguments and conversation object
 
 4. append_url(payload, conversation_id):
     >Parameter Name | Required | Value
@@ -142,7 +143,8 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/roshani_readme_changes/example/Async_API/Video_API/append_video_url.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Async_API/Video_API/append_video_url.py) to check the example for usage of parameters/arguments and conversation object
+
 # Text class
 
 Symbl's Async APIs provide the functionality for processing textual content from a conversation. The data processed for these conversations are available via the Conversation APIs once the APIs have completed the processing.
@@ -160,8 +162,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.T
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example/Async_API/Text_API/process_text.py) to check the example for usage of parameters/arguments and conversation object
-
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Async_API/Text_API/process_text.py) to check the example for usage of parameters/arguments and conversation object
 
 2. append(payload, conversation_id):
     >Parameter Name | Required | Value
@@ -174,7 +175,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.T
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example/Async_API/Text_API/append_text.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Async_API/Text_API/append_text.py) to check the example for usage of parameters/arguments and conversation object
 
 ## conversation object
 
@@ -206,6 +207,10 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
     >parameters:- (Optional) dictionary, takes a dictionary of parameters. For list of parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/get-topics#query-params)
     >
     >returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
+
+7. conversation.get_conversation():
+
+    >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
 >
 >example for demonstrate the use of conversation class
 >
@@ -258,6 +263,10 @@ You can utilize different functions of Conversation APIs by directly utilizing `
     >
     >returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
 
+7. get_conversation(conversation_id)
+
+    >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
+
 >example for demonstrate the use of conversation class
 >
 ```
@@ -267,7 +276,8 @@ conversation_id=1234567890 # Update with the conversation Id of your conversatio
 
 print(symbl.Conversations.get_messages(conversation_id))
 ```
->to access more insights click [here](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example/Conversation_Class/conversation_class.py)
+
+>to access more insights click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Conversation_Class/conversation_class.py)
 
 # Telephony class
 
@@ -287,7 +297,7 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     
     >returns connection object
     >
-    >click [here](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example/Telephony_API/telephony_pstn.py) to check the example for usage of parameters/arguments and connection object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Telephony_API/telephony_pstn.py) to check the example for usage of parameters/arguments and connection object
     >
     >For more details check [here][telephony-docs]
 
@@ -305,7 +315,7 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     
     >returns connection object
     >
-    >click [here](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example/Telephony_API/telephony_sip.py) to check the example for usage of parameters/arguments and connection object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Telephony_API/telephony_sip.py) to check the example for usage of parameters/arguments and connection object
     >
     >For more details check [here][telephony-docs]
 
@@ -315,11 +325,10 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     >--- | --- | ---
     >connection_id | Mandatory | connection id of the conversation is required to stop the connection
     
-    >only connection_id parameter is required
+    >only `connection_id` parameter is required
     >
     >returns an updated connection object which will have the conversationId in the response.
-
-
+    
     >You can subscribe the following events for Telephony API by the connection object
     > 1. **insight_response**:- generates an event whenever a question or an action_item is found.
     > 2. **message_response**:- generates an event whenever a transcription is available.
@@ -347,7 +356,7 @@ Symbl's Streaming API is based on WebSocket protocol and can be used for real-ti
     >Parameter Name | Required | Value
     >--- | --- | ---
     >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
-    >speaker | Optional | speaker object containing name and email field
+    >speaker | Optional | speaker object containing `name` and `email` field
     >insight_type | Optional |  insight_types to be available in the websocket connection.
     >config | optional | using this parameter you can pass confidenceThreshold, languageCode
     >languages | optional | To provide the Language list explicitly
@@ -355,7 +364,7 @@ Symbl's Streaming API is based on WebSocket protocol and can be used for real-ti
     
     >returns connection object
     >
-    >click [here](https://github.com/symblai/symbl-python/tree/roshani_readme_changes/example/Streaming_API/streaming.py) to check the example for usage of parameters/arguments and connection object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Streaming_API/streaming.py) to check the example for usage of parameters/arguments and connection object
     >
     >For more details check [here][streaming-docs]
 
