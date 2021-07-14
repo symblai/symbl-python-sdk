@@ -1,6 +1,7 @@
 import symbl
 
 file = "<file_path>"
+
 ''' like this you can pass the parameter
 params = {
     'name': "Meeting",
@@ -30,6 +31,9 @@ conversation_object = symbl.Audio.process_file(file_path=file)
 
 #To get the message from the conversation
 print(conversation_object.get_messages())
+
+#To get the conversation data from the conversation
+#print(conversation_object.get_conversation())
 
 #To get the action items from the conversation
 #print(conversation_object.get_action_items())
