@@ -76,3 +76,4 @@ class Conversation():
     @validate_conversation_id
     def get_conversation(self):
         return self.__conversation_api.get_conversation(self.__conversation_id, credentials=self.__credentials)
+
