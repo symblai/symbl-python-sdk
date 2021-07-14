@@ -142,7 +142,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     
     >returns conversation object
     >
-    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Async_API/Video_API/process_video_url.py) to check the example for usage of parameters/arguments and conversation object
+    >click [here](https://github.com/symblai/symbl-python/blob/roshani_Conversation_data_api/example/Async_API/Video_API/append_video_url.py) to check the example for usage of parameters/arguments and conversation object
 # Text class
 
 Symbl's Async APIs provide the functionality for processing textual content from a conversation. The data processed for these conversations are available via the Conversation APIs once the APIs have completed the processing.
