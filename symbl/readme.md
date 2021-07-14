@@ -58,7 +58,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     >returns conversation object
     >
     >click [here](https://github.com/symblai/symbl-python/tree/main/example/Async_API/Audio_API/process_audio_url.py) to check the example for usage of parameters/arguments and conversation object
- 
+
 3. append_file(file_path, conversation_id):
     >Parameter Name | Required | Value
     >--- | --- | ---
@@ -85,7 +85,6 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.A
     >returns conversation object
     >
     >click [here](https://github.com/symblai/symbl-python/tree/main/example/Async_API/Audio_API/append_audio_url.py) to check the example for usage of parameters/arguments and conversation object
-
 
 # Video class
 
