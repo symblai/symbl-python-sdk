@@ -30,6 +30,9 @@ connection_object.send_audio_from_mic()
 #To get the message from the conversation
 #print(connection_object.conversation.get_messages())
 
+#To get the conversation data from the conversation
+#print(connection_object.conversation.get_conversation())
+
 #To get the action items from the conversation
 #print(connection_object.conversation.get_action_items())
 

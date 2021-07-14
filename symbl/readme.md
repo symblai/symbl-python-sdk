@@ -206,6 +206,10 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
     >parameters:- (Optional) dictionary, takes a dictionary of parameters. For list of parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/get-topics#query-params)
     >
     >returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
+
+7. conversation.get_conversation():
+
+    >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
 >
 >example for demonstrate the use of conversation class
 >
@@ -257,6 +261,10 @@ You can utilize different functions of Conversation APIs by directly utilizing `
     >parameters:- (Optional) dictionary, takes a dictionary of parameters. For list of parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/get-topics#query-params)
     >
     >returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
+
+7. get_conversation(conversation_id)
+
+    >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
 
 >example for demonstrate the use of conversation class
 >
@@ -347,7 +355,7 @@ Symbl's Streaming API is based on WebSocket protocol and can be used for real-ti
     >Parameter Name | Required | Value
     >--- | --- | ---
     >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
-    >speaker | Optional | speaker object containing name and email field
+    >speaker | Optional | speaker object containing `name` and `email` field
     >insight_type | Optional |  insight_types to be available in the websocket connection.
     >config | optional | using this parameter you can pass confidenceThreshold, languageCode
     >languages | optional | To provide the Language list explicitly
