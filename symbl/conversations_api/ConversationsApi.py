@@ -40,3 +40,16 @@ class ConversationsApi():
     @initialize_api_client      
     def get_conversation(self, conversation_id, credentials=None):
         return self.conversations_api_rest.get_conversation_by_conversation_id(conversation_id)
+
+    @initialize_api_client      
+    def get_trackers(self, conversation_id, credentials=None):
+        return self.conversations_api_rest.get_trackers_by_conversation_id(conversation_id)
+
+    @initialize_api_client      
+    def get_entities(self, conversation_id, credentials=None):
+        return self.conversations_api_rest.get_entities_by_conversation_id(conversation_id)
+
+    @initialize_api_client      
+    def get_analytics(self, conversation_id, credentials=None):
+        return self.conversations_api_rest.get_analytics_by_conversation_id(conversation_id)
+

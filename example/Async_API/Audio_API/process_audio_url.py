@@ -48,3 +48,12 @@ print(conversation_object.get_messages())
 
 #To get the questions from the conversation
 #print(conversation_object.get_questions())
+
+# To get the analytics from the conversation
+#print(conversation_object.get_analytics())
+
+# To get the trackers from the conversation
+#print(conversation_object.get_trackers())
+
+# To get the entities from the conversation
+#print(conversation_object.get_entities())

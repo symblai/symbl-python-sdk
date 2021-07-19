@@ -199,6 +199,7 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
     >returns a list of messages (sentences spoken by speakers) in a conversation. You can use this for providing transcription for video conference, meeting or telephone call.
 
 5. conversation.get_questions():
+
     >returns explicit question or request for information that comes up during the conversation, whether answered or not, is recognized as a question.
 
 6. conversation.get_topics():
@@ -210,6 +211,19 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
 7. conversation.get_conversation():
 
     >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
+
+8. conversation.get_entities(conversation_id)
+
+    >provides a functionality to extract entities(custom, location, person, date, number, organization,datetime,daterange, etc ) from the conversation.
+
+9. conversation.get_trackers(conversation_id)
+
+    >returns the occurrence of certain key words or phrases from the conversation.
+
+10. conversation.get_analytics(conversation_id)
+
+    >returns the speaker ratio, talk time, silence, pace and overlap from the conversation.
+
 >
 >example for demonstrate the use of conversation class
 >
@@ -225,6 +239,10 @@ print(conversation_object.get_follow_ups())
 print(conversation_object.get_members())
 print(conversation_object.get_topics())
 print(conversation_object.get_questions())
+print(conversation_object.get_conversation())
+print(conversation_object.get_analytics())
+print(conversation_object.get_entities())
+print(conversation_object.get_trackers())
 ```
 # Conversations class
 
@@ -265,6 +283,18 @@ You can utilize different functions of Conversation APIs by directly utilizing `
 7. get_conversation(conversation_id)
 
     >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
+
+8. get_entities(conversation_id)
+
+    >provides a functionality to extract entities(custom, location, person, date, number, organization,datetime,daterange, etc ) from the conversation.
+
+9. get_trackers(conversation_id)
+
+    >returns the occurrence of certain key words or phrases from the conversation.
+
+10. get_analytics(conversation_id)
+
+    >returns the speaker ratio, talk time, silence, pace and overlap from the conversation.
 
 >example for demonstrate the use of conversation class
 >

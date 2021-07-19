@@ -47,3 +47,12 @@ connection_object.send_audio_from_mic()
 
 #To get the questions from the conversation
 #print(connection_object.conversation.get_questions())
+
+# To get the analytics from the conversation
+#print(connection_object.conversation_object.get_analytics())
+
+# To get the trackers from the conversation
+#print(connection_object.conversation_object.get_trackers())
+
+# To get the entities from the conversation
+#print(connection_object.conversation_object.get_entities())

@@ -57,3 +57,9 @@ connection_object.subscribe(events)
 
 # To get the questions from the meeting
 # print(connection_object.conversation.get_questions())
+
+# To get the analytics from the conversation
+#print(connection_object.conversation_object.get_analytics())
+
+# To get the entities from the conversation
+#print(connection_object.conversation_object.get_entities())
