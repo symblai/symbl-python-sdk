@@ -42,6 +42,3 @@ connection_object.subscribe(events)
 
 # To get the analytics from the conversation
 #print(connection_object.conversation_object.get_analytics())
-
-# To get the entities from the conversation
-#print(connection_object.conversation_object.get_entities())

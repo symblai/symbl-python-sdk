@@ -6,9 +6,21 @@ events = {
     'message': lambda message: print('printing the message response ', str(message))
    # ,'message_response': lambda message: print('printing the transcription', str(message))
    # ,'insight_response': lambda insight: print('printing the insight response ', str(insight))
-   # ,'tracker_response': lambda tracker: print('printing the tracker response ', str(tracker))
+    #,'tracker_response': lambda tracker: print('printing the tracker response ', str(tracker))
    # ,'topic_response': lambda topic: print('printing the topic response ', str(topic))
 }
+
+
+#To access the Trackers API, you will need to specify 'tracker_response' event
+trackers = [{
+    "name": "tracker_name",
+    "vocabulary": [
+        "hello",
+        "vocabulary_2",
+        "vocabulary_n"
+    ]
+}]
+
 
 insight_types = ['question', 'action_item']
 
@@ -18,7 +30,7 @@ speaker = {
 }
 
 connection_object = symbl.Streaming.start_connection(
-    insight_types=insight_types, speaker=speaker)
+    insight_types=insight_types, speaker=speaker,trackers=trackers)
 
 connection_object.subscribe(events)
 
@@ -51,8 +63,3 @@ connection_object.send_audio_from_mic()
 # To get the analytics from the conversation
 #print(connection_object.conversation_object.get_analytics())
 
-# To get the trackers from the conversation
-#print(connection_object.conversation_object.get_trackers())
-
-# To get the entities from the conversation
-#print(connection_object.conversation_object.get_entities())

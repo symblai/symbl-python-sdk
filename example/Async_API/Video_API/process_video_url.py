@@ -2,10 +2,29 @@ import symbl
 
 '''
 you can also pass other parameters with the payload 
+entities = [
+        {
+            "customType": "custom_type",
+            "text": "entity_name"
+        }
+    ]
+
+trackers = [{
+    "name": "tracker_name",
+    "vocabulary": [
+        "vocabulary_1",
+        "vocabulary_2",
+        "vocabulary_n"
+    ]
+}]
 
 payload = {
     'url': "<url>", #write the url path of the video, which you want to process
     'name': "TestingMeeting",
+    "detectEntities": "true",
+    "enableAllTrackers":"true",
+    "entities":entities,
+    'trackers': trackers,
     'enableSpeakerDiarization': "true",
     'diarizationSpeakerCount': "2",
     'channelMetadata': [
@@ -25,7 +44,6 @@ payload = {
             }
         ]
     }
-
 
 conversation_object = symbl.Video.process_url(payload=payload)
 '''

@@ -3,8 +3,27 @@ import symbl
 file = "<file_path>"
 
 ''' like this you can pass the parameter
+entities = [
+        {
+            "customType": "custom_type",
+            "text": "entity_name"
+        }
+    ]
+
+trackers = [{
+    "name": "tracker_name",
+    "vocabulary": [
+        "vocabulary_1",
+        "vocabulary_2",
+        "vocabulary_n"
+    ]
+}]
 params = {
     'name': "Meeting",
+    "detectEntities": "true",
+    "enableAllTrackers":"true",
+    "customEntities":entities,
+    'trackers': trackers,
     'enableSpeakerDiarization': "true",
     "diarizationSpeakerCount": "2",
     "channelMetadata": [
