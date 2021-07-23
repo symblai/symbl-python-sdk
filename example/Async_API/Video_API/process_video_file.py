@@ -21,7 +21,7 @@ params = {
     'name': "Meeting",
     "detectEntities": "true",
     "enableAllTrackers":"true",
-    "customEntities":entities,
+    "entities":entities,
     'trackers': trackers,
     'enableSpeakerDiarization': "true",
     "diarizationSpeakerCount": "2",
