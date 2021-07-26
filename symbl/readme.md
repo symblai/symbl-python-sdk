@@ -123,7 +123,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     >file_path | Mandatory | A valid path to a file
     >conversation_id | Mandatory | conversationId of a previous conversation to which appending the current conversation
     >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
-    >content_type | optional | Parameter defining the content_type of video. Acceptable values is [`video/mp4`]. Leave it blank if you're not sure about the content_type of file
+    >content_type | optional | Parameter defining the content_type of video. Acceptable values is [`application/json`]. Leave it blank if you're not sure about the content_type of file
     >wait | optional |  (by default True) Boolean, Value `False` will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
     >parameters | optional | (by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/video/put-video#query-params)
     
