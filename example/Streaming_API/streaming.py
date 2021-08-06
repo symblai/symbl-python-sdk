@@ -61,5 +61,5 @@ connection_object.send_audio_from_mic()
 #print(connection_object.conversation.get_questions())
 
 # To get the analytics from the conversation
-#print(connection_object.conversation_object.get_analytics())
+#print(connection_object.conversation.get_analytics())
 
