@@ -362,8 +362,7 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     > 1. **insight_response**:- generates an event whenever a question or an action_item is found.
     > 2. **message_response**:- generates an event whenever a transcription is available.
     > 3. **transcript_response**:- (Part of telephony API only), these are also transcription values, however these will include an isFinal property which will be False initially meaning the transcription are not finalized.
-    > 4. **tracker_response**:- It will generate an event whenever a tracker is identified in any transcription.
-    > 5. **topic_response**:- It will generate an event whenever a topic is identified in any transcription.
+    > 4. **topic_response**:- It will generate an event whenever a topic is identified in any transcription.
     
     >by this way you can subscribe the events
     >
