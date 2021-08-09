@@ -123,7 +123,7 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.V
     >file_path | Mandatory | A valid path to a file
     >conversation_id | Mandatory | conversationId of a previous conversation to which appending the current conversation
     >credentials | optional | Don't add this parameter if you have `symbl.conf` file in your home directory or working directory
-    >content_type | optional | Parameter defining the content_type of video. Acceptable values is [`video/mp4`]. Leave it blank if you're not sure about the content_type of file
+    >content_type | optional | Parameter defining the content_type of video. Acceptable values is [`application/json`]. Leave it blank if you're not sure about the content_type of file
     >wait | optional |  (by default True) Boolean, Value `False` will execute the function submit_video on a separate thread making it a non-blocking API call (Has callback support)
     >parameters | optional | (by default {}) Dictionary, Any parameter and it's value can be provided in the dictionary format. For getting a list of value check [here](https://docs.symbl.ai/docs/async-api/overview/video/put-video#query-params)
     
@@ -180,36 +180,50 @@ You can utilize different functions of Async APIs by directly utilizing `symbl.T
 
 Conversation object is returned by Async API Text, Audio and Video classes. The conversation object is a shorthand for conversation API and can be utilized for fetching multiple insights.
 
-1. conversation.get_action_items():
+1. conversation_object.get_action_items():
 
     >returns Action Items which are some specific outcomes recognized in the conversation that requires one or more people in the conversation to act in the future
   
-2. conversation.get_follow_ups():
+2. conversation_object.get_follow_ups():
 
     >returns a category of action items with a connotation to follow-up a request or a task like sending an email or making a phone call or booking an appointment or setting up a meeting.
 
-3. conversation.get_members():
+3. conversation_object.get_members():
 
     >returns a list of all the members in a conversation. A Member is referred to as a participant in the conversation that is uniquely identified as a speaker. Identifying different participants in the meetings can be done by implementing speaker separation.
 
-4. conversation.get_messages():
+4. conversation_object.get_messages():
 
     >parameters:- (Optional) dictionary, takes a dictionary of parameters. For list of parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/messages#query-params)
     >
     >returns a list of messages (sentences spoken by speakers) in a conversation. You can use this for providing transcription for video conference, meeting or telephone call.
 
-5. conversation.get_questions():
+5. conversation_object.get_questions():
+
     >returns explicit question or request for information that comes up during the conversation, whether answered or not, is recognized as a question.
 
-6. conversation.get_topics():
+6. conversation_object.get_topics():
 
     >parameters:- (Optional) dictionary, takes a dictionary of parameters. For list of parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/get-topics#query-params)
     >
     >returns The most relevant topics of discussion from the conversation that is generated based on the combination of the overall scope of the discussion.
 
-7. conversation.get_conversation():
+7. conversation_object.get_conversation():
 
     >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
+
+8. conversation_object.get_entities(conversation_id)
+
+    >provides a functionality to extract entities(custom, location, person, date, number, organization,datetime,daterange, etc ) from the conversation.
+
+9. conversation_object.get_trackers(conversation_id)
+
+    >returns the occurrence of certain key words or phrases from the conversation.
+
+10. conversation_object.get_analytics(conversation_id)
+
+    >returns the speaker ratio, talk time, silence, pace and overlap from the conversation.
+
 >
 >example for demonstrate the use of conversation class
 >
@@ -225,6 +239,10 @@ print(conversation_object.get_follow_ups())
 print(conversation_object.get_members())
 print(conversation_object.get_topics())
 print(conversation_object.get_questions())
+print(conversation_object.get_conversation())
+print(conversation_object.get_analytics())
+print(conversation_object.get_entities())
+print(conversation_object.get_trackers())
 ```
 # Conversations class
 
@@ -265,6 +283,18 @@ You can utilize different functions of Conversation APIs by directly utilizing `
 7. get_conversation(conversation_id)
 
     >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
+
+8. get_entities(conversation_id)
+
+    >provides a functionality to extract entities(custom, location, person, date, number, organization,datetime,daterange, etc ) from the conversation.
+
+9. get_trackers(conversation_id)
+
+    >returns the occurrence of certain key words or phrases from the conversation.
+
+10. get_analytics(conversation_id)
+
+    >returns the speaker ratio, talk time, silence, pace and overlap from the conversation.
 
 >example for demonstrate the use of conversation class
 >
@@ -332,8 +362,7 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     > 1. **insight_response**:- generates an event whenever a question or an action_item is found.
     > 2. **message_response**:- generates an event whenever a transcription is available.
     > 3. **transcript_response**:- (Part of telephony API only), these are also transcription values, however these will include an isFinal property which will be False initially meaning the transcription are not finalized.
-    > 4. **tracker_response**:- It will generate an event whenever a tracker is identified in any transcription.
-    > 5. **topic_response**:- It will generate an event whenever a topic is identified in any transcription.
+    > 4. **topic_response**:- It will generate an event whenever a topic is identified in any transcription.
     
     >by this way you can subscribe the events
     >
@@ -394,7 +423,7 @@ Symbl's Streaming API is based on WebSocket protocol and can be used for real-ti
 
 The connection object is returned by telephony API's start_pstn & start_sip or Streaming API' start_connection function. A connection object can be utilized for communicating with Symbl Server through underlying websocket implementation.
 
-1. connection.subscribe({'event': callback, ...}):
+1. connection_object.subscribe({'event': callback, ...}):
     >
     >**subscribe function can be used with both Telephony as well as Streaming class**
     >
@@ -417,13 +446,13 @@ The connection object is returned by telephony API's start_pstn & start_sip or S
     'insight_response': lambda insight: print('printing the insight response ', str(insight))}
     ```
 
-2. connection.stop():
+2. connection_object.stop():
     >
     >**stop function can be used with both Telephony as well as Streaming class**
     >
     >used to stop the telephony connection.
 
-3. connection.send_audio_from_mic(device=None):
+3. connection_object.send_audio_from_mic(device=None):
     >
     >**send_audio_from_mic function can be used with Streaming class only**
     >
@@ -433,7 +462,7 @@ The connection object is returned by telephony API's start_pstn & start_sip or S
     >
     >If this function is not running correctly, please make sure the sounddevice library is installed correctly and has access to your microphone. For more details, check [here][sound_device-installation]
 
-4. connection.send_audio(data):
+4. connection_object.send_audio(data):
     >
     >**send_audio function can be used with Streaming class only**
     >

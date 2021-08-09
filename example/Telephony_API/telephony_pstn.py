@@ -13,7 +13,6 @@ events = {
     'transcript_response': lambda transcript: print('printing the transcript response ', str(transcript))
     ,'message_response': lambda message: print('printing the message response ', str(message))
     #,'insight_response': lambda insight: print('printing the insight response ', str(insight))
-    #,'tracker_response': lambda tracker: print('printing the tracker response ', str(tracker))
     #,'topic_response': lambda topic: print('printing the topic response ', str(topic))
 }
 
@@ -57,3 +56,7 @@ connection_object.subscribe(events)
 
 # To get the questions from the meeting
 # print(connection_object.conversation.get_questions())
+
+# To get the analytics from the conversation
+#print(connection_object.conversation.get_analytics())
+

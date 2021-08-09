@@ -1,6 +1,6 @@
 from symbl.utils.Helper import correct_boolean_values, dictionary_to_valid_json, initialize_api_client
 from symbl_rest import ConversationsApi as conversations_api_rest
-
+from symbl.utils import Helper
 
 class ConversationsApi():
 
@@ -40,3 +40,17 @@ class ConversationsApi():
     @initialize_api_client      
     def get_conversation(self, conversation_id, credentials=None):
         return self.conversations_api_rest.get_conversation_by_conversation_id(conversation_id)
+
+    @initialize_api_client      
+    def get_trackers(self, conversation_id, credentials=None):
+        return self.conversations_api_rest.get_trackers_by_conversation_id(conversation_id)
+
+    @initialize_api_client      
+    def get_entities(self, conversation_id, credentials=None):
+        api_response = self.conversations_api_rest.get_entities_by_conversation_id(conversation_id)
+        return Helper.parse_entity_response(api_response) if len(api_response.entities)!=0 else api_response
+
+    @initialize_api_client      
+    def get_analytics(self, conversation_id, credentials=None):
+        return self.conversations_api_rest.get_analytics_by_conversation_id(conversation_id)
+

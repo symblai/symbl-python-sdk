@@ -1,7 +1,29 @@
 import symbl
 
+#you can add the different vocabulary, which you would like to track
+trackers = [{
+    "name": "text_tracker",
+    "vocabulary": [
+        "white",
+        "issues",
+        "vaccination"
+    ]
+}]
 payload = {
+    
     "name": "TextAPI",  # you can update the name of the conversation
+    
+    #"trackers": trackers,  #To detect the trackers
+    
+    #"detectEntities": "true", #To get the entities
+    
+    #To define Custom entities
+    "entities": [
+        {
+            "customType": "identify_org",
+            "text": "platform"
+        }
+    ],
     "messages": [
         {
             "payload": {"content": "Hi Anthony. I saw your complaints about bad call reception on your mobile phone. Can I know what issues you are currently facing?"},
@@ -48,3 +70,12 @@ print(conversation_object.get_messages())
 
 # To get the questions from the conversation
 # print(conversation_object.get_questions())
+
+# To get the analytics from the conversation
+#print(conversation_object.get_analytics())
+
+# To get the trackers from the conversation
+#print(conversation_object.get_trackers())
+
+# To get the entities from the conversation
+#print(conversation_object.get_entities())

@@ -77,3 +77,15 @@ class Conversation():
     def get_conversation(self):
         return self.__conversation_api.get_conversation(self.__conversation_id, credentials=self.__credentials)
 
+    @validate_conversation_id
+    def get_trackers(self):  
+        return self.__conversation_api.get_trackers(self.__conversation_id, credentials=self.__credentials)
+  
+    @validate_conversation_id
+    def get_entities(self):  
+        return self.__conversation_api.get_entities(self.__conversation_id, credentials=self.__credentials)
+  
+    @validate_conversation_id
+    def get_analytics(self):  
+        return self.__conversation_api.get_analytics(self.__conversation_id, credentials=self.__credentials)
+  
