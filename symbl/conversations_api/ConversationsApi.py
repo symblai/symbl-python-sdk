@@ -54,3 +54,10 @@ class ConversationsApi():
     def get_analytics(self, conversation_id, credentials=None):
         return self.conversations_api_rest.get_analytics_by_conversation_id(conversation_id)
 
+    @initialize_api_client
+    def put_members(self, conversation_id, members_id, parameters={}, credentials=None):
+        return self.conversations_api_rest.put_members_information_by_members_id(conversation_id, members_id, body=parameters)
+
+    @initialize_api_client
+    def put_speakers_events(self, conversation_id, parameters={}, credentials=None):
+        return self.conversations_api_rest.put_speakers_event_by_conversation_id(conversation_id, body=parameters)
