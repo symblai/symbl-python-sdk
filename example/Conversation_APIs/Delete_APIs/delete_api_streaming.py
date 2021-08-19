@@ -4,8 +4,8 @@ events = {
     'message_response': lambda response: print('Final Messages -> ', [ message['payload']['content'] for message in response['messages']])
 }
 connection_object = symbl.Streaming.start_connection(insight_types=['question', 'action_item'],speaker= {
-      'userId': 'roshani.jawale@symbl.ai',
-      'name': 'roshani',
+      'userId': 'abc@example.com',
+      'name': 'abc',
     })
 connection_object.subscribe(events)
 
