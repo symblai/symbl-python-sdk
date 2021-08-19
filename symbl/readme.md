@@ -212,17 +212,38 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
 
     >returns the conversation meta-data like meeting name, member name and email, start and end time of the meeting, meeting type and meeting id.
 
-8. conversation_object.get_entities(conversation_id)
+8. conversation_object.get_entities()
 
     >provides a functionality to extract entities(custom, location, person, date, number, organization,datetime,daterange, etc ) from the conversation.
 
-9. conversation_object.get_trackers(conversation_id)
+9. conversation_object.get_trackers()
 
     >returns the occurrence of certain key words or phrases from the conversation.
 
-10. conversation_object.get_analytics(conversation_id)
+10. conversation_object.get_analytics()
 
     >returns the speaker ratio, talk time, silence, pace and overlap from the conversation.
+
+11. conversation_object.put_members(members_id, parameters={})
+
+    >members_id:- (mandatory) string, that takes the id of the member - who's details you would like to update
+    >
+    >parameters:- (mandatory) takes a dictionary of parameters. For list of parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/update-members#request-body)
+    >
+    >Update an existing member in an conversation. This API can be used for updating the unique speakers detected as members from diarization as well. 
+    >
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_apis_example.py) to check the example for usage of `put_members` functionality.
+
+12. conversation_object.put_speakers_events(parameters={})
+
+    >parameters:- (mandatory) takes a dictionary which contains `speakerEvents` . For list of parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/speaker-events#speaker-event-object)
+    >
+    >This API provides the functionality to update Speakers who spoke in the conversation after it has been processed.
+    >
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_async.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Async APIs.
+    >
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_streaming.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Streaming APIs.
+
 
 >
 >example for demonstrate the use of conversation class
@@ -296,7 +317,29 @@ You can utilize different functions of Conversation APIs by directly utilizing `
 
     >returns the speaker ratio, talk time, silence, pace and overlap from the conversation.
 
->example for demonstrate the use of conversation class
+11. put_members(conversation_id, members_id, parameters={})
+
+    >members_id:- (mandatory) string, that takes the id of the member - who's details you would like to update
+    >
+    >parameters:- (mandatory) takes a dictionary of parameters. For list of parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/update-members#request-body)
+    >
+    >Update an existing member in an conversation. This API can be used for updating the unique speakers detected as members from diarization as well. 
+    >
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_members.py) to check the example for usage of `put_members` functionality using `Conversations class`.
+
+12. put_speakers_events(conversation_id, parameters={})
+
+    >parameters:- (mandatory) takes a dictionary which contains `speakerEvents` . For list of parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/speaker-events#speaker-event-object)
+    >
+    >This API provides the functionality to update Speakers who spoke in the conversation after it has been processed.
+    >
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_async.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Async APIs.
+    >
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_async.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Async APIs.
+    >
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_streaming.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Streaming APIs.
+
+>example for demonstrate the use of Conversations class
 >
 ```
 import symbl
@@ -306,7 +349,7 @@ conversation_id=1234567890 # Update with the conversation Id of your conversatio
 print(symbl.Conversations.get_messages(conversation_id))
 ```
 
->to access more insights click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_Class/conversation_class.py)
+>to access more insights click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Get_APIs/conversation_class.py)
 
 # Telephony class
 
