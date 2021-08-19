@@ -335,8 +335,6 @@ You can utilize different functions of Conversation APIs by directly utilizing `
     >
     >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_async.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Async APIs.
     >
-    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_async.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Async APIs.
-    >
     >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_streaming.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Streaming APIs.
 
 >example for demonstrate the use of Conversations class
