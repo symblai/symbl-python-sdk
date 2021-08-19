@@ -240,7 +240,10 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
     >
     >This API provides the functionality to update Speakers who spoke in the conversation after it has been processed.
     >
-    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_apis_example.py) to check the example for usage of `put_speakers_events` functionality.
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_async.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Async APIs.
+    >
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_streaming.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Streaming APIs.
+
 
 >
 >example for demonstrate the use of conversation class
@@ -329,6 +332,8 @@ You can utilize different functions of Conversation APIs by directly utilizing `
     >parameters:- (mandatory) takes a dictionary which contains `speakerEvents` . For list of parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/speaker-events#speaker-event-object)
     >
     >This API provides the functionality to update Speakers who spoke in the conversation after it has been processed.
+    >
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_async.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Async APIs.
     >
     >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_async.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Async APIs.
     >
