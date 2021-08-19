@@ -1,4 +1,4 @@
-from symbl.utils.Helper import correct_boolean_values, dictionary_to_valid_json, initialize_api_client
+from symbl.utils.Helper import correct_boolean_values, dictionary_to_valid_json, initialize_api_client, insert_valid_boolean_values
 from symbl_rest import ConversationsApi as conversations_api_rest
 from symbl.utils import Helper
 
@@ -61,3 +61,13 @@ class ConversationsApi():
     @initialize_api_client
     def put_speakers_events(self, conversation_id, parameters={}, credentials=None):
         return self.conversations_api_rest.put_speakers_event_by_conversation_id(conversation_id, body=parameters)
+
+    @initialize_api_client      
+    def delete_conversation(self, conversation_id, credentials=None):
+        return self.conversations_api_rest.delete_conversation_by_conversation_id(conversation_id)
+
+    @initialize_api_client      
+    def get_formatted_transcript(self, conversation_id, parameters = {},credentials=None):
+        content_type = "application/json"
+        params = insert_valid_boolean_values(parameters)
+        return self.conversations_api_rest.get_formatted_transcript_by_conversation_id(params,content_type,conversation_id)
