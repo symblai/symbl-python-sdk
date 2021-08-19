@@ -89,3 +89,10 @@ class Conversation():
     def get_analytics(self):  
         return self.__conversation_api.get_analytics(self.__conversation_id, credentials=self.__credentials)
   
+    @validate_conversation_id
+    def put_members(self, members_id, parameters={}):
+        return self.__conversation_api.put_members(self.__conversation_id, members_id, parameters, credentials=self.__credentials)
+
+    @validate_conversation_id
+    def put_speakers_events(self, parameters={}):
+        return self.__conversation_api.put_speakers_events(self.__conversation_id, parameters, credentials=self.__credentials)
