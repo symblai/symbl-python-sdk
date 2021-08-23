@@ -1,4 +1,4 @@
-import symbl, time, threading
+import symbl
 events = {
     'message': lambda response: print(response),
     'message_response': lambda response: print('Final Messages -> ', [ message['payload']['content'] for message in response['messages']])
