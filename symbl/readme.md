@@ -414,7 +414,7 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     
     >returns connection object
     >
-    >click [here]https://github.com/symblai/symbl-python/tree/main/example/Telephony_API/telephony_sip.py) to check the example for usage of parameters/arguments and connection object
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Telephony_API/telephony_sip.py) to check the example for usage of parameters/arguments and connection object
     >
     >For more details check [here][telephony-docs]
 
