@@ -244,7 +244,20 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
     >
     >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_streaming.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Streaming APIs.
 
->
+13. conversation_object.delete_conversation()
+
+    >This API permanently deletes conversation and all related entities such as messages, insights, topics etc. associated with the Conversation ID.
+    >
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Delete_APIs) to check the example for usage of `delete_conversation` functionality.
+
+14. conversation_object.get_formatted_transcript(parameters={})
+
+    >parameters:- (mandatory) dictionary, takes a dictionary of request body parameters. For list of request body parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/transcript#request-body-parameters)
+    >
+    >returns a formatted transcript in Markdown and SRT format.
+    >
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Post_APIs) to check the example for usage of `get_formatted_transcript` functionality.
+
 >example for demonstrate the use of conversation class
 >
 ```
@@ -336,6 +349,22 @@ You can utilize different functions of Conversation APIs by directly utilizing `
     >
     >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Put_APIs/put_speaker_events_streaming.py) to check the example for usage of `put_speakers_events` functionality using `Conversations class` for Streaming APIs.
 
+13. delete_conversation(conversation_id)
+
+    >This API permanently deletes conversation and all related entities such as messages, insights, topics etc. associated with the Conversation ID.
+    >
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Delete_APIs) to check the example for usage of `delete_conversation` functionality.
+
+
+14. get_formatted_transcript(conversation_id, parameters={})
+
+    >parameters:- (mandatory) dictionary, takes a dictionary of request body parameters. For list of request body parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/transcript#request-body-parameters)
+    >
+    >returns a formatted transcript in Markdown and SRT format.
+    >
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Post_APIs) to check the example for usage of `get_formatted_transcript` functionality.
+
+
 >example for demonstrate the use of Conversations class
 >
 ```
@@ -384,7 +413,7 @@ Based on PSTN and SIP protocols, the Telephony API provides an interface for the
     
     >returns connection object
     >
-    >click [here]https://github.com/symblai/symbl-python/tree/main/example/Telephony_API/telephony_sip.py) to check the example for usage of parameters/arguments and connection object
+    >click [here](https://github.com/symblai/symbl-python/tree/main/example/Telephony_API/telephony_sip.py) to check the example for usage of parameters/arguments and connection object
     >
     >For more details check [here][telephony-docs]
 
