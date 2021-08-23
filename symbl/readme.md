@@ -250,7 +250,6 @@ Conversation object is returned by Async API Text, Audio and Video classes. The 
     >
     >click [here](https://github.com/symblai/symbl-python/tree/main/example/Conversation_APIs/Delete_APIs) to check the example for usage of `delete_conversation` functionality.
 
-
 14. conversation_object.get_formatted_transcript(parameters={})
 
     >parameters:- (mandatory) dictionary, takes a dictionary of request body parameters. For list of request body parameters accepted, please click [here](https://docs.symbl.ai/docs/conversation-api/transcript#request-body-parameters)
