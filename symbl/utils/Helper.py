@@ -12,6 +12,20 @@ def correct_boolean_values(dictionary: dict):
             dictionary[key] = "false"
     return dictionary
 
+def insert_valid_boolean_values(dictionary: dict):
+    for key in dictionary:
+        if type(dictionary[key]) == dict:
+            for dict_key in dictionary[key]:
+                if dictionary[key][dict_key] == "true":
+                    dictionary[key][dict_key] = True
+                elif dictionary[key][dict_key] == "false":
+                    dictionary[key][dict_key] = False
+        elif dictionary[key] == "true":
+            dictionary[key] = True
+        elif dictionary[key] == "false":
+            dictionary[key] = False
+    return dictionary
+    
 def dictionary_to_valid_json(dictionary: dict):
     new_dictionary = dict()
     for key in dictionary.keys():

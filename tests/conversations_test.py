@@ -57,14 +57,6 @@ class ConversationsTest(unittest.TestCase):
         with patch("symbl.AuthenticationToken.get_api_client", Mock(return_value="None")), patch("symbl.ConversationsApi.get_conversation", Mock(return_value=demo_response)):
             self.assertEqual(demo_response, conversations_object.get_conversation())
 
-
-    def test_get_analytics_should_succeed_given_valid_conversation_id(self):
-        demo_response = SimpleNamespace(**{"metrics": [{"type": "total_silence","percent": 0,"seconds": 0},{"type": "total_talk_time","percent": 100,"seconds": 134.88},{"type": "total_overlap","percent": 0,"seconds": 0}],"members": [{"id": "461dd687-4341-48a5-9f3a-7f6019d6378c","name": "John","userId": "john@example.com","pace": {"wpm": 124},"talkTime": {"percentage": 100,"seconds": 134.88},"listenTime": {"percentage": 0,"seconds": 0},"overlap": {}}]})
-        conversations_object = Conversation("6549352073920512")
-
-        with patch("symbl.AuthenticationToken.get_api_client", Mock(return_value="None")), patch("symbl.ConversationsApi.get_analytics", Mock(return_value=demo_response)):
-            self.assertEqual(demo_response, conversations_object.get_analytics())
-
     def test_get_trackers_should_succeed_given_valid_conversation_id(self):
         demo_response = SimpleNamespace(**{ "id": "5243525907087360", "name": "text_tracker", "matches": [ { "messageRefs": [ { "id": "5867975128121344", "text": "I don't know which platform is it, but I came to know that platform.", "offset": 19 }, { "id": "6328818106105856", "text": "So this is a live demo that we are trying to give very we are going to show how the platform detects various insights can do transcription in real time and also the different topics of discussions, which would be generated after the call is over, and they will be an email that will be sent to the inbox.", "offset": 84 } ], "type": "vocabulary", "value": "platform", "insightRefs": [] } ] })
         conversations_object = Conversation("6549352073920512")
@@ -86,6 +78,71 @@ class ConversationsTest(unittest.TestCase):
         with patch("symbl.AuthenticationToken.get_api_client", Mock(return_value="None")), patch("symbl.ConversationsApi.get_analytics", Mock(return_value=demo_response)):
             self.assertEqual(demo_response, conversations_object.get_analytics())
 
-    
+    def test_put_members_should_succeed_given_valid_conversation_id(self):
+        demo_response = SimpleNamespace(
+            **{"message": "Member with id: 1234567890 for conversationId: 6549352073920512 updated successfully! The update should be reflected in all messages and insights along with this conversation"})
+        conversations_object = Conversation("6549352073920512")
+
+        param = {"id": "1234567890",
+                 "email": "john@example.in",
+                 "name": "john"}
+
+        with patch("symbl.AuthenticationToken.get_api_client", Mock(return_value="None")), patch("symbl.ConversationsApi.put_members", Mock(return_value=demo_response)):
+            self.assertEqual(demo_response, conversations_object.put_members("1234567890", param))
+
+    def test_put_speakers_events_should_succeed_given_valid_conversation_id(self):
+        demo_response = SimpleNamespace(
+            **{"message": "Speaker events associated for conversationId: 6549352073920512 successfully! The update should be reflected in all messages and insights along with this conversation"})
+        conversations_object = Conversation("6549352073920512")
+
+        payload_streaming = {
+            "speakerEvents": [
+                {
+                    "type": "started_speaking",
+                    "user": {
+                        "id": "1234567890",
+                        "name": "john",
+                        "email": "john@example.com"
+                    },
+                    "offset": {
+                        "seconds": 52,
+                        "nanos": 5000000000
+                    }
+                }
+            ]
+        }
+
+        with patch("symbl.AuthenticationToken.get_api_client", Mock(return_value="None")), patch("symbl.ConversationsApi.put_speakers_events", Mock(return_value=demo_response)):
+            self.assertEqual(demo_response, conversations_object.put_speakers_events( payload_streaming))
+
+    def test_delete_conversation_should_succeed_given_valid_conversation_id(self):
+        demo_response = SimpleNamespace(
+            **{'message': 'successfully deleted the conversation'})
+        conversations_object = Conversation("6549352073920512")
+
+        with patch("symbl.AuthenticationToken.get_api_client", Mock(return_value="None")), patch("symbl.ConversationsApi.delete_conversation", Mock(return_value=demo_response)):
+            self.assertEqual(
+                demo_response, conversations_object.delete_conversation())
+
+    def test_get_formatted_transcript_should_succeed_given_valid_conversation_id(self):
+        demo_response = SimpleNamespace(
+            **{'transcript': {'content_type': 'text/markdown', 'payload': 'Natalia: Let us talk about India Australia'}})
+        conversations_object = Conversation("6549352073920512")
+
+        payload = {
+            'contentType': 'text/markdown',
+            # 'contentType': 'text/srt',
+            'createParagraphs': "true",
+            'phrases': {
+                'highlightOnlyInsightKeyPhrases': "true",
+                'highlightAllKeyPhrases': "true"
+            },
+            'showSpeakerSeparation': "true"
+        }
+        with patch("symbl.AuthenticationToken.get_api_client", Mock(return_value="None")), patch("symbl.ConversationsApi.get_formatted_transcript", Mock(return_value=demo_response)):
+            self.assertEqual(
+                demo_response, conversations_object.get_formatted_transcript( parameters=payload))
+
+
 if __name__ == '__main__':
     unittest.main()
