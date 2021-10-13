@@ -4,8 +4,22 @@
 name: Upload Python Package
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - 'develop'
+      - 'main'
+
+env:
+  PRODUCTION_BRANCH: main
+  PUBLIC_PYPI_USER: ${{ secrets.PUBLIC_PYPI_USER }}
+  PUBLIC_PYPI_PASSWD: ${{ secrets.PUBLIC_PYPI_PASSWD }}
+  PUBLIC_PYPI_HOST: ${{secrets.PUBLIC_PYPI_HOST}}
+
+  DEVELOP_BRANCH: develop
+  INTERNAL_PYPI_USER: ${{ secrets.INTERNAL_PYPI_USER }}
+  INTERNAL_PYPI_PASSWD: ${{ secrets.INTERNAL_PYPI_PASSWD }}
+  INTERNAL_PYPI_HOST: ${{secrets.INTERNAL_PYPI_HOST}}
+
 
 jobs:
   deploy:
@@ -14,18 +28,27 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install setuptools wheel twine
-    - name: Build and publish
-      env:
-        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+
+    - name: Build
       run: |
         python setup.py sdist bdist_wheel
-        twine upload dist/*
+
+    - name: Publish package to production
+      if: ${{ env.BRANCH_NAME == env.PRODUCTION_BRANCH }}
+      run: |
+        twine upload -u {{PUBLIC_PYPI_USER}} -p {{PUBLIC_PYPI_PASSWD}} --repository-url {{PUBLIC_PYPI_HOST}} dist/*
+
+    - name: Publish package to develop
+      if: ${{ env.BRANCH_NAME == env.DEVELOP_BRANCH }}
+      run: |
+        twine upload -u {{INTERNAL_PYPI_USER}} -p {{INTERNAL_PYPI_PASSWD}} --repository-url {{INTERNAL_PYPI_HOST}} dist/*
