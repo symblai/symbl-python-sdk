@@ -5,6 +5,7 @@ from symbl.utils.Threads import Thread
 from time import sleep
 import json
 import websocket
+from pyogg import OpusBufferedEncoder
 
 class StreamingConnection():
 
@@ -16,12 +17,17 @@ class StreamingConnection():
         self.start_request = start_request
         self.connection = None
         self.__connect()
+        self.opus_encoder = OpusBufferedEncoder()
+        self.opus_encoder.set_application("voip")
+        self.opus_encoder.set_sampling_frequency(48000)
+        self.opus_encoder.set_channels(1)
+        self.opus_encoder.set_frame_size(20)
 
 
     def __connect(self):
         if self.connection == None:
 
-            self.connection = websocket.WebSocketApp(url=self.url, on_message=lambda this, data: self.__listen_to_events(data), on_error=lambda error: Log.getInstance().error(error))
+            self.connection = websocket.WebSocketApp(url=self.url, on_message=lambda this, data: self.__listen_to_events(data), on_error=lambda this, error: Log.getInstance().error(error))
 
             Thread.getInstance().start_on_thread(target=self.connection.run_forever)
             conn_timeout = 5
@@ -59,11 +65,24 @@ class StreamingConnection():
     @wrap_keyboard_interrupt
     def send_audio(self, data):
         if self.connection != None:
-            self.connection.send(data, opcode=websocket.ABNF.OPCODE_BINARY)
+
+            if self.start_request['config']['speechRecognition']['encoding'] == 'OPUS':
+
+                self.opus_encoder.buffered_encode(
+                    memoryview(bytearray(data)),
+                    callback=lambda encoded_packet, *args: self.connection.send(
+                        encoded_packet.tobytes(),
+                        opcode=websocket.ABNF.OPCODE_BINARY))
+
+            elif self.start_request['config']['speechRecognition']['encoding'] == 'LINEAR16':
+
+                self.connection.send(data, opcode=websocket.ABNF.OPCODE_BINARY)
+
 
     @wrap_keyboard_interrupt
     def send_audio_from_mic(self, device=None):
         import sounddevice as sd
-        with sd.InputStream(blocksize=4096, samplerate=44100, channels=1, callback= lambda indata, *args: self.send_audio(indata.copy().tobytes()), dtype='int16', device=device):
+        samplerate = self.start_request['config']['speechRecognition']['sampleRateHertz']
+        with sd.InputStream(blocksize=4096, samplerate=samplerate, channels=1, callback= lambda indata, *args: self.send_audio(indata.copy().tobytes()), dtype='int16', device=device):
             while True:
                 pass
