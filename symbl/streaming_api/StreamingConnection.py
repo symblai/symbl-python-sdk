@@ -6,6 +6,7 @@ from time import sleep
 import json
 import websocket
 
+
 class StreamingConnection():
 
     def __init__(self, url: str, connectionId: str, start_request: dict):
@@ -63,7 +64,11 @@ class StreamingConnection():
 
     @wrap_keyboard_interrupt
     def send_audio_from_mic(self, device=None):
-        import sounddevice as sd
-        with sd.InputStream(blocksize=4096, samplerate=44100, channels=1, callback= lambda indata, *args: self.send_audio(indata.copy().tobytes()), dtype='int16', device=device):
-            while True:
-                pass
+        import pyaudio
+        audio = pyaudio.PyAudio()
+        chunk = 4096
+        samplerate = self.start_request['config']['speechRecognition']['sampleRateHertz']
+        stream = audio.open(format=pyaudio.paInt16, channels=1, rate=samplerate, input=True, frames_per_buffer=chunk)
+        while True:
+            data = stream.read(chunk)
+            self.send_audio(data)
