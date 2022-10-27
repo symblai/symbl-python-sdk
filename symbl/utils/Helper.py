@@ -96,3 +96,9 @@ def parse_entity_response(api_response):
         entity_response.append(entity_res) 
 
     return dict(entities=entity_response)
+
+# Using copy because we support Python 3.4
+def merge_two_dicts(x, y):
+    z = x.copy()
+    z.update(y) 
+    return z  
