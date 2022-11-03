@@ -1,6 +1,7 @@
 from symbl import StreamingConnection
 from symbl.configs.configs import SYMBL_STREAMING_API_FORMAT
 from symbl.AuthenticationToken import get_access_token
+from symbl.utils import Helper
 import websocket
 import base64
 import random
@@ -31,15 +32,19 @@ class StreamingApi():
             }
         }
 
-        for key in config.keys():
-            config_object[key] = config[key]
+        merged_config = Helper.merge_two_dicts(config_object, config)
+
+        # Merge subdictionary
+        speechKey = 'speechRecognition'
+        if speechKey in config:
+            merged_config[speechKey] = Helper.merge_two_dicts(config_object[speechKey], config[speechKey])
 
         start_request = {
             "type": "start_request",
             "insightTypes": [] if insight_types == None else [] if type(insight_types) != list else insight_types,
             "speaker": speaker,
             "trackers":trackers,
-            "config": config_object
+            "config": merged_config
         }
     
         return StreamingConnection(url= url, connectionId=id, start_request=start_request)
