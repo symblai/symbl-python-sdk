@@ -108,4 +108,8 @@ class Conversation():
     @validate_conversation_id
     def get_call_score(self):
         return self.__conversation_api.get_call_score(self.__conversation_id, credentials=self.__credentials)
+
+    @validate_conversation_id
+    def get_call_score_status(self):
+        return self.__conversation_api.get_call_score_status(self.__conversation_id, credentials=self.__credentials)
   

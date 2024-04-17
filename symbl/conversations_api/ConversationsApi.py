@@ -27,6 +27,14 @@ class ConversationsApi():
             return {'message': 'The conversationId is either invalid or does not exist.'}
 
     @initialize_api_client
+    def get_call_score_status(self, conversation_id, credentials=None):
+        try:
+            res = self.conversations_api_rest.get_call_score_status_by_conversation_id(conversation_id)
+            return res
+        except Exception as e:
+            return {'message': 'The conversationId is either invalid or does not exist.'}
+
+    @initialize_api_client
     def get_follow_ups(self, conversation_id, credentials=None ):  
         try:
             return self.conversations_api_rest.get_follow_ups_by_conversation_id(conversation_id)
