@@ -104,4 +104,8 @@ class Conversation():
     @validate_conversation_id
     def get_formatted_transcript(self, parameters={}):  
         return self.__conversation_api.get_formatted_transcript(self.__conversation_id,parameters,credentials=self.__credentials)
+
+    @validate_conversation_id
+    def get_call_score(self):
+        return self.__conversation_api.get_call_score(self.__conversation_id, credentials=self.__credentials)
   

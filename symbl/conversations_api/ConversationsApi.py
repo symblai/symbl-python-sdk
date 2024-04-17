@@ -17,7 +17,14 @@ class ConversationsApi():
             return self.conversations_api_rest.get_action_items_by_conversation_id(conversation_id)
         except:
             return {'message': 'The conversationId is either invalid or does not exist.'}
-  
+
+
+    @initialize_api_client
+    def get_call_score(self, conversation_id, credentials=None):
+        try:
+            return self.conversations_api_rest.get_call_score_by_conversation_id(conversation_id)
+        except:
+            return {'message': 'The conversationId is either invalid or does not exist.'}
 
     @initialize_api_client
     def get_follow_ups(self, conversation_id, credentials=None ):  
