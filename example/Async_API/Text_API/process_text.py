@@ -12,6 +12,17 @@ trackers = [{
 payload = {
     
     "name": "TextAPI",  # you can update the name of the conversation
+
+    "features": {
+        "featureList": [
+            "insights",
+            "callScore"
+        ]
+    },
+    "metadata": {
+        "salesStage": "qualification",
+        "prospectName": "DeepMind AI"
+    },
     
     #"trackers": trackers,  #To detect the trackers
     
@@ -52,6 +63,7 @@ conversation_object = symbl.Text.process(payload=payload)
 
 # To get the message from the conversation
 print(conversation_object.get_messages())
+print(conversation_object.get_call_score_status())
 
 #To get the conversation data from the conversation
 #print(conversation_object.get_conversation())
