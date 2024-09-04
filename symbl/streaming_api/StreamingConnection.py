@@ -9,20 +9,21 @@ import websocket
 
 class StreamingConnection():
 
-    def __init__(self, url: str, connectionId: str, start_request: dict):
+    def __init__(self, url: str, connectionId: str, start_request: dict, token: str):
         self.conversation = Conversation(None)
         self.connectionId = connectionId
         self.url = url
         self.event_callbacks = {}
         self.start_request = start_request
         self.connection = None
+        self.token = token
         self.__connect()
 
 
     def __connect(self):
         if self.connection == None:
 
-            self.connection = websocket.WebSocketApp(url=self.url, on_message=lambda this, data: self.__listen_to_events(data), on_error=lambda error: Log.getInstance().error(error))
+            self.connection = websocket.WebSocketApp(url=self.url, on_message=lambda this, data: self.__listen_to_events(data), on_error=lambda error: Log.getInstance().error(error), header={'x-api-key': self.token})
 
             Thread.getInstance().start_on_thread(target=self.connection.run_forever)
             conn_timeout = 5

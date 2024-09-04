@@ -18,7 +18,8 @@ class StreamingApi():
     def start_connection(self, credentials=None, speaker=None, insight_types=None, config={},trackers=None):
         randomId = bytes(''.join(random.choices(string.ascii_uppercase +string.digits, k=12)), 'utf-8')
         id = base64.b64encode(randomId).decode("utf-8")
-        url = SYMBL_STREAMING_API_FORMAT.format(id, get_access_token(credentials=credentials))
+        token = get_access_token(credentials=credentials)
+        url = SYMBL_STREAMING_API_FORMAT.format(id)
         
         if type(config) != dict:
             raise TypeError("config should be of type dict")
@@ -47,7 +48,7 @@ class StreamingApi():
             "config": merged_config
         }
     
-        return StreamingConnection(url= url, connectionId=id, start_request=start_request)
+        return StreamingConnection(url= url, connectionId=id, start_request=start_request, token=token)
 
     def stop_listening(self, url: str):
         connection = websocket.WebSocketApp(url=url)
